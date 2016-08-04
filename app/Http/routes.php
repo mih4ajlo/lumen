@@ -13,17 +13,19 @@
 
 $app->get('/', function () use ($app) {
 
-echo	"asdasd";
     return $app->version();
 });
 
 
-$app->get('/foo', function ()  {
-    return 'Hello World';
+$app->get('foo/{name}', function ($name)  {
+	Cache::put('drugi', $name , "12");
+	
+    return 'Hello World '. $name;
 });
 
 
-$app->get('/bar', function ()  {
-    return 'Hello World bar';
+$app->get('foo/get/{name}', function ($name)  {
+	$value = Cache::get('drugi');
+	
+    return $value;
 });
-
