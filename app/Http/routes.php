@@ -12,5 +12,18 @@
 */
 
 $app->get('/', function () use ($app) {
+
+echo	"asdasd";
     return $app->version();
 });
+
+
+$app->get('/foo', function ()  {
+    return 'Hello World';
+});
+
+
+$app->get('/bar', function ()  {
+    return 'Hello World bar';
+});
+
