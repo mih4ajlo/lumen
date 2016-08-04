@@ -1,8 +1,6 @@
 <?php
 
 
-#print("asdads");
-#die();
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -16,6 +14,9 @@
 
 $app = require __DIR__.'/../bootstrap/app.php';
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application
@@ -28,4 +29,6 @@ $app = require __DIR__.'/../bootstrap/app.php';
 |
 */
 
+
+/*http://loige.co/developing-a-web-application-with-lumen-and-mysql/*/
 $app->run();
