@@ -11,6 +11,7 @@
 |
 */
 
+
 $app->get('/', function () use ($app) {
 
     return $app->version();
@@ -26,6 +27,29 @@ $app->get('foo/{name}', function ($name)  {
 
 $app->get('foo/get/{name}', function ($name)  {
 	$value = Cache::get('drugi');
-	
+
     return $value;
+});
+
+$app->get('dbtest', function ()  {
+
+$out = "DB test SQL NO CACHE / No Lumen Cache";
+$time_start = microtime(true);
+$results = DB::select("SELECT SQL_NO_CACHE own_kat, ponder, iid,  count(1) as total, count(opit) as popunjeno, (count(opit)/count(1)*100) as proc FROM `csr_pitanja` left join csr_odgovori ON opit=pid and okor=1 and tip=1 left join csr_indikatori on own_ind = iid WHERE tip=1 AND own_ank=1 GROUP BY own_ind");
+$out .= '<br>Total execution time in miliseconds: ' . (microtime(true) - $time_start)*1000;
+$out .= "<pre>".print_r($results,true). "</pre>";
+
+    return $out;
+});
+
+$app->get('dbtestcache', function ()  {
+
+// how TF you tell Lumen to use cache in query
+$out = "DB test SQL NO CACHE / Lumen Cache ON";
+$time_start = microtime(true);
+$results = DB::select("SELECT SQL_NO_CACHE own_kat, ponder, iid,  count(1) as total, count(opit) as popunjeno, (count(opit)/count(1)*100) as proc FROM `csr_pitanja` left join csr_odgovori ON opit=pid and okor=1 and tip=1 left join csr_indikatori on own_ind = iid WHERE tip=1 AND own_ank=1 GROUP BY own_ind");
+$out .= '<br>Total execution time in miliseconds: ' . (microtime(true) - $time_start)*1000;
+$out .= "<pre>".print_r($results,true). "</pre>";
+
+    return $out;
 });
