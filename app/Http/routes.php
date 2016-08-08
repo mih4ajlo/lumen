@@ -35,7 +35,9 @@ $app->get('admin/', function ()  {
 $app->get('jedan_unos/', function ()  {
 	
 			
-	$sadrzaj = app('db')->select("SELECT * FROM sadrzajs where id = 2");
+	$sadrzaj = app('db')->select("SELECT * FROM sadrzajs where id = ? and length(content) > ? ", [2, 20]);
+
+	
 	
     return view('admin', ['document' => "Jedan unos dokumenta", "sadrzaj"=>$sadrzaj]);
 });
