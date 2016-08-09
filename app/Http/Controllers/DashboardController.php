@@ -48,6 +48,13 @@ class DashboardController extends Controller
          return view('dashboard.kategorije',[ "kategorije"=>$kategorije]);
     }
 
+    public function users($value='')
+    {
+        $users = app('db')->select("SELECT * FROM users where 1 " );
+
+        return view('dashboard.users',[ "users"=>$users]);
+    }
+
 
 
 
