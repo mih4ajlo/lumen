@@ -19,8 +19,10 @@ https://laracasts.com/discuss/channels/lumen/nested-route-groups-and-namespace
 */
 $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
     $app->get('/',  [   'uses' => 'DashboardController@index']);
+
+    $app->get('sadrzaj',  [   'uses' => 'DashboardController@sadrzaj']);
     
-    $app->get('users',  [   'uses' => 'DashboardController@sadrzaj']);
+    $app->get('kategorije',  [   'uses' => 'DashboardController@kategorije']);
 });
 
 

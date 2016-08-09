@@ -24,18 +24,28 @@ class DashboardController extends Controller
     public function index($value='')
     {
         //echo "string";
-        return view('dashboard');
+        return view('dashboard.home');
     }
 
     public function sadrzaj($value='')
     {
 
-           
+               
+        $sadrzaj = app('db')->select("SELECT sid, saltnaslov FROM sadrzajs order by sid ");
+ 
+                  
         
-       /* $sadrzaj = app('db')->select("SELECT * FROM sadrzajs where id = ? and length(content) > ? ", [2, 20]);*/
-
         //treba proslediti neki parametar
-        return view('dashboard');
+        return view('dashboard.content',[ "lista"=>$sadrzaj]);
+    }
+
+    public function kategorije( $value='' )
+    {
+        
+        $kategorije = app('db')->select("SELECT kid, knaziv FROM kategorijes where 1 " );
+   
+
+         return view('dashboard.kategorije',[ "kategorije"=>$kategorije]);
     }
 
 
