@@ -12,6 +12,29 @@
 */
 
 
+/*https://github.com/ankhuve/jobbaextra-backend/blob/master/app/Http/routes.php*/
+// /'middleware' => ['auth'],
+/*$app->group(
+	['prefix' => 'dashboard'], 
+	function () use ($app) {
+				
+   $app->get('/', 'DashboardController@index');
+    //$app->get('', 'DashboardController@index');
+    $app->get('/sadrzaj', [   'as' => 'sadrzaj', 'uses' => 'DashboardController@index']);
+});*/
+
+
+$app->group(['prefix' => 'dashboard'], function () use ($app) {
+    $app->get('/',  [   'uses' => 'DashboardController@index']);
+    
+    $app->get('users',  [   'uses' => 'DashboardController@index']);
+});
+
+/*$app->get('dashboard/',[
+    'middleware' => 'auth',
+    'uses' => 'DashboardController@index'
+]   );*/
+
 $app->get('/', function () use ($app) {
 
     return $app->version();
