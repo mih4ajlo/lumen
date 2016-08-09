@@ -100,3 +100,9 @@ $out .= "<pre>".print_r($results,true). "</pre>";
 
     return $out;
 });
+
+
+
+
+//include additional Routes
+include("routes2.php");
