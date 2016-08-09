@@ -13,27 +13,17 @@
 
 
 /*https://github.com/ankhuve/jobbaextra-backend/blob/master/app/Http/routes.php*/
-// /'middleware' => ['auth'],
-/*$app->group(
-	['prefix' => 'dashboard'], 
-	function () use ($app) {
-				
-   $app->get('/', 'DashboardController@index');
-    //$app->get('', 'DashboardController@index');
-    $app->get('/sadrzaj', [   'as' => 'sadrzaj', 'uses' => 'DashboardController@index']);
-});*/
 
-
-$app->group(['prefix' => 'dashboard'], function () use ($app) {
+/*
+https://laracasts.com/discuss/channels/lumen/nested-route-groups-and-namespace
+*/
+$app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
     $app->get('/',  [   'uses' => 'DashboardController@index']);
     
-    $app->get('users',  [   'uses' => 'DashboardController@index']);
+    $app->get('users',  [   'uses' => 'DashboardController@sadrzaj']);
 });
 
-/*$app->get('dashboard/',[
-    'middleware' => 'auth',
-    'uses' => 'DashboardController@index'
-]   );*/
+
 
 $app->get('/', function () use ($app) {
 
