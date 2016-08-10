@@ -30,6 +30,7 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
 $app->group(['middleware' => ['auth'], 'prefix' => 'auth', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
 
     $app->get('login',  [   'uses' => 'UserController@login']);
+    $app->post('login',  [   'uses' => 'UserController@login']);
     $app->get('register',  [   'uses' => 'UserController@register']);
 
 });
