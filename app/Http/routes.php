@@ -31,7 +31,9 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'auth', 'namespace' => 'App\H
 
     $app->get('login',  [   'uses' => 'UserController@login']);
     $app->post('login',  [   'uses' => 'UserController@login']);
-    $app->get('register',  [   'uses' => 'UserController@register']);
+
+    $app->get('register',  [   'uses' => 'UserController@register']);    
+    $app->get('error/{err}',  [   'uses' => 'UserController@error' ]);
 
 });
 

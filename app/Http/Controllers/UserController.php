@@ -32,22 +32,26 @@ class UserController extends Controller
         
         //$sifra 
         // $sifra =  password_hash( /*$sifra*/ 'neki pass' , PASSWORD_DEFAULT);
-        $hash = app('db')->select("SELECT * FROM users where email = ?  ", 
+        $hash = app('db')->select(
+            "SELECT * FROM users where email = ?  ", 
             [$mail ] );
 
         
+
         if( empty($hash) ){
-            return ['result' => 'nema email'];
+            return redirect("/auth/error/email");
+            //return ['result' => 'nema email'];
         }
 
      
         if (password_verify( $sifra, $hash[0]->pass )) {
-          
+            
                 return ['result' => 'ok'];
           
             
         } else {
-            return ['result' => 'ne poklapaju se sifre'];
+            return redirect("/auth/error/sifra");
+            //return ['result' => 'ne poklapaju se sifre'];
         }
               
         
@@ -61,5 +65,14 @@ class UserController extends Controller
           $sifra =  password_hash( $sifra /*'neki pass'*/ , PASSWORD_DEFAULT);
             
         return ['result' => 'not ok'];
+    }
+
+    public function error( $err )
+    {
+        
+        return view(
+            "auth.greska", 
+            ["poruka"=>$err]
+        );
     }
 }
