@@ -14,13 +14,21 @@ class User extends Model implements
 {
     use Authenticatable, Authorizable;
 
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'uname', 'email','pass'
     ];
 
     /**
@@ -29,6 +37,6 @@ class User extends Model implements
      * @var array
      */
     protected $hidden = [
-        'password',
+        'pass',
     ];
 }

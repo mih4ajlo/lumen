@@ -23,6 +23,8 @@ class Authenticate
     public function __construct(Auth $auth)
     {
         $this->auth = $auth;
+              
+        
     }
 
     /**
@@ -36,7 +38,12 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
 
-             
+        $_SESSION['la'] ="asdasd";
+               
+        
+
+        //and ip?
+        // sesija da           
         
         /*if ($this->auth->guard($guard)->guest()) {
             return response('Unauthorized.', 401);
