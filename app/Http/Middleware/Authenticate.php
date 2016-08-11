@@ -23,7 +23,6 @@ class Authenticate
     public function __construct(Auth $auth)
     {
         $this->auth = $auth;
-              
         
     }
 
@@ -37,18 +36,26 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-
-        $_SESSION['la'] ="asdasd";
-               
+        $plan  = $request->headers->get('user-agent');
+       
+                
         
+        //return response('Unauthorized.', 401);
 
-        //and ip?
-        // sesija da           
         
         /*if ($this->auth->guard($guard)->guest()) {
             return response('Unauthorized.', 401);
         }*/
 
         return $next($request);
+    }
+
+    public function doLogout($value='')
+    {
+        print_r("<pre>");
+        var_dump(get_defined_vars());
+        print_r("</pre>");
+        die();
+
     }
 }

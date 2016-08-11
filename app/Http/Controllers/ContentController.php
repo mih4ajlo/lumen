@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class DashboardController extends Controller
+use Illuminate\Http\Request;
+
+class ContentController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,32 +16,31 @@ class DashboardController extends Controller
        // $this->middleware(['auth']);
     }
 
-    
-/*https://github.com/ankhuve/jobbaextra-backend/blob/master/app/Http/Controllers/DashboardController.php*/
 
-    //
-    //TODO meni sa sadrzajem svih tabela (posebne privilegije za user tabelu)
-    //TODO lista enumerisanih sadrzaja tabela
 
     public function index($value='')
     {
-
+ 			print_r("<pre>");
+               var_dump(get_defined_vars());
+               print_r("</pre>");
+               die();
               
         //echo "string";
         return view('dashboard.home');
     }
 
-    public function sadrzaj($value='')
-    {
 
-               
-        $sadrzaj = app('db')->select("SELECT sid, saltnaslov FROM sadrzajs order by sid ");
- 
-                  
-        
-        //treba proslediti neki parametar
-        return view('dashboard.content',[ "lista"=>$sadrzaj]);
-    }
+	public function single(Request $request, $content_id )
+	{
+		 $unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );
+   
+		//var_dump($content_id);	
+		return view(
+            "content.content", ["sadrzaj_unos"=>$unos] 
+        );
+
+	}
+    
 
     public function kategorije( $value='' )
     {
