@@ -46,7 +46,10 @@ class UserController extends Controller
      
         if (password_verify( $sifra, $hash[0]->pass )) {
             
-                return ['result' => 'ok'];
+
+            //setuje se session?
+            return redirect("/dashboard");
+                //return ['result' => 'ok'];
           
             
         } else {
