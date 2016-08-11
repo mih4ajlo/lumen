@@ -3,7 +3,7 @@
 //main menu
 // SELECT kid, kowner, knaziv, saltnaslov, sgodina FROM sadrazajs NATURAL JOIN kategorijes order by kowner
 //modularni get - year moze da postoji ali i ne mora
-$app->get('nav[/{year}]', function ($year=NULL)  {
+$app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 
      if($year){
          //select only first 2 levels
@@ -26,8 +26,38 @@ $app->get('nav[/{year}]', function ($year=NULL)  {
     return json_encode($outf) ;
 });
 
+//SECTION CONTENT
+// lang obavezan / godina obavezna / kid opcioni - defoult na ORDER BY saltorder LIMIT1
+$app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
+
+     if($kid){
+        $sql = "SELECT scont FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kid={$kid} ";
+     } else {
+         //default
+        $sql = "SELECT scont FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina=2015 order by saltorder LIMIT 1  ";
+     }
+
+    $out = frontSql($sql);
+
+//    echo "<br><br><pre>";
+//    var_dump($outf);
+//    echo "</pre>";
 
 
+    return json_encode($out) ;
+});
+
+
+//TIMELINE CONTENT
+// lang obavezan / kid obavezan
+$app->get('{lang}/timeline/{kid}', function ($lang,$kid)  {
+
+    $sql = "SELECT sgodina FROM sadrazajs NATURAL JOIN kategorijes WHERE kid={$kid} GROUP BY sgodina ";
+
+    $out = frontSql($sql);
+
+    return json_encode($out) ;
+});
 
 
 
@@ -63,15 +93,18 @@ $time_start = microtime(true);
 
     //select queries only
 
-    //create Cache entry
-    if(Cache::get($md5sql)){
-        $results =  Cache::get($md5sql) ;
-    } else {
-        $results = DB::select($sql);
-        Cache::put($md5sql, $results , "1");
-    }
+    //No CACHE for now
+    $results = DB::select($sql);
 
-    echo '<br>Total execution time in miliseconds: ' . ((microtime(true) - $time_start)*1000)."<br>";
+    //create Cache entry
+//    if(Cache::get($md5sql)){
+//        $results =  Cache::get($md5sql) ;
+//    } else {
+//        $results = DB::select($sql);
+//        Cache::put($md5sql, $results , "1");
+//    }
+
+    //echo '<br>Total execution time in miliseconds: ' . ((microtime(true) - $time_start)*1000)."<br>";
 
     return $results;
 
