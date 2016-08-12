@@ -5,6 +5,7 @@ lang = 'cir';
 year = '2015';
 id='';
 compareTo = '';
+searchFor = '';
 
 $(document).ready(function() {
     console.log("ready!");
@@ -32,6 +33,7 @@ function parseUrl(){
     if(hashVars[1]){year = hashVars[1];}
     if(hashVars[2]){id = hashVars[2];}
     if(hashVars[3]){compareTo = hashVars[3];}
+    if(hashVars[4]){searchFor = hashVars[4];}
 
 
     showMenu(year);
@@ -40,6 +42,7 @@ function parseUrl(){
 
     //if compare active
     if(compareTo){ compareToYear(compareTo); }
+    if(searchFor){ searchForString(searchFor); }
 
 
 }
@@ -123,6 +126,85 @@ function availableYearsToCompare(){
     });
 
 }
+
+function searchForString(searchFor){
+        //call it after XXX ms if empty - wait for load
+        if ($('#displayCont').is(':empty')){ setTimeout(function(){ searchForString(searchFor);}, 200); return;}
+
+        console.log( "Searching for "+searchFor );
+        //console.log( $("#displayCont").html() );
+
+        key=1;count=1;
+
+            $("#displayCont").html(function(i, valspan) {
+                //http://stackoverflow.com/questions/12493128
+                var re = new RegExp("(?!<span[^>]*?>)(" + searchFor + ")(?![^<]*?</span>)", "i");
+
+                //test regex in loop and make changes
+                while (re.test(valspan)) {
+
+                    var foundSearchTerm = re.exec(valspan)[0];
+
+                    valspan = valspan.replace(re, '<span class="filtered" id="' + key + '-' + count + '" >' + foundSearchTerm + '</span>');
+
+                    var surroudingWords = valspan.substr(valspan.lastIndexOf('<span class="filtered" id="' + key + '-' + count + '" >' + foundSearchTerm + '</span>'), valspan.length);
+                    var pretext = valspan.substr(0, valspan.lastIndexOf('<span class="filtered" id="' + key + '-' + count + '" >' + foundSearchTerm + '</span>'));
+                    var surroudingWords = $($.parseHTML(pretext)).text().split(" ").splice(-5).join(" ") + " " + $($.parseHTML(surroudingWords)).text().split(" ").splice(0, 10).join(" ");;
+
+                    //var detail = { "podaci": surroudingWords, "meta": key + '-' + count, 'position': count };
+                    //stavke.push(detail);
+
+                    count++;
+                }
+
+                return valspan;
+            });
+
+}
+
+//SEARCH functions
+$(function(){ // this will be called when the DOM is ready
+
+        $("#filter").keyup(function(ev) {
+
+            console.log($("#filter").val());
+            //remove filtered class from document
+            //if ($("#filter").val().length == 0) pr.removeResult();
+
+            $('#rezultatiPretrage').html('');
+
+            if ($("#filter").val().length < 3) return;
+            //get data from API
+            $.getJSON( apiLocation + lang+ "/search/"+$("#filter").val(), function(searchRes) {
+                console.log( "JSON for SEARCH..." );
+
+                if(searchRes.length>0){
+
+                    //dodaj podatke sa list
+                    $.each( searchRes, function( key, value ) {
+                        $('#rezultatiPretrage').append('<div class="stavka-pretrage"><a href="#'+lang+'-'+value.sgodina+'-'+value.kid+'--'+$("#filter").val()+'">'+value.saltnaslov+'</a></div>');
+                     });
+
+                } else {
+                     $('#rezultatiPretrage').html('<div class="stavka-pretrage">Nema rezultata.</div>');
+                }
+
+
+            })
+            .fail(function() {
+                $("#displayCont").html('<p class="emptyHeader nav-section" >Greška prilikom učitavanja sadržaja za uporedjivanje.</p>');
+            });
+
+
+        });
+
+
+});
+
+
+
+
+
 
 
 

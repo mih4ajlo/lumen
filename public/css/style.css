@@ -155,7 +155,7 @@ max-width: 20%;
         clear: both;
         height: 85vh;
         overflow-y: scroll;
-		display:none;
+		/* display:none; */
     }
     
     .stavka-pretrage {

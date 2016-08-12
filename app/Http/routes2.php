@@ -1,18 +1,18 @@
 <?php
 
 //main menu
-// SELECT kid, kowner, knaziv, saltnaslov, sgodina FROM sadrazajs NATURAL JOIN kategorijes order by kowner
+// SELECT kid, kowner, knaziv, saltnaslov, sgodina FROM sadrzajs NATURAL JOIN kategorijes order by kowner
 //modularni get - year moze da postoji ali i ne mora
 $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 
      if($year){
          //select only first 2 levels
-        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina={$year} order by saltorder";
-        //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kowner IN(SELECT sid FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina={$year} and kowner=0) OR (sgodina={$year} and kowner=0)  order by saltorder";
+        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} order by saltorder";
+        //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kowner IN(SELECT sid FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} and kowner=0) OR (sgodina={$year} and kowner=0)  order by saltorder";
      } else {
          //default
-        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina=2015 order by saltorder  ";
-        //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina=2015 AND kowner IN(SELECT sid FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina=2015 and kowner=0) OR (sgodina=2015 and kowner=0)  order by saltorder";
+        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 order by saltorder  ";
+        //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 AND kowner IN(SELECT sid FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 and kowner=0) OR (sgodina=2015 and kowner=0)  order by saltorder";
      }
 
     $out = frontSql($sql);
@@ -31,10 +31,10 @@ $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 $app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
 
      if($kid){
-        $sql = "SELECT scont FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kid={$kid} ";
+        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kid={$kid} ";
      } else {
          //default
-        $sql = "SELECT scont FROM sadrazajs NATURAL JOIN kategorijes WHERE sgodina=2015 order by saltorder LIMIT 1  ";
+        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 order by saltorder LIMIT 1  ";
      }
 
     $out = frontSql($sql);
@@ -52,12 +52,28 @@ $app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
 // lang obavezan / kid obavezan
 $app->get('{lang}/timeline/{kid}', function ($lang,$kid)  {
 
-    $sql = "SELECT sgodina FROM sadrazajs NATURAL JOIN kategorijes WHERE kid={$kid} GROUP BY sgodina ";
+    $sql = "SELECT sgodina FROM sadrzajs NATURAL JOIN kategorijes WHERE kid={$kid} GROUP BY sgodina ";
 
     $out = frontSql($sql);
 
     return json_encode($out) ;
 });
+
+//SEARCH DATABASE
+// lang obavezan / kid obavezan
+$app->get('{lang}/search/{search}', function ($search)  {
+
+$search = urldecode($search);
+
+    $sql = "SELECT saltnaslov, sgodina,kid FROM sadrzajs NATURAL JOIN kategorijes  WHERE scont LIKE '%{$search}%'  ";
+
+    $out = frontSql($sql);
+
+    return json_encode($out) ;
+});
+
+
+
 
 
 
