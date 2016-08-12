@@ -20,10 +20,7 @@ class ContentController extends Controller
 
     public function index($value='')
     {
- 			print_r("<pre>");
-               var_dump(get_defined_vars());
-               print_r("</pre>");
-               die();
+ 			
               
         //echo "string";
         return view('dashboard.home');

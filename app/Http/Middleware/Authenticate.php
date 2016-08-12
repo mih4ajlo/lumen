@@ -52,10 +52,10 @@ class Authenticate
 
     public function doLogout($value='')
     {
-        print_r("<pre>");
+       /* print_r("<pre>");
         var_dump(get_defined_vars());
         print_r("</pre>");
-        die();
+        die();*/
 
     }
 }
