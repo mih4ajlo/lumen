@@ -127,6 +127,7 @@ function availableYearsToCompare(){
 
 }
 
+//highlight all keywords
 function searchForString(searchFor){
         //call it after XXX ms if empty - wait for load
         if ($('#displayCont').is(':empty')){ setTimeout(function(){ searchForString(searchFor);}, 200); return;}
@@ -160,9 +161,13 @@ function searchForString(searchFor){
                 return valspan;
             });
 
+        $('html, body').animate({
+            scrollTop: $('.filtered:visible:first').offset().top-50
+        }, 500);
+
 }
 
-//SEARCH functions
+//SEARCH functions from DATABASE
 $(function(){ // this will be called when the DOM is ready
 
         $("#filter").keyup(function(ev) {
