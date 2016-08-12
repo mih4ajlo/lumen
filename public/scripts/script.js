@@ -1,4 +1,5 @@
 //Set globals
+//apiLocation = 'http://z.com/';
 apiLocation = 'http://z.com/';
 lang = 'cir';
 year = '2015';
