@@ -55,18 +55,6 @@
 
 
 
-
-		<!-- Textarea -->
-		<div class="form-group">
-		  <label class="col-md-4 control-label" for="textSadrzaj">Sadrzaj</label>
-		  <div class="col-md-10 col-md-offset-1">  
-
-			
-
-		    <textarea class="form-control" id="textSadrzaj" name="textSadrzaj" rows="20"><?php echo $sadrzaj_unos[0]->scont; ?></textarea>
-		  </div>
-		</div>
-
 		<!-- Text input-->
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textNaslov">Naslov</label>  
@@ -76,25 +64,27 @@
 		  </div>
 		</div>
 
-		<!-- Select Basic -->
-		<div class="form-group">
-		  <label class="col-md-4 control-label" for="selectJezik">Jezik</label>
-		  <div class="col-md-4">
-		    <select id="selectJezik" name="selectJezik" class="form-control">
-		      <option value="RS-cir">Cirilica</option>
-		      <option value="RS-lat">Latinica</option>
-		      <option value="en">Engleski</option>
-		    </select>
-		  </div>
-		</div>
-
-		<!-- Text input-->
-		<div class="form-group">
-		  <label class="col-md-4 control-label" for="textGodina">Godina</label>  
-		  <div class="col-md-4">
-		  <input id="textGodina" name="textGodina" type="text" placeholder="godina" class="form-control input-md">
-		    
-		  </div>
+		<div>
+			<!-- Select Basic -->
+			<div class="form-group ">
+			  <label class="col-md-4 control-label" for="selectJezik">Jezik</label>
+			  <div class="col-md-4">
+			    <select id="selectJezik" name="selectJezik" class="form-control">
+			      <option value="RS-cir">Cirilica</option>
+			      <option value="RS-lat">Latinica</option>
+			      <option value="en">Engleski</option>
+			    </select>
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="textGodina">Godina</label>  
+			  <div class="col-md-4">
+			  <input id="textGodina" name="textGodina" type="text" placeholder="godina" class="form-control input-md">
+			    
+			  </div>
+			</div>
 		</div>
 
 		<!-- Text input-->
@@ -103,6 +93,15 @@
 		  <div class="col-md-4">
 		  <input id="textKeywords" name="textKeywords" type="text" placeholder="keywords" class="form-control input-md">
 		    
+		  </div>
+		</div>
+
+		<!-- Textarea -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="textSadrzaj">Sadrzaj</label>
+		  <div class="col-md-10 col-md-offset-1">  
+
+		    <textarea class="form-control" id="textSadrzaj" name="textSadrzaj" rows="20"><?php echo $sadrzaj_unos[0]->scont; ?></textarea>
 		  </div>
 		</div>
 

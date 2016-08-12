@@ -32,17 +32,14 @@ class ContentController extends Controller
 
 
 		try {
-		$unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );	
+			$unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );	
 		} catch (Exception $e) {
-					print_r("<pre>");
-					var_dump($e);
-					print_r("</pre>");
-					//die();
-			
+			print_r("<pre>");
+			var_dump($e);
+			print_r("</pre>");
+			//die();
 		}
 		
-		 
-   
 		//var_dump($content_id);	
 		return view(
             "content.content", ["sadrzaj_unos"=>$unos] 
