@@ -20,10 +20,7 @@ class ContentController extends Controller
 
     public function index($value='')
     {
- 			print_r("<pre>");
-               var_dump(get_defined_vars());
-               print_r("</pre>");
-               die();
+ 			
               
         //echo "string";
         return view('dashboard.home');
@@ -32,7 +29,19 @@ class ContentController extends Controller
 
 	public function single(Request $request, $content_id )
 	{
-		 $unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );
+
+
+		try {
+		$unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );	
+		} catch (Exception $e) {
+					print_r("<pre>");
+					var_dump($e);
+					print_r("</pre>");
+					//die();
+			
+		}
+		
+		 
    
 		//var_dump($content_id);	
 		return view(
