@@ -30,12 +30,18 @@ class ContentController extends Controller
 	public function single(Request $request, $content_id )
 	{
 
-				print_r("<pre>");
-				var_dump(get_defined_vars());
-				print_r("</pre>");
-				die();
+
+		try {
+		$unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );	
+		} catch (Exception $e) {
+					print_r("<pre>");
+					var_dump($e);
+					print_r("</pre>");
+					//die();
+			
+		}
 		
-		 $unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );
+		 
    
 		//var_dump($content_id);	
 		return view(
