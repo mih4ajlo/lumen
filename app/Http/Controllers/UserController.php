@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Http\Middleware\Authenticate as Auth;
+use App\Http\Middleware\Authenticate as Auth;
 
 class UserController extends Controller
 {
@@ -19,7 +19,9 @@ class UserController extends Controller
 
    public function login( Request $request)
     { 
- 
+
+    
+
         $this->validate($request, [
             'email'    => 'required|email',
             'pass' => 'required',
@@ -46,7 +48,11 @@ class UserController extends Controller
      
         if (password_verify( $sifra, $hash[0]->pass )) {
             
-                return ['result' => 'ok'];
+               
+            
+            //setuje se session?
+            return redirect("/dashboard");
+                //return ['result' => 'ok'];
           
             
         } else {
@@ -58,11 +64,29 @@ class UserController extends Controller
         
     }
 
+    public function doLogin($value='')
+    {
+
+      /*          print_r("<pre>");
+                var_dump(get_defined_vars());
+                print_r("</pre>");
+                die();*/
+        
+        return view(
+            "auth.login"
+        );
+    }
+
+    public function logout( $value='' )
+    {        
+        return redirect("/");       
+    }
+
 
     public function register(Request $request)
     {
 
-          $sifra =  password_hash( $sifra /*'neki pass'*/ , PASSWORD_DEFAULT);
+        $sifra =  password_hash( $sifra /*'neki pass'*/ , PASSWORD_DEFAULT);
             
         return ['result' => 'not ok'];
     }
