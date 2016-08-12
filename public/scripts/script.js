@@ -1,6 +1,6 @@
 //Set globals
 //apiLocation = 'http://z.com/';
-apiLocation = 'http://z.com/';
+apiLocation = '';
 lang = 'cir';
 year = '2015';
 id='';
