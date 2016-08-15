@@ -40,7 +40,7 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
 
 
 
-$app->group(['middleware' => ['auth'], 'prefix' => 'auth', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
+$app->group([/*'middleware' => ['auth'],*/ 'prefix' => 'auth', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
 
     $app->get('login',  [   'uses' => 'UserController@login']);
 
