@@ -24,12 +24,18 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
     $app->get('users',  [   'uses' => 'DashboardController@users']);    
     $app->get('kategorije',  [   'uses' => 'DashboardController@kategorije']);
 
+    /*users*/
+    $app->get('user',  [   'uses' => 'UserController@list_users']);
+   $app->get('user/{user_id}',  [   'uses' => 'UserController@single']);
+   $app->get('user/delete/{user_id}',  [   'uses' => 'UserController@delete_user']);
 
 
     /*content*/
    $app->get('content',  [   'uses' => 'ContentController@list_content']);
    $app->get('content/{content_id}',  [   'uses' => 'ContentController@single']);
    $app->get('content/delete/{content_id}',  [   'uses' => 'ContentController@delete_content']);
+
+
 });
 
 

@@ -124,4 +124,49 @@ class UserController extends Controller
             ["poruka"=>$err]
         );
     }
+
+    public function single(Request $request, $content_id )
+    {
+
+
+        try {
+            $unos = app('db')->select("SELECT * FROM users where uid=? ",[$content_id] );    
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+        
+        //var_dump($content_id);    
+        return view(
+            "user.user", ["user_unos"=>$unos] 
+        );
+
+    }
+
+    public function list_users(Request $request)
+    {
+                
+        
+        try {
+            $unosi = app('db')->select("SELECT * FROM users   "  );    
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+              
+        
+        //var_dump($content_id);    
+        return view(
+            "user.listUser", ["lista_usera"=>$unosi] 
+        );
+    }
+
+    public function delete_user(Request $request, $user_id)
+    {
+        return "deleted";
+    }
 }
