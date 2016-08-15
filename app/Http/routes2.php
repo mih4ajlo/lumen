@@ -72,7 +72,16 @@ $search = urldecode($search);
     return json_encode($out) ;
 });
 
+//FOOTNOTES
+// lang obavezan / kid obavezan
+$app->get('{lang}/footnotes/{year}', function ($year)  {
 
+    $sql = "SELECT fcont FROM footnotes  WHERE fyear = '{$year}'  ";
+
+    $out = frontSql($sql);
+
+    return json_encode($out) ;
+});
 
 
 
