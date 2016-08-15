@@ -27,9 +27,9 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
 
 
     /*content*/
-   $app->get('content',  [   'uses' => 'ContentController@index']);
+   $app->get('content',  [   'uses' => 'ContentController@list_content']);
    $app->get('content/{content_id}',  [   'uses' => 'ContentController@single']);
-
+   $app->get('content/delete/{content_id}',  [   'uses' => 'ContentController@delete_content']);
 });
 
 

@@ -6,6 +6,10 @@
 </head>
 <body>
 
+
+<div class="container">
+	<div class="row">Header neki</div>
+</div>
 <div class="navigation col-xs-12 col-sm-6 col-md-2">
 	side menu content
 </div>

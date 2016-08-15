@@ -38,8 +38,6 @@ class Authenticate
     {
         //$plan  = $request->headers->get('user-agent');
        
-
-               
        
         $cookie =  $_COOKIE['sesid'] ;
 
@@ -58,7 +56,6 @@ class Authenticate
                  return $next($request);
                 }
             
-         
           
         }
 

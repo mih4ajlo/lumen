@@ -46,7 +46,37 @@ class ContentController extends Controller
         );
 
 	}
+
+    public function list_content(Request $request)
+    {
+        
+        try {
+            $unosi = app('db')->select("SELECT * FROM sadrzajs   "  );    
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+              
+        
+        //var_dump($content_id);    
+        return view(
+            "content.listContent", ["lista_unosa"=>$unosi] 
+        );
+    }
+
+    public function new_content($value='')
+    {
+        # code...
+    }
     
+
+    public function delete_content(Request $request, $content_id)
+    {
+       //neka potvrda, ajax
+       return "izbrisano";
+    }
 
     public function kategorije( $value='' )
     {
