@@ -37,13 +37,11 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         //$plan  = $request->headers->get('user-agent');
+              
        
-       
-        $cookie =  $_COOKIE['sesid'] ;
-
                 
-        if(!empty($cookie) ){
-
+        if(!empty($_COOKIE['sesid']) ){
+         $cookie =  $_COOKIE['sesid'] ;
             
           $user =  app('db')->select(
             "SELECT * FROM sessions where user_id = ?  ", 
