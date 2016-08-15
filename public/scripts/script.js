@@ -39,6 +39,7 @@ function parseUrl(){
     showMenu(year);
     showMainCont(year,id);
     availableYearsToCompare(); //za padajuci COMPARE meni
+    loadFootNotes(year); //za padajuci COMPARE meni
 
     //if compare active
     if(compareTo){ compareToYear(compareTo); }
@@ -71,6 +72,8 @@ function showMainCont(year,id){
     $.getJSON( apiLocation + lang+ "/content/"+year+"/"+id, function(mainContRes) {
         console.log( "JSON for main content loaded..." );
         $("#displayCont").html(mainContRes[0].scont);
+		//disable footnote click in displayCont element and add footnotes hover
+		disableFootNotesAddHover();
 
     })
     .fail(function() {
@@ -99,7 +102,7 @@ function compareToYear(yearToCompare){
 
     })
     .fail(function() {
-        $("#displayCont").html('<p class="emptyHeader nav-section" >Greška prilikom učitavanja sadržaja za uporedjivanje.</p>');
+        $("#displayContCompare").html('<p>Greška prilikom učitavanja sadržaja za uporedjivanje.</p>');
     });
 
 }
@@ -122,7 +125,7 @@ function availableYearsToCompare(){
 
     })
     .fail(function() {
-        $("#displayCont").html('<p class="emptyHeader nav-section" >Greška prilikom učitavanja sadržaja za uporedjivanje.</p>');
+        $("#timelineList").html('<div class="item">Greška prilikom učitavanja sadržaja za uporedjivanje.</div>');
     });
 
 }
@@ -166,6 +169,24 @@ function searchForString(searchFor){
         }, 500);
 
 }
+
+
+//load FOOTNOTES
+function loadFootNotes(year){
+
+    $.getJSON( apiLocation + lang+ "/footnotes/"+year, function(loadFootNotesRes) {
+        console.log( "JSON for FOOTNOTES loaded..." );
+
+        if(loadFootNotesRes.length>0){ $("#footnoteContent").html(loadFootNotesRes[0].fcont); } 
+
+    })
+    .fail(function() {
+        $("#footnoteContent").html('Greška prilikom učitavanja fusnota.');
+    });
+	
+}
+
+
 
 //SEARCH functions from DATABASE
 $(function(){ // this will be called when the DOM is ready
@@ -219,6 +240,8 @@ $(function(){ // this will be called when the DOM is ready
 
 
 
+
+
 //HELPER FUNCTIONS
 //http://stackoverflow.com/questions/9362446
 function buildMenuList(data, isSub){
@@ -256,4 +279,19 @@ function turnOffCompare(){
         });
 
         return ;
+}
+
+
+function disableFootNotesAddHover(){
+		$("#displayCont a[href*='#']").click(function(e) {
+		   e.preventDefault();
+		 });
+		
+		//set text for hover
+		$("#displayCont a[href*='#']").hover(function(e) {
+			var textel = $(this).attr('href').slice(2);
+			$(this).attr('title', $("#"+textel).text());
+			$(document).tooltip();
+		 });
+		 
 }
