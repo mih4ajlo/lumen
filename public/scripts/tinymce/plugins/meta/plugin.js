@@ -8,14 +8,17 @@ tinymce.PluginManager.add('meta', function(editor, url) {
             editor.windowManager.open({
                 title: 'Meta podaci',
                 body: [
-                    {type: 'textbox', name: 'nameVal', label: 'Akter'}
+                    {type: 'textbox', name: 'nameVal', label: 'Akter','value':'test'}
+                    //{type: 'textbox', name: 'keywordsVal', label: 'Keywords'}
+
                 ],
                 onsubmit: function(e) {
                     var selArrBlock = editor.selection.getSelectedBlocks();
                     var selEl = selArrBlock[0];
-                    selEl.setAttribute("akter", e.data.nameVal );
 
-                    //editor.insertContent('Title: ' + e.data.nameVal);
+                    /*provera koje polje je setovano*/
+                    //selEl.setAttribute("akter", e.data.nameVal );
+                    applyChange(selEl, e.data.nameVal);
                 }
             });
         }
@@ -39,4 +42,22 @@ tinymce.PluginManager.add('meta', function(editor, url) {
             });
         }
     });
+
+
+    function applyChange( selectedElement , value) {
+        editor.undoManager.transact(function() {
+            editor.focus();
+            selectedElement.setAttribute("akter", value );
+           // editor.formatter.apply(change, {value: value});
+            editor.nodeChanged();
+        });
+    }
+
+    function removeChange(change) {
+        editor.undoManager.transact(function() {
+            editor.focus();
+            editor.formatter.remove(change, {value: null}, null, true);
+            editor.nodeChanged();
+        });
+    }
 });
