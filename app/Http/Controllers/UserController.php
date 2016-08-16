@@ -28,7 +28,6 @@ class UserController extends Controller
        
         $sifra = $request->input('pass');
         $mail = $request->input('email');
-
         
         //$sifra 
         // $sifra =  password_hash( /*$sifra*/ 'neki pass' , PASSWORD_DEFAULT);
@@ -100,7 +99,13 @@ class UserController extends Controller
 
     public function register(Request $request)
     { 
+        $sifra = "miloseva sifra"; 
         $sifra =  password_hash( $sifra /*'neki pass'*/ , PASSWORD_DEFAULT);
+                print_r("<pre>");
+                var_dump($sifra);
+                print_r("</pre>");
+                die();
+        
             
         return ['result' => 'not ok'];
     }
