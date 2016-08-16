@@ -20,9 +20,6 @@ class UserController extends Controller
    public function login( Request $request)
     { 
 
-           
-    
-
         $this->validate($request, [
             'email'    => 'required|email',
             'pass' => 'required',
@@ -37,15 +34,12 @@ class UserController extends Controller
         // $sifra =  password_hash( /*$sifra*/ 'neki pass' , PASSWORD_DEFAULT);
         $hash = app('db')->select(
             "SELECT * FROM users where email = ?  ", 
-            [$mail ] );
-
-        
+            [$mail ] ); 
 
         if( empty($hash) ){
             return redirect("/auth/error/email");
             //return ['result' => 'nema email'];
         }
-
      
         if (password_verify( $sifra, $hash[0]->pass )) {
             
@@ -70,11 +64,8 @@ class UserController extends Controller
             
             if(!$status){ ;/*error - problem sa bazom*/}
   
-            setcookie("sesid", $session_id, time() + (86400 * 30), "/");
+            setcookie("sesid", $session_id, time() + (60*60*2 ), "/");
             //setcookie("sesid", $session_id, 1000*60 *60 );
-                   
-                  
-            
             
             //setuje se session?
             return redirect("/dashboard");
@@ -85,8 +76,6 @@ class UserController extends Controller
             return redirect("/auth/error/sifra");
             //return ['result' => 'ne poklapaju se sifre'];
         }
-              
-        
         
     }
 
@@ -110,16 +99,14 @@ class UserController extends Controller
 
 
     public function register(Request $request)
-    {
-
+    { 
         $sifra =  password_hash( $sifra /*'neki pass'*/ , PASSWORD_DEFAULT);
             
         return ['result' => 'not ok'];
     }
 
     public function error( $err )
-    {
-        
+    { 
         return view(
             "auth.greska", 
             ["poruka"=>$err]
@@ -127,9 +114,7 @@ class UserController extends Controller
     }
 
     public function single(Request $request, $content_id )
-    {
-
-
+    { 
         try {
             $unos = app('db')->select("SELECT * FROM users where uid=? ",[$content_id] );    
         } catch (Exception $e) {
@@ -147,9 +132,7 @@ class UserController extends Controller
     }
 
     public function list_users(Request $request)
-    {
-                
-        
+    { 
         try {
             $unosi = app('db')->select("SELECT * FROM users   "  );    
         } catch (Exception $e) {

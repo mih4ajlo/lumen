@@ -10,18 +10,19 @@
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 	<script>tinymce.init({ 
 		selector:'textarea',
-
-		
-
 		plugins : [
 		  'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
 		  'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-		  'save table contextmenu directionality emoticons template paste textcolor'
+		  'save table contextmenu directionality emoticons template paste  '
 		],
-		 menubar: ' edit insert view',
+		external_plugins: {
+	    	'meta': location.origin +'/scripts/tinymce/plugins/meta/plugin.min.js',
+	    	'textcolor':'https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.4.1/plugins/textcolor/plugin.min.js'
+	  	},
+		 menubar: ' edit insert view ',
 		toolbar:[
 		    'undo redo | styleselect | bold italic | link image',
-		    'alignleft aligncenter alignright'
+		    'alignleft aligncenter alignright meta textcolor'
 		  ]
 	 });
 

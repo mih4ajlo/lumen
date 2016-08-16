@@ -9,11 +9,7 @@
 </head>
 <body>
 
-	<?php 
 
-		
-
-	?>
 
 	<div class="container-fluid  ">
 
