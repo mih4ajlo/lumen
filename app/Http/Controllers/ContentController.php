@@ -101,7 +101,7 @@ class ContentController extends Controller
     {
 
         try {
-            $akteri = app('db')->select("SELECT * FROM akters   "  );
+            $akteri = app('db')->select("SELECT * FROM akters ORDER BY akategorija, anaziv    "  );
         } catch (Exception $e) {
             print_r("<pre>");
             var_dump($e);
@@ -110,6 +110,15 @@ class ContentController extends Controller
         }
 
 $out ='
+<script>
+$(document).ready(function() {
+    $("input:text").change(
+    function(){
+        $(this).css({"background-color" : "#ffd6d6"});
+    });
+});
+</script>
+
 <div class="row">
 				<div class="ta-right" >
 					<span>Dodaj unos </span>
@@ -139,19 +148,19 @@ $out ='
 						$ikonica_delete =  '<span class="glyphicon glyphicon-remove" content="'.$temp_id.'" aria-hidden="true"></span>';
 
 
-						$link_edit = "<a href='acters/$temp_id'>$ikonica_edit</a>";
+						$link_edit = "<button   type='submit'>{$ikonica_edit}</button>";
 
 						//ajax potvrda akcije
 						$link_del = "<a href='acters/delete/$temp_id'>$ikonica_delete</a>";
 
-						$out .= print_r("<tr>"
-							."<td>{$value->akategorija}</td> "
-							."<td>{$value->anaziv}</td>"
-							."<td>{$value->atags}</td>"
-							."<td>{$value->agodina}</td>"
+						$out .= print_r("<form action='acters/edit/{$temp_id}' method='POST' ' ><tr>"
+							."<td><a name='acter{$temp_id}'></a><input name='kat' size='10' value='{$value->akategorija}'></td> "
+							."<td><input name='naziv' size='30' value='{$value->anaziv}'></td>"
+							."<td><input name='tags' size='50' value='{$value->atags}'></td>"
+							."<td><input name='godina' size='5' value='{$value->agodina}'></td>"
 							."<td>$link_edit</td>"
 							."<td>$link_del</td>"
-							."</tr>",true);
+							."</tr></form>",true);
 
 					}
 
@@ -166,11 +175,21 @@ $out .= '
 ';
 
 
-        $title = "Test title za aktere iz kontrolera";
+        $title = "Editor aktera";
         $head ="";
-        return view(
-            "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]
-        );
+        return view( "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
+    }
+
+    public function edit_acter(Request $request, $id_aktera)
+    {
+
+$out = $id_aktera;
+$out.= print_r($_POST,true);
+
+        $title = "Editor aktera";
+        $head ="";
+        return view( "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
+
     }
 
 
