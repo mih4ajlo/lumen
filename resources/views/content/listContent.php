@@ -25,7 +25,10 @@
 
 
 	<div class="navigation col-xs-12 col-sm-6 col-md-2">
-		side menu content
+		<?php 
+			   
+		include '../resources/views/dashboard/side-menu.php';
+		?>
 	</div>
 	<div class="main col-xs-12 col-sm-6 col-md-8">
 		<div class="container-fluid">
