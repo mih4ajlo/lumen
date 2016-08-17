@@ -62,7 +62,8 @@ class ContentController extends Controller
         
         //var_dump($content_id);    
         return view(
-            "content.listContent", ["lista_unosa"=>$unosi] 
+            "content.listContent", 
+            ["lista_unosa"=>$unosi] 
         );
     }
 

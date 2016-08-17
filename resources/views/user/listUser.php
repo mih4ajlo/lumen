@@ -19,8 +19,11 @@
 <body>
 
 
-	<div class="container">
-		<div class="row">Header neki</div>
+	<div class="container-fluid">
+		<?php 
+			   
+		include '../resources/views/dashboard/header.php';
+		?>
 	</div>
 
 
