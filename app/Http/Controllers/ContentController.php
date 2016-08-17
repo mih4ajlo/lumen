@@ -166,9 +166,10 @@ $out .= '
 ';
 
 
-        //var_dump($content_id);
+        $title = "Test title za aktere iz kontrolera";
+        $head ="";
         return view(
-            "content.Acters",["out"=>$out ] 
+            "content.Display",["out"=>$out,"title"=>$title,"head"=>$head ]
         );
     }
 
