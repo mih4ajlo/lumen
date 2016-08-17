@@ -183,8 +183,19 @@ $out .= '
     public function edit_acter(Request $request, $id_aktera)
     {
 
-$out = $id_aktera;
-$out.= print_r($_POST,true);
+        try {
+            //$akteri = app('db')->select("SELECT * FROM akters ORDER BY akategorija, anaziv    "  );
+            $res = app('db')->update('UPDATE akters SET akategorija=?, anaziv=?, atags=?, agodina=?  where aid = ?', [$_POST['kat'],$_POST['naziv'],$_POST['tags'],$_POST['godina'],$id_aktera]);
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+
+
+    $out = "Izmena uspesna. Vratite se <a href='../../acters#acter{$id_aktera}'>ovde</a>.".$res ;
+
 
         $title = "Editor aktera";
         $head ="";
