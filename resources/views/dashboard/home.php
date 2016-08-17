@@ -11,10 +11,13 @@
 	<div class="row">Header neki</div>
 </div>
 <div class="navigation col-xs-12 col-sm-6 col-md-2">
-	side menu content
+	<?php 
+			   
+		include 'side-menu.php';
+		?>
 </div>
 <div class="main col-xs-12 col-sm-6 col-md-8">
-	main content
+	Neki pocetni ekran
 </div>
 	
 </body>
