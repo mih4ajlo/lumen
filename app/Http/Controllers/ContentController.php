@@ -96,7 +96,81 @@ class ContentController extends Controller
     }
 
 
+//acters
+    public function list_acters(Request $request)
+    {
 
+        try {
+            $akteri = app('db')->select("SELECT * FROM akters   "  );
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+
+$out ='
+<div class="row">
+				<div class="ta-right" >
+					<span>Dodaj unos </span>
+					<span class="glyphicon glyphicon-plus"  aria-hidden="true"></span>
+				</div>
+			</div>
+
+			<table class="table table-condensed">
+			<tr>
+				<th>Kategorija</th>
+				<th>Naziv</th>
+				<th>Tagovi</th>
+				<th>Godina</th>
+				<th>Izmeni</th>
+				<th>Obrisi</th>
+			</tr>
+';
+
+
+
+					foreach ($akteri as  $value) {
+
+						$temp_id = $value->aid;
+
+						$ikonica_edit =  '<span class="glyphicon glyphicon-pencil" content="'.$temp_id.'" aria-hidden="true"></span>';
+
+						$ikonica_delete =  '<span class="glyphicon glyphicon-remove" content="'.$temp_id.'" aria-hidden="true"></span>';
+
+
+						$link_edit = "<a href='acters/$temp_id'>$ikonica_edit</a>";
+
+						//ajax potvrda akcije
+						$link_del = "<a href='acters/delete/$temp_id'>$ikonica_delete</a>";
+
+						$out .= print_r("<tr>"
+							."<td>{$value->akategorija}</td> "
+							."<td>{$value->anaziv}</td>"
+							."<td>{$value->atags}</td>"
+							."<td>{$value->agodina}</td>"
+							."<td>$link_edit</td>"
+							."<td>$link_del</td>"
+							."</tr>",true);
+
+					}
+
+$out .= '
+			</table>
+			<div class="row">
+				<div class="ta-right" >
+					<span>Dodaj unos </span>
+					<span class="glyphicon glyphicon-plus"  aria-hidden="true"></span>
+				</div>
+			</div>
+';
+
+
+        //var_dump($content_id);
+        return view(
+            "content.Acters",["out"=>$out ] 
+        );
+    }
 
 
 }

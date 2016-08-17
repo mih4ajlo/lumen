@@ -1,11 +1,11 @@
-<?php 
+<?php
 $putanja = 
 	($_SERVER['SERVER_NAME']=='localhost')?
-			"http://localhost:8075/"	:	$_SERVER['SERVER_NAME'];
+			"http://localhost:8075/"	:	"http://".$_SERVER['SERVER_NAME']."/";
 
 //"http://localhost:8075/";
 
-$meni  = array('Akteri' =>'akter','Keywords' =>'keyword' ,'Sadrzaj' =>'content' , 'Users' =>'user' , );
+$meni  = array('Akteri' =>'acters','Keywords' =>'keyword' ,'Sadrzaj' =>'content' , 'Users' =>'user' , );
 ?>
 
 
