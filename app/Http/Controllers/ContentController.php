@@ -96,7 +96,25 @@ class ContentController extends Controller
     }
 
 
+//acters
+    public function list_acters(Request $request)
+    {
 
+        try {
+            $akteri = app('db')->select("SELECT * FROM akters   "  );
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+
+
+        //var_dump($content_id);
+        return view(
+            "content.listActers", ["lista_aktera"=>$akteri]
+        );
+    }
 
 
 }
