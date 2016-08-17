@@ -8,7 +8,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-	<script>tinymce.init({ 
+	<script>
+	//filter atributa
+	//https://www.tinymce.com/docs/configure/content-filtering/
+	tinymce.init({ 
 		selector:'textarea',
 		 visual: false,
 		 valid_elements : '*[*]',
@@ -26,6 +29,7 @@
 		    'undo redo | styleselect | bold italic | link image',
 		    'alignleft aligncenter alignright meta  code'
 		  ]
+		 //extended_valid_elements : 'p[class|akter]' 
 	 });
 
 	//newdocument, bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, styleselect, formatselect, fontselect, fontsizeselect, cut, copy, paste, bullist, numlist, outdent, indent, blockquote, undo, redo, removeformat, subscript, superscript
