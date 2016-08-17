@@ -32,37 +32,37 @@ class ContentController extends Controller
 
 
 		try {
-			$unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );	
+			$unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );
 		} catch (Exception $e) {
 			print_r("<pre>");
 			var_dump($e);
 			print_r("</pre>");
 			//die();
 		}
-		
-		//var_dump($content_id);	
+
+		//var_dump($content_id);
 		return view(
-            "content.content", ["sadrzaj_unos"=>$unos] 
+            "content.content", ["sadrzaj_unos"=>$unos]
         );
 
 	}
 
     public function list_content(Request $request)
     {
-        
+
         try {
-            $unosi = app('db')->select("SELECT * FROM sadrzajs   "  );    
+            $unosi = app('db')->select("SELECT * FROM sadrzajs   "  );
         } catch (Exception $e) {
             print_r("<pre>");
             var_dump($e);
             print_r("</pre>");
             //die();
         }
-              
-        
-        //var_dump($content_id);    
+
+
+        //var_dump($content_id);
         return view(
-            "content.listContent", ["lista_unosa"=>$unosi] 
+            "content.listContent", ["lista_unosa"=>$unosi]
         );
     }
 
@@ -95,6 +95,25 @@ class ContentController extends Controller
     }
 
 
+//acters
+    public function list_acters(Request $request)
+    {
+
+        try {
+            $akteri = app('db')->select("SELECT * FROM akters   "  );
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+
+
+        //var_dump($content_id);
+        return view(
+            "content.listActers", ["lista_aktera"=>$akteri]
+        );
+    }
 
 
 

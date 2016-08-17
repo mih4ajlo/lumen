@@ -36,6 +36,10 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
    $app->get('content/delete/{content_id}',  [   'uses' => 'ContentController@delete_content']);
 
 
+   /*akteri*/
+   $app->get('acters',  [   'uses' => 'ContentController@list_acters']);
+
+
 });
 
 
