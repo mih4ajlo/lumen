@@ -169,7 +169,7 @@ $out .= '
         $title = "Test title za aktere iz kontrolera";
         $head ="";
         return view(
-            "content.Display",["out"=>$out,"title"=>$title,"head"=>$head ]
+            "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]
         );
     }
 
