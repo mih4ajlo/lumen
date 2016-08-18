@@ -116,7 +116,13 @@ $(document).ready(function() {
     function(){
         $(this).css({"background-color" : "#ffd6d6"});
     });
+
+$(".deleteacter").click( function(){return confirm("Da li ste sigurni da želite da obrišete aktera?");})
+
 });
+
+
+
 </script>
 
 <div class="row">
@@ -151,7 +157,7 @@ $(document).ready(function() {
 						$link_edit = "<button   type='submit'>{$ikonica_edit}</button>";
 
 						//ajax potvrda akcije
-						$link_del = "<a href='acters/delete/$temp_id'>$ikonica_delete</a>";
+						$link_del = "<a class='deleteacter' href='acters/delete/$temp_id'>$ikonica_delete</a>";
 
 						$out .= print_r("<form action='acters/edit/{$temp_id}' method='POST' ' ><tr>"
 							."<td><a name='acter{$temp_id}'></a><input name='kat' size='10' value='{$value->akategorija}'></td> "
