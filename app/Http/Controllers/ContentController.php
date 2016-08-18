@@ -73,7 +73,7 @@ class ContentController extends Controller
     }
     
 
-    public function delete_content(Request $request, $content_id)
+public function delete_content(Request $request, $content_id)
     {
        //neka potvrda, ajax
        return "izbrisano";
@@ -97,7 +97,7 @@ class ContentController extends Controller
 
 
 //acters
-    public function list_acters(Request $request)
+public function list_acters(Request $request)
     {
 
         try {
@@ -110,59 +110,65 @@ class ContentController extends Controller
         }
 
 $out ='
+<style>
+#dodajNovi{display:none;text-align: left;margin-bottom:50px; }
+</style>
+
 <script>
 $(document).ready(function() {
     $("input:text").change(
     function(){
         $(this).css({"background-color" : "#ffd6d6"});
     });
-
 $(".deleteacter").click( function(){return confirm("Da li ste sigurni da želite da obrišete aktera?");})
-
+$("#dodajnovogaktera").click(function(){ $("#dodajNovi").toggle(); });
 });
 
-
+$( function() {
+        var autokategorije = ["Vlada", "Ministarstva","Skupština","Ostalo" ];
+        $( ".kategorije" ).autocomplete({
+            source: autokategorije,
+            delay: 50
+        });
+    } );
 
 </script>
 
 <div class="row">
-				<div class="ta-right" >
-					<span>Dodaj unos </span>
-					<span class="glyphicon glyphicon-plus"  aria-hidden="true"></span>
-				</div>
+			<div class="ta-right" >
+					<a id="dodajnovogaktera"><span>Dodaj unos </span><span class="glyphicon glyphicon-plus"  aria-hidden="true"></span></a>
+
+                    <div id="dodajNovi">
+                    <table class="table table-condensed">
+			        <tr><th>Kategorija</th>	<th>Naziv</th><th>Tagovi</th><th>Godina</th><th>Dodaj</th> 	</tr>
+                    <form action="acters/add" method="POST" ><tr>
+					<td><input name="kat" class="kategorije" size="10" ></td>
+					<td><input name="naziv" class="nazivi" size="30" ></td>
+					<td><input name="tags" class="tagovi" size="50" ></td>
+					<td><input name="godina" size="5" ></td>
+ 					<td><button   type="submit">Dodaj</button></td>
+					</tr></table></form>
+                    </div>
 			</div>
-
+</div>
 			<table class="table table-condensed">
-			<tr>
-				<th>Kategorija</th>
-				<th>Naziv</th>
-				<th>Tagovi</th>
-				<th>Godina</th>
-				<th>Izmeni</th>
-				<th>Obrisi</th>
-			</tr>
+			<tr><th>Kategorija</th>	<th>Naziv</th><th>Tagovi</th><th>Godina</th><th>Izmeni</th>	<th>Obrisi</th>	</tr>
 ';
-
-
 
 					foreach ($akteri as  $value) {
 
 						$temp_id = $value->aid;
-
 						$ikonica_edit =  '<span class="glyphicon glyphicon-pencil" content="'.$temp_id.'" aria-hidden="true"></span>';
-
 						$ikonica_delete =  '<span class="glyphicon glyphicon-remove" content="'.$temp_id.'" aria-hidden="true"></span>';
-
-
 						$link_edit = "<button   type='submit'>{$ikonica_edit}</button>";
 
 						//ajax potvrda akcije
 						$link_del = "<a class='deleteacter' href='acters/delete/$temp_id'>$ikonica_delete</a>";
 
 						$out .= print_r("<form action='acters/edit/{$temp_id}' method='POST' ' ><tr>"
-							."<td><a name='acter{$temp_id}'></a><input name='kat' size='10' value='{$value->akategorija}'></td> "
-							."<td><input name='naziv' size='30' value='{$value->anaziv}'></td>"
-							."<td><input name='tags' size='50' value='{$value->atags}'></td>"
+							."<td><a name='acter{$temp_id}'></a><input name='kat' class='kategorije' size='10' value='{$value->akategorija}'></td> "
+							."<td><input name='naziv' class='nazivi' size='30' value='{$value->anaziv}'></td>"
+							."<td><input name='tags' class='tagovi' size='50' value='{$value->atags}'></td>"
 							."<td><input name='godina' size='5' value='{$value->agodina}'></td>"
 							."<td>$link_edit</td>"
 							."<td>$link_del</td>"
@@ -172,12 +178,6 @@ $(".deleteacter").click( function(){return confirm("Da li ste sigurni da želite
 
 $out .= '
 			</table>
-			<div class="row">
-				<div class="ta-right" >
-					<span>Dodaj unos </span>
-					<span class="glyphicon glyphicon-plus"  aria-hidden="true"></span>
-				</div>
-			</div>
 ';
 
 
@@ -186,11 +186,10 @@ $out .= '
         return view( "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
     }
 
-    public function edit_acter(Request $request, $id_aktera)
+public function edit_acter(Request $request, $id_aktera)
     {
 
         try {
-            //$akteri = app('db')->select("SELECT * FROM akters ORDER BY akategorija, anaziv    "  );
             $res = app('db')->update('UPDATE akters SET akategorija=?, anaziv=?, atags=?, agodina=?  where aid = ?', [$_POST['kat'],$_POST['naziv'],$_POST['tags'],$_POST['godina'],$id_aktera]);
         } catch (Exception $e) {
             print_r("<pre>");
