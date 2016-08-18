@@ -188,7 +188,6 @@ $out .= '
 
 public function edit_acter(Request $request, $id_aktera)
     {
-
         try {
             $res = app('db')->update('UPDATE akters SET akategorija=?, anaziv=?, atags=?, agodina=?  where aid = ?', [$_POST['kat'],$_POST['naziv'],$_POST['tags'],$_POST['godina'],$id_aktera]);
         } catch (Exception $e) {
@@ -198,15 +197,51 @@ public function edit_acter(Request $request, $id_aktera)
             //die();
         }
 
-
-    $out = "Izmena uspesna. Vratite se <a href='../../acters#acter{$id_aktera}'>ovde</a>.".$res ;
-
+    $out = "Izmena uspesna. Vratite se <a href='../../acters#acter{$id_aktera}'>ovde</a>." ;
 
         $title = "Editor aktera";
         $head ="";
         return view( "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
-
     }
+
+
+public function add_acter(Request $request)
+    {
+        try {
+            $res = app('db')->insert('INSERT INTO akters (akategorija,anaziv,atags,agodina) VALUES (?, ?, ?, ?)  ', [$_POST['kat'],$_POST['naziv'],$_POST['tags'],$_POST['godina']]);
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+
+    $out = "Akter dodat. Vratite se <a href='../acters'>ovde</a>." ;
+
+        $title = "Editor aktera";
+        $head ="";
+        return view( "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
+    }
+
+public function delete_acter(Request $request, $id_aktera)
+    {
+        try {
+            $res = app('db')->update('DELETE FROM akters  where aid = ?', [$id_aktera]);
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+
+    $out = "Akter obrisana. Vratite se <a href='../../acters'>ovde</a>.".$res ;
+
+        $title = "Editor aktera";
+        $head ="";
+        return view( "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
+    }
+
+
 
 
 }

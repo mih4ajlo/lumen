@@ -39,7 +39,8 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
    /*akteri*/
    $app->get('acters',  [   'uses' => 'ContentController@list_acters']);
    $app->post('acters/edit/{acter_id}',  [   'uses' => 'ContentController@edit_acter']);
-   $app->get('acters/delete/{content_id}',  [   'uses' => 'ContentController@delete_acter']);
+   $app->post('acters/add',  [   'uses' => 'ContentController@add_acter']);
+   $app->get('acters/delete/{acter_id}',  [   'uses' => 'ContentController@delete_acter']);
 
 });
 
