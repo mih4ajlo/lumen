@@ -128,8 +128,12 @@ $( function() {
         var autokategorije = ["Vlada", "Ministarstva","Skupština","Ostalo" ];
         $( ".kategorije" ).autocomplete({
             source: autokategorije,
-            delay: 50
+            delay: 50,
+            minLength: 0
+        }).focus(function(){
+            $(this).autocomplete( "search", "" );
         });
+
     } );
 
 </script>
