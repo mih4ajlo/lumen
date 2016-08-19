@@ -1,0 +1,82 @@
+body{
+	margin-top:0;
+}
+#top{
+    position: fixed;
+    background-color: #eeeeee;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 5px 20px;
+}
+#poruka{
+	color:red;
+	margin-bottom:15px;
+	text-align: center;
+	min-height:18px;
+	height:18px;
+}
+#year{
+	min-width:50%;
+}
+#parsedNav, #outNav,#parsedCont, #outCont{
+	margin-top:100px;
+	border-right:1px solid #72D0EB;
+	box-sizing: border-box;
+	min-height:100px;
+}
+#parsedNav, #outNav{
+	width:12%;
+	float:left;
+	display:inline-block;
+	margin-right:1%;
+}
+#parsedCont, #outCont{
+	width:36%;
+	float:left;
+	display:inline-block;	
+	margin-right:1%;
+}
+#mainDocContent{
+	clear:both;
+	margin-top:50px;
+	/* display: inline-block; */
+	display: none;
+}
+
+.active {
+    background-color: #72D0EB !important;
+    background-position: calc(100% + 1px);
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+}
+.activeHover {
+    background-color: #72D0EB !important;
+    /* background-image: url("../images/nav-active.png"); */
+	background: url("imgs/arrow.png") no-repeat 105% 105%; 
+    background-position: calc(100% + 1px);
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+}
+
+#outNav ul{
+	padding-left:10px;
+	/* list-style-type: none; */
+}
+#outNav p{
+	margin:5px 0;
+}
+#draggableHelper{
+	margin:0px !important;
+	padding:0px !important;
+}
+.insertSub{
+    /* background-color: red; */
+	/* border:1px solid red; */
+    margin: 0;
+	padding:2px;
+	font-size:10px;
+    min-height: 10px;
+    height: 10px;
+    margin-left: 10px !important;
+color:white;	
+}

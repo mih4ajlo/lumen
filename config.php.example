@@ -1,0 +1,9 @@
+<?
+$hostname_mysqlcon = "localhost";
+$database_mysqlcon = "zastitnik";
+$username_mysqlcon = "zastitnik";
+$password_mysqlcon = "GGVeLcUudRLIvPhv";
+$db = mysqli_connect($hostname_mysqlcon, $username_mysqlcon, $password_mysqlcon) ; //or trigger_error(mysql_error(),E_USER_ERROR);
+mysqli_query($db,'utf8');
+mysqli_select_db($db, $database_mysqlcon );
+?>
