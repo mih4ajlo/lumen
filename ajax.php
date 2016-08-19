@@ -61,7 +61,7 @@ function insertSectionForYear(){
     switch($nr){
     case 0:
         //uradi insert
-        $sql = "INSERT INTO sadrzajs (`kid`,`sgodina`,`scont`, `scont-notag`) VALUES('".$_POST["id"]."','".$_POST["year"]."', '".$_POST["cont"]."', '".strip_tags($_POST["cont"])."'  ) ";
+        $sql = "INSERT INTO sadrzajs (`kid`,`sgodina`,`scont`, `scont-notag`,`saltnaslov`) VALUES('".$_POST["id"]."','".$_POST["year"]."', '".$_POST["cont"]."', '".strip_tags($_POST["cont"])."','Alt Naslov'  ) ";
         //echo $sql;
         $result = $db->query($sql) OR die(mysqli_error($db));
         echo "Tekst unesen";
