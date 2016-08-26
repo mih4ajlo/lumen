@@ -37,10 +37,17 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
 
 
    /*akteri*/
-   $app->get('acters',  [   'uses' => 'ContentController@list_acters']);
-   $app->post('acters/edit/{acter_id}',  [   'uses' => 'ContentController@edit_acter']);
-   $app->post('acters/add',  [   'uses' => 'ContentController@add_acter']);
-   $app->get('acters/delete/{acter_id}',  [   'uses' => 'ContentController@delete_acter']);
+   $app->get('acters',  [   'uses' => 'ActerController@list_acters']);
+   $app->post('acters/edit/{acter_id}',  [   'uses' => 'ActerController@edit_acter']);
+   $app->post('acters/add',  [   'uses' => 'ActerController@add_acter']);
+   $app->get('acters/delete/{acter_id}',  [   'uses' => 'ActerController@delete_acter']);
+
+
+     /*keywords*/
+   $app->get('keywords',  [   'uses' => 'KeywordController@list_keywords']);
+   $app->post('keywords/edit/{keyword_id}',  [   'uses' => 'KeywordController@edit_keyword']);
+   $app->post('keywords/add',  [   'uses' => 'KeywordController@add_keyword']);
+   $app->get('keywords/delete/{keyword_id}',  [   'uses' => 'KeywordController@delete_keyword']);
 
 });
 
