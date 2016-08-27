@@ -44,10 +44,30 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
 
 
      /*keywords*/
-   $app->get('keywords',  [   'uses' => 'KeywordController@list_keywords']);
-   $app->post('keywords/edit/{keyword_id}',  [   'uses' => 'KeywordController@edit_keyword']);
-   $app->post('keywords/add',  [   'uses' => 'KeywordController@add_keyword']);
-   $app->get('keywords/delete/{keyword_id}',  [   'uses' => 'KeywordController@delete_keyword']);
+   $app->get('keyword',  [   'uses' => 'KeywordController@list_keywords']);
+   $app->post('keyword/edit/{keyword_id}',  [   'uses' => 'KeywordController@edit_keyword']);
+   $app->post('keyword/add',  [   'uses' => 'KeywordController@add_keyword']);
+   $app->get('keyword/delete/{keyword_id}',  [   'uses' => 'KeywordController@delete_keyword']);
+
+
+      /*footnotes*/
+   $app->get('footnote',  [   'uses' => 'FootnotesController@list_footnotes']);
+   $app->post('footnote/edit/{footnote_id}',  [   'uses' => 'FootnotesController@edit_footnote']);
+   $app->post('footnote/add',  [   'uses' => 'FootnotesController@add_footnote']);
+   $app->get('footnote/delete/{footnote_id}',  [   'uses' => 'FootnotesController@delete_footnote']);
+
+       /*kategorijas*/
+   $app->get('kategorija',  [   'uses' => 'KategorijaController@list_kategorija']);
+   $app->post('kategorija/edit/{kategorija_id}',  [   'uses' => 'KategorijaController@edit_kategorija']);
+   $app->post('kategorija/add',  [   'uses' => 'KategorijaController@add_kategorija']);
+   $app->get('kategorija/delete/{kategorija_id}',  [   'uses' => 'KategorijaController@delete_kategorija']);
+
+
+       /*referencas*/
+   $app->get('referenca',  [   'uses' => 'ReferenceController@list_referenca']);
+   $app->post('referenca/edit/{referenca_id}',  [   'uses' => 'ReferenceController@edit_referenca']);
+   $app->post('referenca/add',  [   'uses' => 'ReferenceController@add_referenca']);
+   $app->get('referenca/delete/{referenca_id}',  [   'uses' => 'ReferenceController@delete_referenca']);
 
 });
 

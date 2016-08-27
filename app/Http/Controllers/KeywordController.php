@@ -11,6 +11,8 @@ class KeywordController extends Controller
 
 	public function list_keywords(Request $request)
 	{
+
+
 		try {
             $unosi = app('db')->select("SELECT * FROM keywords "  );    
         } catch (Exception $e) {
@@ -20,10 +22,11 @@ class KeywordController extends Controller
             //die();
         }
               
+              
         
         //var_dump($content_id);    
         return view(
-            "keywords.listKeyword", ["lista_keywords"=>$unosi] 
+            "keyword.listKeywords", ["lista_keywords"=>$unosi] 
         );
 	}
 
@@ -41,11 +44,11 @@ class KeywordController extends Controller
             //die();
         }
 
-    $out = "Izmena uspesna. Vratite se <a href='../../acters#acter{$id_aktera}'>ovde</a>." ;
+        $out = "Izmena uspesna. Vratite se <a href='../../keyword#acter{$keyword_id}'>ovde</a>." ;
 
         $title = "Editor keywords";
         $head ="";
-        return view( "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
+        return view( "keyword.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
 	}
 
 	public function delete_keyword(Request $request, $keyword_id)
@@ -54,6 +57,7 @@ class KeywordController extends Controller
 	}
 
 
+    //na foru akters
 	public function add_keyword(Request $request)
 	{
 		  try {
