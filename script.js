@@ -136,7 +136,7 @@ function dragHelperCont(){
 //handle left CONT DROP
 function dropHelperCont( event, ui ) {
 	var draggable = ui.draggable;
-	//console.dir(draggable);
+	//console.dir($( "#parsedNav .active" )[0].innerText);
 	//console.dir($(this));
 	if(draggable.attr('id')!="parsedCont") {alert("Ovde mozete prevuci samo tekstualni sadrzaj sekcije.");return;}
 	if($('#year :selected').text()==""){alert("Izaberite godinu za koju zelite da ubacite postojeci sadrzaj!!!");return;}
@@ -145,7 +145,7 @@ function dropHelperCont( event, ui ) {
 
 	
 	//upisi podatke iz parsedCont
-	$.post( "ajax.php",{ action: "insertSectionForYear", year:$('#year :selected').text(),id:$( "#outNav ul li .active" )[0].dataset.kid, cont:$("#parsedCont").html()  }, function( data ) {
+	$.post( "ajax.php",{ action: "insertSectionForYear", year:$('#year :selected').text(),id:$( "#outNav ul li .active" )[0].dataset.kid, cont:$("#parsedCont").html(), altnaslov: $( "#parsedNav .active" )[0].innerText  }, function( data ) {
 	  show( data );
 	  $( "#outNav ul li .active" ).trigger('click');
 	});	

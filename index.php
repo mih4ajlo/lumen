@@ -8,7 +8,7 @@ if($_POST["action"]=="upload"){
 $target_file = "imported/" . basename($_FILES['fileuplaod']['name']);
 $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
-if($fileType!="html"){die("Mozete postaviti samo HTML fajlove");}
+if($fileType!="html" AND $fileType!="htm"){die("Mozete postaviti samo HTML fajlove");}
 if (file_exists($target_file)) {die("Fajl sa tim imenom vec postoji");}
 
 if (move_uploaded_file($_FILES["fileuplaod"]["tmp_name"], $target_file)) {

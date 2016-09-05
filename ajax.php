@@ -9,13 +9,14 @@ $_POST["action"]();
 function showCategories(){
     global $db;
 
-    $sql = "SELECT kid,kowner,knaziv FROM kategorijes ";
+    $sql = "SELECT kid,kowner,knaziv FROM kategorijes ORDER BY korder ";
     $result = $db->query($sql);
 
     $topmenu = '';
 
     while($row = mysqli_fetch_object($result)){
      //$topmenu .=  '<p onclick="showStoredSectionForYear('.$row->kid.')" class="header" id="storeCont'.$row->kid.'">'. $row->knaziv .'</p>';
+     $row->count= $db->query("SELECT count(*) AS number FROM `sadrzajs` WHERE kid='".$row->kid."'")->fetch_object()->number;  //"SELECT count(*) FROM `sadrzajs` WHERE kid='".$row->kid."'";
      $out[]=$row;
     }
 
@@ -53,6 +54,9 @@ function showStoredSectionForYear(){
 function insertSectionForYear(){
     global $db;
 
+    //ok for now
+    foreach ($_POST as $name => $val) { $_POST[$name] = mysqli_real_escape_string($db, $val); }
+
     $sql = "SELECT sid FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."'  ";
     $result = $db->query($sql);
 
@@ -61,13 +65,13 @@ function insertSectionForYear(){
     switch($nr){
     case 0:
         //uradi insert
-        $sql = "INSERT INTO sadrzajs (`kid`,`sgodina`,`scont`, `scont-notag`,`saltnaslov`) VALUES('".$_POST["id"]."','".$_POST["year"]."', '".$_POST["cont"]."', '".strip_tags($_POST["cont"])."','Alt Naslov'  ) ";
+        $sql = "INSERT INTO sadrzajs (`kid`,`sgodina`,`scont`, `scont-notag`,`saltnaslov`) VALUES('".$_POST["id"]."','".$_POST["year"]."', '".$_POST["cont"]."', '".strip_tags($_POST["cont"])."','".$_POST["altnaslov"]."'  ) ";
         //echo $sql;
         $result = $db->query($sql) OR die(mysqli_error($db));
         echo "Tekst unesen";
         break;
     case 1:
-        $sql = "UPDATE sadrzajs SET scont='".$_POST["cont"]."' WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."'  ";
+        $sql = "UPDATE sadrzajs SET  saltnaslov='".$_POST["altnaslov"]."' , scont='".$_POST["cont"]."' WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."'  ";
         //echo $sql;
         $result = $db->query($sql) OR die(mysqli_error($db));
         echo "Tekst azuriran";
@@ -116,7 +120,7 @@ function buildMenuTree(array $elements, $root = 0) {
 function olLiTree( $tree ) {
     echo '<ul>';
     foreach ( $tree as $item ) {
-        echo '<li ><p onclick="showStoredSectionForYear('.$item->kid.')" class="header" data-owner="'.$item->kowner.'" data-kid="'.$item->kid.'"  id="storeCont'.$item->kid.'">'. $item->knaziv .'</p> <p class="insertSub" data-owner="'.$item->kid.'">Unesi kao podkategoriju</p></li>';
+        echo '<li ><p onclick="showStoredSectionForYear('.$item->kid.')" class="header" data-owner="'.$item->kowner.'" data-kid="'.$item->kid.'"  id="storeCont'.$item->kid.'">'. $item->knaziv .' ('.$item->count.')</p> <p class="insertSub" data-owner="'.$item->kid.'">Unesi kao podkategoriju</p></li>';
         if ( isset( $item->children ) ) {
             olLiTree( $item->children );
         }
@@ -124,5 +128,72 @@ function olLiTree( $tree ) {
     echo '</ul>';
 }
 
+
+///////////////////////////////////////////////////////////////////////////
+//categories reorder SECTION
+///////////////////////////////////////////////////////////////////////////
+function showCategoriesOrder(){
+    global $db;
+
+    $sql = "SELECT kid,kowner,knaziv FROM kategorijes ORDER BY korder  ";
+    $result = $db->query($sql);
+
+    $topmenu = '';
+
+    while($row = mysqli_fetch_object($result)){
+     $out[]=$row;
+    }
+
+
+$outpreped = buildMenuTree($out);
+olLiOrderTree($outpreped);
+
+    //echo $topmenu;
+
+}
+
+function olLiOrderTree( $tree ) {
+    echo '<ul >';
+    foreach ( $tree as $item ) {
+        echo '<li id="node'.$item->kid.'" ><a  >'. $item->knaziv .'</a>';
+        if ( isset( $item->children ) ) {
+            olLiOrderTree( $item->children );
+        }
+    }
+    echo '</ul>';
+}
+
+function renameCategory(){
+    global $db;
+
+        $sql = "UPDATE kategorijes SET  knaziv='".$_POST["newName"]."'  WHERE kid='".$_POST["renameId"]."'   ";
+        //echo $sql;
+        $result = $db->query($sql) OR die(mysqli_error($db));
+        echo "Broj azuriranih redova: ".mysqli_affected_rows($db) ;
+
+}
+
+function updateCatsOrder(){
+    global $db;
+
+
+    $items = explode(",",$_POST['saveString']);
+
+    for($no=0;$no<count($items);$no++){
+        $tokens = explode("-",$items[$no]);
+
+        $sql = "UPDATE kategorijes SET kowner='".$tokens[1]."', korder='$no' where kid='".$tokens[0]."'" ;
+        //echo $sql."<br>";
+
+        // Example of sql
+
+        $db->query($sql) OR die(mysqli_error($db));
+
+
+
+    }
+
+     echo "Updated..."; 
+}
 
 ?>
