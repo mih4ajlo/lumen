@@ -47,13 +47,13 @@ var parseDoc = function(index) {
         //trim &nbsp
 
         if (h[index].nodeName == "H1") {
-            $("#parsedNav").append('<p class="emptyHeader nav-section" id="showCont' + index + '">' + h[index].innerText.replace(/\u00a0/g, " ") + '</p>'); //return true;
+            $("#parsedNav").append('<p class="emptyHeader nav-section nav'+h[index].nodeName.toUpperCase()+' " id="showCont' + index + '">' + h[index].innerText.replace(/\u00a0/g, " ") + '</p>'); //return true;
             oldH = index;
             //excludedSearch.push('showCont' + index);
             //set plain HTML for Chapters
 
         } else {
-            $("#parsedNav").append('<p class="header" id="showCont' + index + '">' + h[index].innerText.replace(/\u00a0/g, " ") + '</p>');
+            $("#parsedNav").append('<p class="header nav'+h[index].nodeName.toUpperCase()+' " id="showCont' + index + '">' + h[index].innerText.replace(/\u00a0/g, " ") + '</p>');
         }
 
         //put everything between H tags into array

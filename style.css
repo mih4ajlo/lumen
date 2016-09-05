@@ -74,6 +74,10 @@ li{
 	padding-left:16px;
 	/* list-style-type: none; */
 }
+#outNav >ul>li{
+	font-weight:600;
+	color:red;
+}
 #outNav p{
 	/* margin:5px 0; */
 	margin:0;
@@ -96,4 +100,18 @@ color:white;
 
 #catOrder{
 	padding-top:90px;
+}
+
+.navH1{
+	font-weight:600;
+	color:red;
+}
+.navH2{
+	padding-left: 15px;
+}
+.navH3{
+	padding-left: 30px;
+}
+.navH4{
+	padding-left: 50px;
 }
