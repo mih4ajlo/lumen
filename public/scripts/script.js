@@ -20,6 +20,14 @@ window.onpopstate = function(event) {
 	parseUrl();
 };
 
+$(document).on('click','#uporediOff',function(){
+    turnOffCompare();
+});
+
+$(document).on('click','#toTop',function(){
+    $(document).scrollTop(0);
+});
+
 
 function parseUrl(){
 
@@ -39,7 +47,7 @@ function parseUrl(){
     showMenu(year);
     showMainCont(year,id);
     availableYearsToCompare(); //za padajuci COMPARE meni
-    loadFootNotes(year); //za padajuci COMPARE meni
+    loadFootNotes(year); 
 
     //if compare active
     if(compareTo){ compareToYear(compareTo); }
@@ -57,6 +65,15 @@ function showMenu(){
         console.log( "JSON for menu loaded..." );
         menuOut = buildMenuList(menuRes,false);
         $("#nav").html(menuOut);
+		
+		//show 3rd level nav FIRST - important
+		showSubNav();
+		//mark active
+		$("#nav a[href='#"+lang+"-"+year+"-"+id+"']" ).addClass('active');
+		//move active to top
+		$('#content').scrollTop( 0 );
+		$('#content').scrollTop( $("#nav a[href='#"+lang+"-"+year+"-"+id+"']" ).position().top );
+		
 
     })
     .fail(function() {
@@ -72,8 +89,10 @@ function showMainCont(year,id){
     $.getJSON( apiLocation + lang+ "/content/"+year+"/"+id, function(mainContRes) {
         console.log( "JSON for main content loaded..." );
         $("#displayCont").html(mainContRes[0].scont);
-		//disable footnote click in displayCont element and add footnotes hover
-		disableFootNotesAddHover();
+
+clearStyles("displayCont");
+
+$("#uporediOff").hide();
 
     })
     .fail(function() {
@@ -88,6 +107,10 @@ function compareToYear(yearToCompare){
         console.log( "JSON for COMPARE content loaded..." );
         $('#displayContCompare').html(yearToCompareRes[0].scont);
 
+clearStyles('displayContCompare');
+$("#uporediOff").show();
+loadFootNotesCompare(year);
+
         //prikazi compare div
         $(function() {
             $("#displayCont").animate({
@@ -99,7 +122,7 @@ function compareToYear(yearToCompare){
             }, { duration: 200, queue: false });
         });
 
-
+		
     })
     .fail(function() {
         $("#displayContCompare").html('<p>Greška prilikom učitavanja sadržaja za uporedjivanje.</p>');
@@ -177,7 +200,9 @@ function loadFootNotes(year){
     $.getJSON( apiLocation + lang+ "/footnotes/"+year, function(loadFootNotesRes) {
         console.log( "JSON for FOOTNOTES loaded..." );
 
-        if(loadFootNotesRes.length>0){ $("#footnoteContent").html(loadFootNotesRes[0].fcont); } 
+        if(loadFootNotesRes.length>0){ $("#footnoteContent").html(loadFootNotesRes[0].fcont); }
+		//disable footnote click in displayCont element and add footnotes hover
+		disableFootNotesAddHover(); 		
 
     })
     .fail(function() {
@@ -186,6 +211,21 @@ function loadFootNotes(year){
 	
 }
 
+function loadFootNotesCompare(year){
+
+    $.getJSON( apiLocation + lang+ "/footnotes/"+year, function(loadFootNotesRes) {
+        console.log( "JSON for FOOTNOTES COMPARE loaded..." );
+
+        if(loadFootNotesRes.length>0){ $("#footnoteContentCompare").html(loadFootNotesRes[0].fcont); }
+
+		disableFootNotesAddHoverCompare();		
+
+    })
+    .fail(function() {
+        $("#footnoteContentCompare").html('Greška prilikom učitavanja fusnota.');
+    });
+	
+}
 
 
 //SEARCH functions from DATABASE
@@ -267,6 +307,9 @@ function turnOffCompare(){
         //reset compare var
         compareTo = '';
         $('#displayContCompare').html('');
+		$("#uporediOff").hide();
+		
+		$("#displayContCompareYear").remove();
 
         $(function() {
             $("#displayCont").animate({
@@ -282,6 +325,7 @@ function turnOffCompare(){
 }
 
 
+
 function disableFootNotesAddHover(){
 		$("#displayCont a[href*='#']").click(function(e) {
 		   e.preventDefault();
@@ -294,4 +338,63 @@ function disableFootNotesAddHover(){
 			$(document).tooltip();
 		 });
 		 
+}
+
+function disableFootNotesAddHoverCompare(){
+		$("#displayContCompare a[href*='#']").click(function(e) {
+		   e.preventDefault();
+		 });
+		
+		//set text for hover
+		$("#displayContCompare a[href*='#']").hover(function(e) {
+			var textel = $(this).attr('href').slice(2);
+			$(this).attr('title', $("#"+textel).text());
+			$(document).tooltip();
+		 });
+		 
+}
+
+function clearStyles(elId){
+	//clear word styles and attributes
+	$('#'+elId+' *').removeAttr('style lang class');
+	prependYear(elId);
+}
+
+function prependYear(elId){
+	var hash = window.location.hash.replace("#", "");
+    var hashVars = hash.split("-");
+
+	if(elId.indexOf("Compare")<0){
+		//$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
+		$("#displayContYear").remove();
+		$('#mainLine').before( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
+	}else{
+		//$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[3]+"</span>" );
+		$("#displayContCompareYear").remove();
+		$('#mainLine').before( "<span id='"+elId+"Year' >"+hashVars[3]+"</span>" );
+	}
+	
+}
+function showSubNav(){
+	var hash = window.location.hash;
+	
+	var level = $(".navig a[href='"+hash+"']").parents('ul').length
+	//console.dir( level );
+	// subcats za 4 nivi preko levela ??
+	
+	$("#mainLine").html('');
+	
+	if(level==3){
+			//console.dir( $(".navig a[href='"+hash+"']").parent().children("ul") );
+			
+		$(".navig a[href='"+hash+"']").parent().children("ul").find("li").each(function(){ 
+			console.dir($(this)[0].innerHTML);
+			$("#mainLine").append($(this)[0].innerHTML);
+			
+			} );	
+	}
+	
+	$(".navig a[href='"+hash+"']").parents().show();
+	//$(".navig a[href='"+hash+"']").closest("ul").show();
+	$(".navig a[href='"+hash+"']").siblings().show();
 }

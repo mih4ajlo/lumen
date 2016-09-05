@@ -7,11 +7,11 @@ $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 
      if($year){
          //select only first 2 levels
-        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} order by saltorder";
+        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} order by korder";
         //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kowner IN(SELECT sid FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} and kowner=0) OR (sgodina={$year} and kowner=0)  order by saltorder";
      } else {
          //default
-        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 order by saltorder  ";
+        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 order by korder  ";
         //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 AND kowner IN(SELECT sid FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 and kowner=0) OR (sgodina=2015 and kowner=0)  order by saltorder";
      }
 
@@ -39,8 +39,15 @@ $app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
 
     $out = frontSql($sql);
 
+    //clear span lang and class
+    //$out[0]->scont = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $out[0]->scont);
+    //$out[0]->scont = preg_replace('/(<[^>]+) lang=".*?"/i', '$1', $out[0]->scont);
+    //$out[0]->scont = preg_replace('/(<[^>]+) class=".*?"/i', '$1', $out[0]->scont);
+    //$out[0]->scont = preg_replace('/(<[^>]+) width=".*?"/i', '$1', $out[0]->scont);
+
+
 //    echo "<br><br><pre>";
-//    var_dump($outf);
+//    var_dump($out);
 //    echo "</pre>";
 
 
