@@ -67,12 +67,11 @@ function showMenu(){
         $("#nav").html(menuOut);
 		
 		//show 3rd level nav FIRST - important
-		showSubNav();
-		//mark active
-		$("#nav a[href='#"+lang+"-"+year+"-"+id+"']" ).addClass('active');
+		showSubNavAndActivate();
+
 		//move active to top
 		$('#content').scrollTop( 0 );
-		$('#content').scrollTop( $("#nav a[href='#"+lang+"-"+year+"-"+id+"']" ).position().top );
+		$('#content').scrollTop( $("#nav a[class='active']" ).position().top );
 		
 
     })
@@ -375,26 +374,47 @@ function prependYear(elId){
 	}
 	
 }
-function showSubNav(){
+function showSubNavAndActivate(){
 	var hash = window.location.hash;
 	
 	var level = $(".navig a[href='"+hash+"']").parents('ul').length
-	//console.dir( level );
+	console.dir( level );
 	// subcats za 4 nivi preko levela ??
+	
+	//mark NAv link active
+	$("#nav a[href='#"+lang+"-"+year+"-"+id+"']" ).addClass('active');
 	
 	$("#mainLine").html('');
 	
+	if(level==2){
+		$(".navig a[href='"+hash+"']").siblings().show();
+	}
+	
 	if(level==3){
-			//console.dir( $(".navig a[href='"+hash+"']").parent().children("ul") );
+			console.dir( $(".navig a[href='"+hash+"']").parent().children("ul") );
 			
 		$(".navig a[href='"+hash+"']").parent().children("ul").find("li").each(function(){ 
 			console.dir($(this)[0].innerHTML);
 			$("#mainLine").append($(this)[0].innerHTML);
 			
-			} );	
+			} );
+		$(".navig a[href='"+hash+"']").parents().show();
+			
 	}
 	
-	$(".navig a[href='"+hash+"']").parents().show();
-	//$(".navig a[href='"+hash+"']").closest("ul").show();
-	$(".navig a[href='"+hash+"']").siblings().show();
+
+	if(level==4){
+			//console.dir( $(".navig a[href='"+hash+"']").parent().parent().parent() );
+			
+		$(".navig a[href='"+hash+"']").parent().parent().find("li").each(function(){ 
+			//console.dir($(this)[0].innerHTML);
+			$("#mainLine").append($(this)[0].innerHTML);
+			
+			} );
+		$(".navig a[href='"+hash+"']").parent().parents().show();
+		$(".navig a[href='"+hash+"']").parent().parent().parent().children().addClass('active');
+		$(".navig a[href='"+hash+"']").parent().parent().hide();
+			
+	}
+	
 }
