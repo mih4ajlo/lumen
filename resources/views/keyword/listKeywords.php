@@ -58,21 +58,21 @@
 
 						$temp_id = $value->id;
 
-						$ikonica_edit =  '<span class="glyphicon glyphicon-pencil" keyword="'.$temp_id.'" aria-hidden="true"></span>';
+						$ikonica_edit =  '<span class="glyphicon glyphicon-pencil" keyword="'.$temp_id.'" aria-hidden="true"></span><span class="glyphicon glyphicon-ok posalji-unos hidden confirm-dugme" keyword="'.$temp_id.'"   aria-hidden="true"></span>';
 
 						$ikonica_delete =  '<span class="glyphicon glyphicon-remove" keyword="'.$temp_id.'" aria-hidden="true"></span>';
 
 
-						$link_edit = "<a href='keyword/$temp_id'>$ikonica_edit</a>";
+						$link_edit = "<a href='#' keyword='$temp_id' class='edit-link'>$ikonica_edit</a>";
 
 						//ajax potvrda akcije	
 						//keyword/delete/$temp_id
 						$link_del = "<a href='#' keyword='$temp_id' class='delete-link' >$ikonica_delete</a>";
 
 						print_r("<tr>"
-							."<td>{$value->keyword}</td> "
-							."<td>{$value->keyword_cir}</td>"
-							."<td>{$value->kategorija}</td>"
+							."<td kol='keyword'>{$value->keyword}</td> "
+							."<td kol='keyword_cir'>{$value->keyword_cir}</td>"
+							."<td kol='kategorija'>{$value->kategorija}</td>"
 							."<td>$link_edit</td>"
 							."<td>$link_del</td>"
 							."</tr>");
@@ -133,6 +133,81 @@
 		});
 		
 	})
+
+
+	$(".edit-link").click(function(ev) {
+
+		var temp_el = $(ev.target);
+
+		var id_keyword = temp_el.attr("keyword");
+
+		
+
+		var row = temp_el.parent().parent().parent();
+		var selectedTd = row.find("td:not(:has(*))");
+
+		var data = {};
+
+		selectedTd.each(function(ind, ele ){
+			$(ele).attr('contenteditable',"true")
+			//data[ $(ele).attr('kol')] = $(ele).html();
+			//console.log( $(ele).html() )
+
+		})
+
+		//selektuj prvu kolonu
+
+		temp_el.hide()
+		row.find(".hidden").removeClass('hidden')
+
+
+
+		console.log(data);
+		
+	})
+
+
+	$(".confirm-dugme").click(function(ev) {
+
+		var temp_el = $(ev.target);
+
+		var id_keyword = temp_el.attr("keyword");
+
+		
+
+		var row = temp_el.parent().parent().parent();
+		var selectedTd = row.find("td:not(:has(*))");
+
+		var data = {};
+
+		selectedTd.each(function(ind, ele ){
+			$(ele).attr('contenteditable',"false")
+			data[ $(ele).attr('kol')] = $(ele).html();
+			//console.log( $(ele).html() )
+
+		})
+
+		//selektuj prvu kolonu
+
+		row.find(".hidden").removeClass('hidden')
+		temp_el.hide()
+
+		$.ajax({
+			url: 'keyword/edit/'+id_keyword,
+			type: 'POST',			
+			data: data
+		})
+		.done(function(msg) {
+			console.log("success");
+			console.log(msg);
+		})
+		.fail(function(msg) {
+			console.error(msg);
+		});
+
+		
+	})
+
 
 
 	function posaljiUnos(el) {
