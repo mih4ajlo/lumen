@@ -36,7 +36,7 @@
 	<div class="main col-xs-12 col-sm-6 col-md-8">
 		<div class="container-fluid">
 		<div class="row">
-				<div class="ta-right" >
+				<div class="ta-right dodaj-keyword" >
 					<span>Dodaj unos </span>
 					<span class="glyphicon glyphicon-plus"  aria-hidden="true"></span>
 				</div>
@@ -66,7 +66,8 @@
 						$link_edit = "<a href='keyword/$temp_id'>$ikonica_edit</a>";
 
 						//ajax potvrda akcije	
-						$link_del = "<a href='keyword/delete/$temp_id'>$ikonica_delete</a>";
+						//keyword/delete/$temp_id
+						$link_del = "<a href='#' keyword='$temp_id' class='delete-link' >$ikonica_delete</a>";
 
 						print_r("<tr>"
 							."<td>{$value->keyword}</td> "
@@ -82,7 +83,7 @@
 				?>
 			</table>
 			<div class="row">
-				<div class="ta-right" >
+				<div class="ta-right dodaj-keyword" >
 					<span>Dodaj unos </span>
 					<span class="glyphicon glyphicon-plus"  aria-hidden="true"></span>
 				</div>
@@ -91,7 +92,86 @@
 			</div>
 	</div>
 	
+<script type="text/javascript">
+	$(".dodaj-keyword").click(function(event) {
+		//dodaj red u tabeli
+		$("table").find('tbody')
+		    .append($('<tr>')
+		        .append(
+		        	'<td><input type="text" name="keyword"></td> '+
+					'<td><input type="text" name="keyword_cir"></td>'+
+					'<td><input type="text" name="kategorija"></td>'+
+					'<td><span class="glyphicon glyphicon-ok posalji-unos" onclick="posaljiUnos(this)" aria-hidden="true"></span></td>'+
+					'<td><span class="glyphicon glyphicon-remove ukloni-red" onclick="ukloniRed(this)"   aria-hidden="true"></span></td>'
 
+		        	/*$('<td>')
+		            .append($('<img>')
+		                .attr('src', 'img.png')
+		                .text('Image cell')
+		            )*/
+		        )
+		    );
+	});
+
+	$(".delete-link").click(function(ev) {
+
+		var id_keyword = $(ev.target).attr("keyword");
+
+		$.ajax({
+			url: 'keyword/delete/'+ id_keyword
+		})
+		.done(function() {
+			console.log("success");
+			ukloniRed(ev.target);
+
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	})
+
+
+	function posaljiUnos(el) {
+		
+		var row = $(el).parent().parent();
+		var inputs  = row.find("input");
+
+		var sendingObject = {};
+		inputs.each(function(index, el) {
+			sendingObject [ el.name] = el.value  ;			
+		});
+
+		$.ajax({
+			url: 'keyword/add',
+			type: 'POST',			
+			data: sendingObject
+		})
+		.done(function(msg) {
+			console.log("success");
+			console.log(msg);
+		})
+		.fail(function(msg) {
+			console.error(msg);
+		});
+		
+
+	}
+
+	function ukloniRed(el) {
+
+		var temp = $(el).parent().parent().parent();
+		temp.remove()
+		
+	}
+
+	function izbrisiUnos(el) {
+		
+	}
+</script>
 	
 </body>
 </html>

@@ -11,8 +11,6 @@ class KeywordController extends Controller
 
 	public function list_keywords(Request $request)
 	{
-
-
 		try {
             $unosi = app('db')->select("SELECT * FROM keywords "  );    
         } catch (Exception $e) {
@@ -21,10 +19,7 @@ class KeywordController extends Controller
             print_r("</pre>");
             //die();
         }
-              
-              
-        
-        //var_dump($content_id);    
+       
         return view(
             "keyword.listKeywords", ["lista_keywords"=>$unosi] 
         );
@@ -44,22 +39,32 @@ class KeywordController extends Controller
             //die();
         }
 
-        $out = "Izmena uspesna. Vratite se <a href='../../keyword#acter{$keyword_id}'>ovde</a>." ;
 
-        $title = "Editor keywords";
-        $head ="";
-        return view( "keyword.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
+        return response()->json(['keyword_id' =>$keyword_id , 'state' => 'CA']);
+ 
 	}
 
 	public function delete_keyword(Request $request, $keyword_id)
-	{
-		# code...
+	{  
+        
+		try {
+            $unosi = app('db')->delete("DELETE  FROM keywords where id=? ", [$keyword_id]  );    
+        } catch (Exception $e) {
+            print_r("<pre>");
+            var_dump($e);
+            print_r("</pre>");
+            //die();
+        }
+              
+        return response()->json(['keyword_id' =>$keyword_id , 'kolicina'=> $unosi, 'state' => 'izbrisano']);
+
 	}
 
 
     //na foru akters
 	public function add_keyword(Request $request)
 	{
+        
 		  try {
             $res = app('db')->insert('INSERT INTO keywords (keyword, keyword_cir,kategorija) VALUES (?, ?, ? )  ', [$_POST['keyword'],$_POST['keyword_cir'],$_POST['kategorija']]);
 
@@ -71,11 +76,8 @@ class KeywordController extends Controller
             //die();
         }
 
-    $out = "Keywords dodat. Vratite se <a href='../acters'>ovde</a>." ;
-
-        $title = "Keywords aktera";
-        $head ="";
-        return view( "content.Display",["content"=>$out,"title"=>$title,"head"=>$head ]);
+        return response()->json(['keyword_id' =>$res , 'state' => 'dodato']);
+      
 	}
 	
 } 
