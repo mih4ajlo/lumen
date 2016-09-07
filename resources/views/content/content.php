@@ -55,7 +55,7 @@
 
 	<div class="container-fluid">
 		
-		<form class="form-horizontal" method="post" action="auth/login">
+		<form class="form-horizontal" method="post" action="edit">
 		<fieldset>
 
 		<!-- Form Name -->
@@ -65,13 +65,15 @@
 
 		<!-- Text input-->
 		<div class="form-group">
+
+			<button  class="btn btn-default">Sacuvaj</button>
 		  <label class="col-md-4 control-label" for="textNaslov">Naslov</label>  
 		  <div class="col-md-4">
-		  <input id="textNaslov" name="textNaslov" type="text" placeholder="naslov" class="form-control input-md">
+		  <input id="textNaslov" name="textNaslov" type="text" placeholder="naslov" class="form-control input-md"  value="<?php echo $sadrzaj_unos[0]->saltnaslov; ?>">
 		    
 		  </div>
 		</div>
-
+		<input type="hidden" name="sid" value="<?php echo $sadrzaj_unos[0]->sid; ?>">
 		<div>
 			<!-- Select Basic -->
 			<div class="form-group ">
@@ -89,7 +91,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="textGodina">Godina</label>  
 			  <div class="col-md-4">
-			  <input id="textGodina" name="textGodina" type="text" placeholder="godina" class="form-control input-md">
+			  <input id="textGodina" name="textGodina" type="text" placeholder="godina" class="form-control input-md" value="<?php echo $sadrzaj_unos[0]->sgodina; ?>">
 			    
 			  </div>
 			</div>
@@ -99,7 +101,16 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textKeywords">Keywords</label>  
 		  <div class="col-md-4">
-		  <input id="textKeywords" name="textKeywords" type="text" placeholder="keywords" class="form-control input-md">
+		  <input id="textKeywords" name="textKeywords" type="text" placeholder="keywords" class="form-control input-md" value="<?php echo $sadrzaj_unos[0]->skeywords; ?>">
+		    
+		  </div>
+		</div>
+
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="textKategorija">Kategorija</label>  
+		  <div class="col-md-4">
+		  <input id="textKategorija" name="textKategorija" type="text" placeholder="kategorija" class="form-control input-md" value="<?php echo $sadrzaj_unos[0]->kid; ?>">
 		    
 		  </div>
 		</div>

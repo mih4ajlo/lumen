@@ -33,6 +33,7 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
     /*content*/
    $app->get('content',  [   'uses' => 'ContentController@list_content']);
    $app->get('content/{content_id}',  [   'uses' => 'ContentController@single']);
+   $app->post('content/edit',  [   'uses' => 'ContentController@edit_content']);
    $app->get('content/delete/{content_id}',  [   'uses' => 'ContentController@delete_content']);
 
 
