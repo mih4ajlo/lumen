@@ -58,12 +58,12 @@
 
 						$temp_id = $value->id;
 
-						$ikonica_edit =  '<span class="glyphicon glyphicon-pencil" keyword="'.$temp_id.'" aria-hidden="true"></span><span class="glyphicon glyphicon-ok posalji-unos hidden confirm-dugme" keyword="'.$temp_id.'"   aria-hidden="true"></span>';
+						$ikonica_edit =  '<span class="glyphicon glyphicon-pencil" keyword="'.$temp_id.'" aria-hidden="true"></span>';
 
 						$ikonica_delete =  '<span class="glyphicon glyphicon-remove" keyword="'.$temp_id.'" aria-hidden="true"></span>';
 
 
-						$link_edit = "<a href='#' keyword='$temp_id' class='edit-link'>$ikonica_edit</a>";
+						$link_edit = '<a href="#" keyword="'.$temp_id.'" class="edit-link">'.$ikonica_edit.'</a> <span class="glyphicon glyphicon-ok posalji-unos hidden confirm-dugme" keyword="'.$temp_id.'"   aria-hidden="true"></span> ';
 
 						//ajax potvrda akcije	
 						//keyword/delete/$temp_id
@@ -155,11 +155,12 @@
 
 		})
 
-		//selektuj prvu kolonu
+		//todo selektuj prvu kolonu
 
-		temp_el.hide()
+		
 		row.find(".hidden").removeClass('hidden')
-
+		temp_el.addClass('hidden')
+		$(selectedTd[0]).focus();
 
 
 		console.log(data);
@@ -175,7 +176,7 @@
 
 		
 
-		var row = temp_el.parent().parent().parent();
+		var row = temp_el.parent().parent()/*.parent()*/;
 		var selectedTd = row.find("td:not(:has(*))");
 
 		var data = {};
@@ -190,7 +191,7 @@
 		//selektuj prvu kolonu
 
 		row.find(".hidden").removeClass('hidden')
-		temp_el.hide()
+		temp_el.addClass('hidden')/*hide()*/
 
 		$.ajax({
 			url: 'keyword/edit/'+id_keyword,

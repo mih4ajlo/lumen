@@ -60,7 +60,7 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
    $app->get('kategorija',  [   'uses' => 'KategorijaController@list_kategorija']);
    $app->post('kategorija/edit/{kategorija_id}',  [   'uses' => 'KategorijaController@edit_kategorija']);
    $app->post('kategorija/add',  [   'uses' => 'KategorijaController@add_kategorija']);
-   $app->get('kategorija/delete/{kategorija_id}',  [   'uses' => 'KategorijaController@delete_kategorija']);
+   $app->get('kategorija/delete/{kategorija_id}',  [   'uses' => 'KategorijaController@delete_kategxorija']);
 
 
        /*referencas*/
