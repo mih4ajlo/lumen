@@ -1,0 +1,14 @@
+<?php
+$hostname_mysqlcon = "localhost";
+$database_mysqlcon = "database_name";
+$username_mysqlcon = "user";
+$password_mysqlcon = "pass";
+$db = mysqli_connect($hostname_mysqlcon, $username_mysqlcon, $password_mysqlcon); //or trigger_error(mysql_error(),E_USER_ERROR);
+
+mysqli_select_db($db, $database_mysqlcon);
+mysqli_query($db, 'utf8');
+mysqli_set_charset($db, 'utf8');
+
+$pdo_db = new PDO("mysql:host=localhost;dbname=database_name;charset=utf8;",
+	"user", "pass");
+?>

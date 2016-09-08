@@ -1,9 +1,8 @@
 <?php
-include("config.php");
-include("functions.php");
+include "config.php";
+include "functions.php";
 
 //echo getMainCats();
-
 
 ?>
 
@@ -28,11 +27,11 @@ include("functions.php");
         <div id="poruka">&nbsp;</div>
         Izaberite godinu sa kojom radite:
         <select id="year" name="year" size="1">
-            <option value="" selected="selected"></option>
+
             <option value="2012">2012</option>
             <option value="2013">2013</option>
             <option value="2014">2014</option>
-            <option value="2015">2015</option>
+            <option value="2015" selected="selected">2015</option>
             <option value="2016">2016</option>
         </select>
 
@@ -40,7 +39,7 @@ include("functions.php");
         <select id="tip" name="tip" size="1">
             <option value="" selected="selected"></option>
             <option value="izvestaj">izvestaj</option>
-            <option value="dodatni">dodatni</option>           
+            <option value="dodatni">dodatni</option>
         </select>
 
         <button>Uporedi</button>

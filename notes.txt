@@ -1,0 +1,18 @@
+
+CREATE TABLE `sadrzajs` (
+  `sid` int(11) NOT NULL,
+  `id` int(11) DEFAULT NULL COMMENT 'id koji ce biti isti kroz razlicite jezike',
+  `s_orgin_naslov` tinytext COLLATE utf8_unicode_ci NOT NULL COMMENT 'naslov u dokumentu',
+  `scont` mediumtext COLLATE utf8_unicode_ci,
+  `scont_notag` mediumtext COLLATE utf8_unicode_ci,
+  `tip` tinytext COLLATE utf8_unicode_ci COMMENT 'sadrzaj ili referenca',
+  `kid` int(11) DEFAULT NULL COMMENT 'kategorija id',
+  `sgodina` smallint(4) DEFAULT NULL,
+  `saltnaslov` tinytext COLLATE utf8_unicode_ci COMMENT 'naslov koji unose korisnici',
+  `saltorder` int(11) DEFAULT NULL,
+  `surl` tinytext COLLATE utf8_unicode_ci,
+  `sordernatural` tinytext COLLATE utf8_unicode_ci COMMENT 'prvobitni order',
+  `skeywords` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slang` tinytext COLLATE utf8_unicode_ci,
+  `s_related_to` int(11) DEFAULT NULL COMMENT 'za reference da se povezuju sa contentom'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

@@ -31,7 +31,13 @@ function showCategories() {
 function showStoredSectionForYear() {
 	global $db;
 
-	$sql = "SELECT scont FROM sadrzajs WHERE kid='" . $_POST["id"] . "' AND sgodina='" . $_POST["year"] . "' AND tip='" . $_POST["tip"] . "' ";
+	$sql = sprintf(
+		"SELECT scont
+        FROM sadrzajs
+        WHERE kid='%d' AND sgodina='%d' AND tip='%s' ",
+		$_POST["id"], $_POST["year"], $_POST["tip"]);
+
+	/*"SELECT scont FROM sadrzajs WHERE kid='" . $_POST["id"] . "' AND sgodina='" . $_POST["year"] . "' AND tip='" . $_POST["tip"] . "' ";*/
 	$result = $db->query($sql);
 
 	$nr = mysqli_num_rows($result);
@@ -50,14 +56,20 @@ function showStoredSectionForYear() {
 
 //insert update content for selected section and year
 function insertSectionForYear() {
-	global $db;
+	global $db, $pdo_db;
 
 	//ok for now
 	foreach ($_POST as $name => $val) {
 		$_POST[$name] = mysqli_real_escape_string($db, $val);
 	}
 
-	$sql = "SELECT sid FROM sadrzajs WHERE kid='" . $_POST["id"] . "' AND sgodina='" . $_POST["year"] . "' AND tip='" . $_POST["tip"] . "' ";
+	$sql = sprintf(
+		"SELECT sid
+        FROM sadrzajs
+        WHERE kid='%d' AND sgodina='%d' AND tip='%s' ",
+		$_POST["id"], $_POST["year"], $_POST["tip"]);
+
+	/*"SELECT sid FROM sadrzajs WHERE kid='" . $_POST["id"] . "' AND sgodina='" . $_POST["year"] . "' AND tip='" . $_POST["tip"] . "' ";*/
 	$result = $db->query($sql);
 
 	$nr = mysqli_num_rows($result);
@@ -65,10 +77,19 @@ function insertSectionForYear() {
 	switch ($nr) {
 	case 0:
 		//uradi insert
-		$sql = "INSERT INTO sadrzajs (`kid`,`sgodina`,`scont`, `scont_notag`,`saltnaslov`) VALUES('" . $_POST["id"] . "','" . $_POST["year"] . "', '" . $_POST["cont"] . "', '" . strip_tags($_POST["cont"]) . "','" . $_POST["altnaslov"] . "'  ) ";
-		//echo $sql;
-		$result = $db->query($sql) OR die(mysqli_error($db));
-		echo "Tekst unesen";
+		//'%d','%d', '%s', '$s','%s', '%s', '%s'
+		$sql = sprintf("INSERT INTO sadrzajs (`kid`,`sgodina`,`saltnaslov`,`s_orgin_naslov`,tip , scont, `scont_notag`) VALUES( ?,?,?,?,?,?,?  ) ");
+
+		$params = array(
+			$_POST["id"], $_POST["year"],
+			$_POST["altnaslov"], $_POST["altnaslov"], "sadrzaj", ($_POST["cont"]), strip_tags($_POST["cont"]));
+
+		$sth = $pdo_db->prepare($sql);
+		$sth->execute($params);
+		$red = $sth->fetchAll() OR die(mysqli_error($db));
+
+		//$result = $db->query($sql) OR die(mysqli_error($db));
+		echo "Tekst unesen $red";
 		break;
 	case 1:
 		$sql = "UPDATE sadrzajs SET  saltnaslov='" . $_POST["altnaslov"] . "' , scont='" . $_POST["cont"] . "' WHERE kid='" . $_POST["id"] . "' AND sgodina='" . $_POST["year"] . "'  ";

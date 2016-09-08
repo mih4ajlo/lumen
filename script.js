@@ -58,7 +58,8 @@ var parseDoc = function(index) {
 
     cont['showCont' + index].each(function() {
         var $this = $(this);
-        $this.html($this.html().replace(/&nbsp;/g, '')); });
+        $this.html($this.html().replace(/&nbsp;/g, ''));
+    });
 
     //merge is ok as lon as you put header variable name into excluded search
     //DISABLED - ako je ukljuceno stavlja sve subsekcija u glavnu sekciju - npr H2 i H3 sadrzaj ulazi u H1 koji je iznad
@@ -115,8 +116,10 @@ function dropHelperNav(event, ui) {
     var draggable = ui.draggable;
     //console.dir(draggable[0].innerText);
     //console.dir($(this)[0].dataset.owner);
-    if (draggable.attr('id').indexOf("showCont") < 0) { alert("Ovde mozete prevuci samo polja iz LEVE NAVIGACIJE.");
-        return; }
+    if (draggable.attr('id').indexOf("showCont") < 0) {
+        alert("Ovde mozete prevuci samo polja iz LEVE NAVIGACIJE.");
+        return;
+    }
 
     //upisi podatke iz parsedCont
     $.post("ajax.php", { action: "insertNewCategory", owner: $(this)[0].dataset.owner, title: draggable[0].innerText }, function(data) {
@@ -138,12 +141,18 @@ function dropHelperCont(event, ui) {
     var draggable = ui.draggable;
     //console.dir($( "#parsedNav .active" )[0].innerText);
     //console.dir($(this));
-    if (draggable.attr('id') != "parsedCont") { alert("Ovde mozete prevuci samo tekstualni sadrzaj sekcije.");
-        return; }
-    if ($('#year :selected').text() == "") { alert("Izaberite godinu za koju zelite da ubacite postojeci sadrzaj!!!");
-        return; }
-    if ($("#outNav ul li .active").length != 1) { alert("Niste izabrali sekciju u koju kopirate text!!!");
-        return; }
+    if (draggable.attr('id') != "parsedCont") {
+        alert("Ovde mozete prevuci samo tekstualni sadrzaj sekcije.");
+        return;
+    }
+    if ($('#year :selected').text() == "") {
+        alert("Izaberite godinu za koju zelite da ubacite postojeci sadrzaj!!!");
+        return;
+    }
+    if ($("#outNav ul li .active").length != 1) {
+        alert("Niste izabrali sekciju u koju kopirate text!!!");
+        return;
+    }
 
 
 
@@ -153,10 +162,10 @@ function dropHelperCont(event, ui) {
         year: $('#year :selected').text(),
         id: $("#outNav ul li .active")[0].dataset.kid,
         cont: $("#parsedCont").html(),
-        tip:"sadrzaj",
+        tip: "sadrzaj",
         altnaslov: $("#parsedNav .active")[0].innerText
     }, function(data) {
-        show(data);
+        show(data); //TODO proveriti sta se ovde vraca
         $("#outNav ul li .active").trigger('click');
     });
 
@@ -166,7 +175,7 @@ function dropHelperCont(event, ui) {
 
 function loadCategories() {
     $.post("ajax.php", { action: "showCategories" }, function(data) {
-        $("#outNav").html(data);
+        $("#outNav").html(data); //TODO proveriti sta se ovde vraca
         //make outNav droppable
         $("#outNav ul li").children().droppable({ drop: dropHelperNav, hoverClass: "activeHover" });
         //show( "Postojece kategorije ucitane." );
@@ -176,15 +185,22 @@ function loadCategories() {
 
 function showStoredSectionForYear(contid) {
     //check if year selected
-    if ($('#year :selected').text() == "") { alert("Izaberite godinu za koju gledate postojeci sadrzaj!!!");
-        return; }
+    if ($('#year :selected').text() == "") {
+        alert("Izaberite godinu za koju gledate postojeci sadrzaj!!!");
+        return;
+    }
 
     $("#outCont").html('');
 
     $("#outNav ul li").children().removeClass("active");
     $('#storeCont' + contid).addClass('active');
 
-    $.post("ajax.php", { action: "showStoredSectionForYear", year: $('#year :selected').text(), id: contid }, function(data) {
+    $.post("ajax.php", { 
+    	action: "showStoredSectionForYear", 
+    	year: $('#year :selected').text(), 
+    	id: contid,
+    	tip:"sadrzaj"
+    	 }, function(data) {
         $("#outCont").html(data);
     });
 }
