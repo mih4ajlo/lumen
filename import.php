@@ -37,8 +37,8 @@ include "functions.php";
 
         Izaberite tip dokumenta:
         <select id="tip" name="tip" size="1">
-            <option value="" selected="selected"></option>
-            <option value="izvestaj">izvestaj</option>
+
+            <option value="izvestaj" selected="selected">izvestaj</option>
             <option value="dodatni">dodatni</option>
         </select>
 
