@@ -6,9 +6,6 @@ $(document).ready(function() {
 	loadFile();
 	loadCategories();
 
-
-	
-	
 	
 });
 

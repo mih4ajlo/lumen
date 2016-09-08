@@ -3,7 +3,8 @@ include("config.php");
 
 if (isset($_POST["action"])) {
 //call function whose name is stored in variable action
-$_POST["action"]();
+$_POST["action"](); //zlo, trebalo bi makar proveriti da li se nalazi u nizu dozvoljenih funkcija
+
 }
 
 function showCategories(){
@@ -13,16 +14,17 @@ function showCategories(){
     $result = $db->query($sql);
 
     $topmenu = '';
-
+ 
     while($row = mysqli_fetch_object($result)){
-     //$topmenu .=  '<p onclick="showStoredSectionForYear('.$row->kid.')" class="header" id="storeCont'.$row->kid.'">'. $row->knaziv .'</p>';
-     $row->count= $db->query("SELECT count(*) AS number FROM `sadrzajs` WHERE kid='".$row->kid."'")->fetch_object()->number;  //"SELECT count(*) FROM `sadrzajs` WHERE kid='".$row->kid."'";
-     $out[]=$row;
+        //$topmenu .=  '<p onclick="showStoredSectionForYear('.$row->kid.')" class="header" id="storeCont'.$row->kid.'">'. $row->knaziv .'</p>';
+        $row->count= $db->query("SELECT count(*) AS number FROM `sadrzajs` WHERE kid='".$row->kid."'")->fetch_object()->number;  //"SELECT count(*) FROM `sadrzajs` WHERE kid='".$row->kid."'";
+        $out[]=$row;
     }
 
-
-$outpreped = buildMenuTree($out);
-olLiTree($outpreped);
+ 
+    
+    $outpreped = buildMenuTree($out);
+    olLiTree($outpreped);
 
     //echo $topmenu;
 
@@ -32,7 +34,7 @@ olLiTree($outpreped);
 function showStoredSectionForYear(){
     global $db;
 
-    $sql = "SELECT scont FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."'  ";
+    $sql = "SELECT scont FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."' AND tip='".$_POST["tip"]."' ";
     $result = $db->query($sql);
 
     $nr = mysqli_num_rows($result) ;
@@ -57,7 +59,7 @@ function insertSectionForYear(){
     //ok for now
     foreach ($_POST as $name => $val) { $_POST[$name] = mysqli_real_escape_string($db, $val); }
 
-    $sql = "SELECT sid FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."'  ";
+    $sql = "SELECT sid FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."' AND tip='".$_POST["tip"]."' ";
     $result = $db->query($sql);
 
     $nr = mysqli_num_rows($result) ;

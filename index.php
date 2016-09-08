@@ -39,6 +39,8 @@ foreach($files as $key=>$value){
     <input type="file" name="fileuplaod" id="fileuplaod">
     <input type="submit" value="Upload file" name="submit">
     <input type="hidden" name="action" value="upload">
+
+    
 </form>
 
 
