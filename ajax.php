@@ -62,12 +62,14 @@ function insertSectionForYear(){
     $sql = "SELECT sid FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."' AND tip='".$_POST["tip"]."' ";
     $result = $db->query($sql);
 
+          
+
     $nr = mysqli_num_rows($result) ;
 
     switch($nr){
     case 0:
         //uradi insert
-        $sql = "INSERT INTO sadrzajs (`kid`,`sgodina`,`scont`, `scont-notag`,`saltnaslov`) VALUES('".$_POST["id"]."','".$_POST["year"]."', '".$_POST["cont"]."', '".strip_tags($_POST["cont"])."','".$_POST["altnaslov"]."'  ) ";
+        $sql = "INSERT INTO sadrzajs (`kid`,`sgodina`,`scont`, `scont_notag`,`saltnaslov`) VALUES('".$_POST["id"]."','".$_POST["year"]."', '".$_POST["cont"]."', '".strip_tags($_POST["cont"])."','".$_POST["altnaslov"]."'  ) ";
         //echo $sql;
         $result = $db->query($sql) OR die(mysqli_error($db));
         echo "Tekst unesen";

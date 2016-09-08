@@ -42,6 +42,8 @@ include("functions.php");
             <option value="izvestaj">izvestaj</option>
             <option value="dodatni">dodatni</option>           
         </select>
+
+        <button>Uporedi</button>
     </div>
     <div id="parsedNav"></div>
     <div id="parsedCont"></div>
