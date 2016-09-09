@@ -130,7 +130,8 @@ function dropHelperNav(event, ui) {
             owner: $(this)[0].dataset.owner,
             title: draggable[0].innerText,
             tip: $("#tip").val(),
-            year: $("#year").val()
+            year: $("#year").val(),
+            jezik:$("#jezik").val(),
         },
         function(data) {
             show(data);
@@ -173,6 +174,7 @@ function dropHelperCont(event, ui) {
         id: $("#outNav ul li .active")[0].dataset.kid,
         cont: $("#parsedCont").html(),
         tip: $("#tip").val(),
+        jezik: $("#jezik").val(),
         altnaslov: $("#parsedNav .active")[0].innerText
     }, function(data) {
         show(data); //TODO proveriti sta se ovde vraca
@@ -184,7 +186,12 @@ function dropHelperCont(event, ui) {
 
 
 function loadCategories(tipDok) {
-    $.post("ajax.php", { action: "showCategories", tip: tipDok },
+    $.post("ajax.php", {
+            action: "showCategories",
+            tip: tipDok,
+            jezik: $("#jezik").val(),
+            year: $("#year").val()
+        },
         function(data) {
             $("#outNav").html(data); //TODO proveriti sta se ovde vraca
             //make outNav droppable
@@ -213,8 +220,7 @@ function showStoredSectionForYear(contid) {
         tip: $("#tip").val()
     }, function(data) {
 
-    	//TODO remove \n i \
-    	//var data = data.replace(/(\r\n|\n|\r)/gm,""); 
+
         $("#outCont").html(data);
     });
 }

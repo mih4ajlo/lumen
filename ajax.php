@@ -9,24 +9,32 @@ if (isset($_POST["action"])) {
 
 function showCategories() {
 	global $db;
-    $out = array();
-  
-	$sql = "SELECT kid,kowner,knaziv FROM kategorijes WHERE tip ='{$_POST['tip']}'  ORDER BY korder ";
+	$out = array();
 
-          
-    
+	$sql = 
+        "SELECT kid,kowner,knaziv 
+        FROM kategorijes 
+        WHERE tip ='{$_POST['tip']}' AND  klang ='{$_POST['jezik']}' 
+        AND  kgodina ='{$_POST['year']}'
+        ORDER BY korder ";
 
 	$result = $db->query($sql);
-
 
 	$topmenu = '';
 
 	while ($row = mysqli_fetch_object($result)) {
 		//$topmenu .=  '<p onclick="showStoredSectionForYear('.$row->kid.')" class="header" id="storeCont'.$row->kid.'">'. $row->knaziv .'</p>';
-		$row->count = $db->query("SELECT count(*) AS number FROM `sadrzajs` WHERE kid='" . $row->kid . "' and tip ='{$_POST['tip']}'" )->fetch_object()->number; //"SELECT count(*) FROM `sadrzajs` WHERE kid='".$row->kid."'";
+        $sql_upit = 
+        sprintf(
+            "SELECT count(*) AS number 
+            FROM `sadrzajs` 
+            WHERE kid='$d' AND tip ='%s' AND slang ='%s' ", 
+            $row->kid, $_POST['tip'], $_POST['jezik'] );
+
+		$row->count = $db->query(
+        $sql_upit)->fetch_object()->number; //"SELECT count(*) FROM `sadrzajs` WHERE kid='".$row->kid."'";
 		$out[] = $row;
 	}
-
 
 	$outpreped = buildMenuTree($out);
 	olLiTree($outpreped);
@@ -54,7 +62,7 @@ function showStoredSectionForYear() {
 		echo 'Nema sadrzaja';
 		break;
 	case 1:
-		echo nl2br(mysqli_fetch_object($result)->scont) ;
+		echo nl2br(mysqli_fetch_object($result)->scont);
 		break;
 	default:
 		echo '<p style="color:red">Vraceno je vise od 1 rezultata. Hjustone imamo VELIKI problem. Jedan od njih mora da se obrise!!!';
@@ -73,30 +81,27 @@ function insertSectionForYear() {
 	$sql = sprintf(
 		"SELECT sid
         FROM sadrzajs
-        WHERE kid='%d' AND sgodina='%d' AND tip='%s' ",
-		$_POST["id"], $_POST["year"], $_POST["tip"]);
+        WHERE kid='%d' AND sgodina='%d' AND tip='%s' AND slang='%s' ",
+		$_POST["id"], $_POST["year"], $_POST["tip"], $_POST["jezik"] );
 
 	$result = $db->query($sql);
 
 	$nr = mysqli_num_rows($result);
 
-    $sadr_temp = $_POST["cont"]."";
+	$sadr_temp = $_POST["cont"] . "";
 
-    $sadr_temp =  str_replace( "\\n", '', $sadr_temp ); 
-
-        
-    
+	$sadr_temp = str_replace("\\n", '', $sadr_temp);
 
 	switch ($nr) {
 	case 0:
 		//uradi insert
 		//'%d','%d', '%s', '$s','%s', '%s', '%s'
-		$sql = sprintf("INSERT INTO sadrzajs (`kid`,`sgodina`,`saltnaslov`,`s_orgin_naslov`,tip , scont, `scont_notag`) VALUES( ?,?,?,?,?,?,?  ) ");
+		$sql = sprintf("INSERT INTO sadrzajs (`kid`,`sgodina`,`saltnaslov`,`s_orgin_naslov`,tip , scont, `scont_notag`, slang) VALUES( ?,?,?,?,?,?,?,?  ) ");
 
 		$params = array(
 			$_POST["id"], $_POST["year"],
 			$_POST["altnaslov"], $_POST["altnaslov"], $_POST["tip"],
-             stripslashes($sadr_temp) , strip_tags($sadr_temp) );
+			stripslashes($sadr_temp), strip_tags($sadr_temp), $_POST["jezik"]);
 
 		$sth = $pdo_db->prepare($sql);
 		$sth->execute($params);
@@ -106,13 +111,13 @@ function insertSectionForYear() {
 		echo "Tekst unesen $red";
 		break;
 	case 1:
-		$sql = sprintf("UPDATE sadrzajs 
-            SET  saltnaslov='%s' , scont='%s', `scont_notag`='%s' 
-            WHERE kid='%d' AND sgodina='%d'  ", 
-             $_POST["altnaslov"] , $sadr_temp , 
-             strip_tags($sadr_temp  ), 
-              $_POST["id"] , $_POST["year"]  );
+		$sql = sprintf("UPDATE sadrzajs
+            SET  saltnaslov='%s' , scont='%s', `scont_notag`='%s'
+            WHERE kid='%d' AND sgodina='%d'  ",
 
+			$_POST["altnaslov"], $sadr_temp,
+			strip_tags($sadr_temp),
+			$_POST["id"], $_POST["year"]);
 
 		//echo $sql;
 		$result = $db->query($sql) OR die(mysqli_error($db));
@@ -125,12 +130,14 @@ function insertSectionForYear() {
 }
 
 function insertNewCategory() {
-	global $db;
-	$sql = sprintf( 
-        "INSERT INTO kategorijes (`knaziv`,`kowner`, `kgodina`,`tip`) 
-        VALUES ('%s','%s','%s','%s') ",  $_POST["title"] , $_POST["owner"], $_POST["year"],   $_POST["tip"] );
 
-    /* "INSERT INTO kategorijes (`knaziv`,`kowner`,`tip`) VALUES ('" . $_POST["title"] . "' , '" . $_POST["owner"] . "'   ) ";*/
+    
+	global $db;
+	$sql = sprintf(
+		"INSERT INTO kategorijes (`knaziv`,`kowner`, `kgodina`,`tip`, `klang`)
+        VALUES ('%s','%s','%s','%s','%s') ", $_POST["title"], $_POST["owner"], $_POST["year"], $_POST["tip"],  $_POST["jezik"]);
+
+	/* "INSERT INTO kategorijes (`knaziv`,`kowner`,`tip`) VALUES ('" . $_POST["title"] . "' , '" . $_POST["owner"] . "'   ) ";*/
 	//echo $sql;
 	$result = $db->query($sql) OR die(mysqli_error($db));
 	echo "Nova kategorija unesena";
@@ -141,7 +148,7 @@ function insertNewCategory() {
 //build hierachical tree from flat mySQL parent/owner result
 //http://stackoverflow.com/questions/13877656/
 function buildMenuTree(array $elements, $root = 0) {
-   
+
 	$branch = array();
 
 	foreach ($elements as $element) {
@@ -169,7 +176,10 @@ function olLiTree($tree) {
 		}
 	}
 
-    if(count($tree) == 0  ) echo '<li><p onclick="showStoredSectionForYear(0)" class="header" data-owner="0" data-kid="0"></p> <p class="insertSub" data-owner="0">Unesi kao podkategoriju</p></li>';
+	if (count($tree) == 0) {
+		echo '<li><p onclick="showStoredSectionForYear(0)" class="header" data-owner="0" data-kid="0"></p> <p class="insertSub" data-owner="0">Unesi kao podkategoriju</p></li>';
+	}
+
 	echo '</ul>';
 }
 

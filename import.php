@@ -24,8 +24,8 @@ include "functions.php";
 
 <body>
     <div id="top">
-        <div id="poruka">&nbsp;</div>
-        Izaberite godinu sa kojom radite:
+        <div id="poruka"> </div>
+        Izaberite godinu  :
         <select id="year" name="year" size="1">
 
             <option value="2012">2012</option>
@@ -42,7 +42,15 @@ include "functions.php";
             <option value="referenca">dodatni</option>
         </select>
 
-        <button>Uporedi</button>
+
+		Izaberite jezik:
+        <select id="jezik" name="jezik">            
+            <option value="rs-ci" selected="selected">Cirilica</option>
+            <option value="rs-lat">latinica</option>
+            <option value="en">Engleski</option>
+        </select>
+
+        <button>Izaberi</button>
     </div>
     <div id="parsedNav"></div>
     <div id="parsedCont"></div>
