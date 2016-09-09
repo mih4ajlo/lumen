@@ -4,7 +4,10 @@ var curPage;
 $(document).ready(function() {
 
     loadFile();
-    loadCategories();
+    loadCategories("sadrzaj");
+    $("select").change(function() {
+        loadCategories($("#tip").val());
+    })
 
 
 });
@@ -122,10 +125,17 @@ function dropHelperNav(event, ui) {
     }
 
     //upisi podatke iz parsedCont
-    $.post("ajax.php", { action: "insertNewCategory", owner: $(this)[0].dataset.owner, title: draggable[0].innerText }, function(data) {
-        show(data);
-        loadCategories();
-    });
+    $.post("ajax.php", {
+            action: "insertNewCategory",
+            owner: $(this)[0].dataset.owner,
+            title: draggable[0].innerText,
+            tip: $("#tip").val(),
+            year: $("#year").val()
+        },
+        function(data) {
+            show(data);
+            loadCategories();
+        });
 
 
 
@@ -162,7 +172,7 @@ function dropHelperCont(event, ui) {
         year: $('#year :selected').text(),
         id: $("#outNav ul li .active")[0].dataset.kid,
         cont: $("#parsedCont").html(),
-        tip: "sadrzaj",
+        tip: $("#tip").val(),
         altnaslov: $("#parsedNav .active")[0].innerText
     }, function(data) {
         show(data); //TODO proveriti sta se ovde vraca
@@ -173,14 +183,15 @@ function dropHelperCont(event, ui) {
 
 
 
-function loadCategories() {
-    $.post("ajax.php", { action: "showCategories" }, function(data) {
-        $("#outNav").html(data); //TODO proveriti sta se ovde vraca
-        //make outNav droppable
-        $("#outNav ul li").children().droppable({ drop: dropHelperNav, hoverClass: "activeHover" });
-        //show( "Postojece kategorije ucitane." );
-        //console.log("Postojece kategorije ucitane.")
-    });
+function loadCategories(tipDok) {
+    $.post("ajax.php", { action: "showCategories", tip: tipDok },
+        function(data) {
+            $("#outNav").html(data); //TODO proveriti sta se ovde vraca
+            //make outNav droppable
+            $("#outNav ul li").children().droppable({ drop: dropHelperNav, hoverClass: "activeHover" });
+            //show( "Postojece kategorije ucitane." );
+            //console.log("Postojece kategorije ucitane.")
+        });
 }
 
 function showStoredSectionForYear(contid) {
@@ -195,12 +206,15 @@ function showStoredSectionForYear(contid) {
     $("#outNav ul li").children().removeClass("active");
     $('#storeCont' + contid).addClass('active');
 
-    $.post("ajax.php", { 
-    	action: "showStoredSectionForYear", 
-    	year: $('#year :selected').text(), 
-    	id: contid,
-    	tip:"sadrzaj"
-    	 }, function(data) {
+    $.post("ajax.php", {
+        action: "showStoredSectionForYear",
+        year: $('#year :selected').text(),
+        id: contid,
+        tip: $("#tip").val()
+    }, function(data) {
+
+    	//TODO remove \n i \
+    	//var data = data.replace(/(\r\n|\n|\r)/gm,""); 
         $("#outCont").html(data);
     });
 }

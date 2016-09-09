@@ -38,8 +38,8 @@ include "functions.php";
         Izaberite tip dokumenta:
         <select id="tip" name="tip" size="1">
 
-            <option value="izvestaj" selected="selected">izvestaj</option>
-            <option value="dodatni">dodatni</option>
+            <option value="sadrzaj" selected="selected">izvestaj</option>
+            <option value="referenca">dodatni</option>
         </select>
 
         <button>Uporedi</button>

@@ -9,17 +9,24 @@ if (isset($_POST["action"])) {
 
 function showCategories() {
 	global $db;
+    $out = array();
+  
+	$sql = "SELECT kid,kowner,knaziv FROM kategorijes WHERE tip ='{$_POST['tip']}'  ORDER BY korder ";
 
-	$sql = "SELECT kid,kowner,knaziv FROM kategorijes ORDER BY korder ";
+          
+    
+
 	$result = $db->query($sql);
+
 
 	$topmenu = '';
 
 	while ($row = mysqli_fetch_object($result)) {
 		//$topmenu .=  '<p onclick="showStoredSectionForYear('.$row->kid.')" class="header" id="storeCont'.$row->kid.'">'. $row->knaziv .'</p>';
-		$row->count = $db->query("SELECT count(*) AS number FROM `sadrzajs` WHERE kid='" . $row->kid . "'")->fetch_object()->number; //"SELECT count(*) FROM `sadrzajs` WHERE kid='".$row->kid."'";
+		$row->count = $db->query("SELECT count(*) AS number FROM `sadrzajs` WHERE kid='" . $row->kid . "' and tip ='{$_POST['tip']}'" )->fetch_object()->number; //"SELECT count(*) FROM `sadrzajs` WHERE kid='".$row->kid."'";
 		$out[] = $row;
 	}
+
 
 	$outpreped = buildMenuTree($out);
 	olLiTree($outpreped);
@@ -47,7 +54,7 @@ function showStoredSectionForYear() {
 		echo 'Nema sadrzaja';
 		break;
 	case 1:
-		echo mysqli_fetch_object($result)->scont;
+		echo nl2br(mysqli_fetch_object($result)->scont) ;
 		break;
 	default:
 		echo '<p style="color:red">Vraceno je vise od 1 rezultata. Hjustone imamo VELIKI problem. Jedan od njih mora da se obrise!!!';
@@ -69,10 +76,16 @@ function insertSectionForYear() {
         WHERE kid='%d' AND sgodina='%d' AND tip='%s' ",
 		$_POST["id"], $_POST["year"], $_POST["tip"]);
 
-	/*"SELECT sid FROM sadrzajs WHERE kid='" . $_POST["id"] . "' AND sgodina='" . $_POST["year"] . "' AND tip='" . $_POST["tip"] . "' ";*/
 	$result = $db->query($sql);
 
 	$nr = mysqli_num_rows($result);
+
+    $sadr_temp = $_POST["cont"]."";
+
+    $sadr_temp =  str_replace( "\\n", '', $sadr_temp ); 
+
+        
+    
 
 	switch ($nr) {
 	case 0:
@@ -82,7 +95,8 @@ function insertSectionForYear() {
 
 		$params = array(
 			$_POST["id"], $_POST["year"],
-			$_POST["altnaslov"], $_POST["altnaslov"], "sadrzaj", ($_POST["cont"]), strip_tags($_POST["cont"]));
+			$_POST["altnaslov"], $_POST["altnaslov"], $_POST["tip"],
+             stripslashes($sadr_temp) , strip_tags($sadr_temp) );
 
 		$sth = $pdo_db->prepare($sql);
 		$sth->execute($params);
@@ -92,7 +106,14 @@ function insertSectionForYear() {
 		echo "Tekst unesen $red";
 		break;
 	case 1:
-		$sql = "UPDATE sadrzajs SET  saltnaslov='" . $_POST["altnaslov"] . "' , scont='" . $_POST["cont"] . "' WHERE kid='" . $_POST["id"] . "' AND sgodina='" . $_POST["year"] . "'  ";
+		$sql = sprintf("UPDATE sadrzajs 
+            SET  saltnaslov='%s' , scont='%s', `scont_notag`='%s' 
+            WHERE kid='%d' AND sgodina='%d'  ", 
+             $_POST["altnaslov"] , $sadr_temp , 
+             strip_tags($sadr_temp  ), 
+              $_POST["id"] , $_POST["year"]  );
+
+
 		//echo $sql;
 		$result = $db->query($sql) OR die(mysqli_error($db));
 		echo "Tekst azuriran";
@@ -105,7 +126,11 @@ function insertSectionForYear() {
 
 function insertNewCategory() {
 	global $db;
-	$sql = "INSERT INTO kategorijes (`knaziv`,`kowner`) VALUES ('" . $_POST["title"] . "' , '" . $_POST["owner"] . "'   ) ";
+	$sql = sprintf( 
+        "INSERT INTO kategorijes (`knaziv`,`kowner`, `kgodina`,`tip`) 
+        VALUES ('%s','%s','%s','%s') ",  $_POST["title"] , $_POST["owner"], $_POST["year"],   $_POST["tip"] );
+
+    /* "INSERT INTO kategorijes (`knaziv`,`kowner`,`tip`) VALUES ('" . $_POST["title"] . "' , '" . $_POST["owner"] . "'   ) ";*/
 	//echo $sql;
 	$result = $db->query($sql) OR die(mysqli_error($db));
 	echo "Nova kategorija unesena";
@@ -116,6 +141,7 @@ function insertNewCategory() {
 //build hierachical tree from flat mySQL parent/owner result
 //http://stackoverflow.com/questions/13877656/
 function buildMenuTree(array $elements, $root = 0) {
+   
 	$branch = array();
 
 	foreach ($elements as $element) {
@@ -135,12 +161,15 @@ function buildMenuTree(array $elements, $root = 0) {
 //http://stackoverflow.com/questions/16837415
 function olLiTree($tree) {
 	echo '<ul>';
+
 	foreach ($tree as $item) {
 		echo '<li ><p onclick="showStoredSectionForYear(' . $item->kid . ')" class="header" data-owner="' . $item->kowner . '" data-kid="' . $item->kid . '"  id="storeCont' . $item->kid . '">' . $item->knaziv . ' (' . $item->count . ')</p> <p class="insertSub" data-owner="' . $item->kid . '">Unesi kao podkategoriju</p></li>';
 		if (isset($item->children)) {
 			olLiTree($item->children);
 		}
 	}
+
+    if(count($tree) == 0  ) echo '<li><p onclick="showStoredSectionForYear(0)" class="header" data-owner="0" data-kid="0"></p> <p class="insertSub" data-owner="0">Unesi kao podkategoriju</p></li>';
 	echo '</ul>';
 }
 
