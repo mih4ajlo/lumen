@@ -66,9 +66,14 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
 
        /*referencas*/
    $app->get('referenca',  [   'uses' => 'ReferenceController@list_referenca']);
+   $app->get('referenca/{referenca_id}',  [   'uses' => 'ReferenceController@one_referenca']);
    $app->post('referenca/edit/{referenca_id}',  [   'uses' => 'ReferenceController@edit_referenca']);
    $app->post('referenca/add',  [   'uses' => 'ReferenceController@add_referenca']);
    $app->get('referenca/delete/{referenca_id}',  [   'uses' => 'ReferenceController@delete_referenca']);
+
+
+ 
+   $app->get('import[/{naziv_funkcije}]',  [   'uses' => 'ImportController@glavna']);
 
 });
 

@@ -73,15 +73,20 @@
 		    
 		  </div>
 		</div>
+
 		<input type="hidden" name="sid" value="<?php echo $sadrzaj_unos[0]->sid; ?>">
 		<div>
+	
+
+		id ,tip ,kid ,saltnaslov ,saltorder ,surl ,sordernatural  ,s_related_to 
+
 			<!-- Select Basic -->
 			<div class="form-group ">
 			  <label class="col-md-4 control-label" for="selectJezik">Jezik</label>
 			  <div class="col-md-4">
 			    <select id="selectJezik" name="selectJezik" class="form-control">
-			      <option value="RS-cir">Cirilica</option>
-			      <option value="RS-lat">Latinica</option>
+			      <option value="rs-ci">Cirilica</option>
+			      <option value="rs-lat">Latinica</option>
 			      <option value="en">Engleski</option>
 			    </select>
 			  </div>

@@ -70,18 +70,22 @@ class ContentController extends Controller
     public function edit_content(Request $request)
     {
 
-                 
-         
-
         $no_tags = strip_tags( $_POST['textSadrzaj'] );
-
-
      
-
         try {
 
             // saltorder =?, surl=?, sordernatural=?,
-            $res = app('db')->update('UPDATE sadrzajs SET  scont=?, scont_notag=? , sgodina =?, kid=?, saltnaslov=?,skeywords=?, slang=? where  sid=? ', array( $_POST['textSadrzaj'],$no_tags, $_POST['textGodina'],  $_POST['textKategorija'],$_POST['textNaslov'],  $_POST['textKeywords'],  $_POST['selectJezik'], $_POST['sid'] ) );
+            $res = app('db')->update('UPDATE sadrzajs SET  scont=?, scont_notag=? , sgodina =?, kid=?, saltnaslov=?,skeywords=?, slang=? where  sid=? ', 
+                array( 
+                    $_POST['textSadrzaj'],
+                    $no_tags, $_POST['textGodina'],  
+                    $_POST['textKategorija'],
+                    $_POST['textNaslov'],  
+                    $_POST['textKeywords'],  
+                    $_POST['selectJezik'], 
+                    $_POST['sid'] 
+                    ) 
+                );
 
           
         } catch (Exception $e) {

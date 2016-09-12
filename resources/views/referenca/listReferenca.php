@@ -61,15 +61,15 @@
 
 						$temp_id = $value->rid;
 
-						$ikonica_edit =  '<span class="glyphicon glyphicon-pencil" kategorija="'.$temp_id.'" aria-hidden="true"></span>';
+						$ikonica_edit =  '<span class="glyphicon glyphicon-pencil" referenca="'.$temp_id.'" aria-hidden="true"></span>';
 
-						$ikonica_delete =  '<span class="glyphicon glyphicon-remove" kategorija="'.$temp_id.'" aria-hidden="true"></span>';
+						$ikonica_delete =  '<span class="glyphicon glyphicon-remove" referenca="'.$temp_id.'" aria-hidden="true"></span>';
 
 
-						$link_edit = "<a href='kategorija/$temp_id'>$ikonica_edit</a>";
+						$link_edit = "<a href='referenca/$temp_id'>$ikonica_edit</a>";
 
 						//ajax potvrda akcije	
-						$link_del = "<a href='kategorija/delete/$temp_id'>$ikonica_delete</a>";
+						$link_del = "<a href='referenca/delete/$temp_id'>$ikonica_delete</a>";
 
 						print_r("<tr>"
 							."<td>{$value->rcont}</td> "
