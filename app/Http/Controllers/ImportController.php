@@ -20,7 +20,14 @@ class ImportController extends Controller
     {
     	
     	//$this->showCategories();
-		$this->$naziv_funkcije();
+    	if($naziv_funkcije == ""){
+    		//vrati import stranicu
+    		echo "import stranica";
+    	}
+    	else{
+    		$this->$naziv_funkcije();	
+    	}
+		
     	
     }
 
@@ -260,17 +267,19 @@ class ImportController extends Controller
 		
 		$sql = "SELECT kid,kowner,knaziv FROM kategorijes ORDER BY korder  ";
 		
-		ovde stiglo
 		$result = app('db')->select($sql);
 
 		$topmenu = '';
 
-		while ($row = mysqli_fetch_object($result)) {
-			$out[] = $row;
+		/*while ($row = mysqli_fetch_object($result))*/
+		for ($i=0; $i < count($result) ; $i++) {
+			$out[] = $result[$i];
 		}
 
-		$outpreped = buildMenuTree($out);
-		olLiOrderTree($outpreped);
+
+
+		$outpreped = $this->buildMenuTree($out);
+		$this->olLiOrderTree($outpreped);
 
 		//echo $topmenu;
 
@@ -289,12 +298,13 @@ class ImportController extends Controller
 
 	public function renameCategory() {
 		
-		$sql = sprintf("UPDATE kategorijes SET  knaziv='%s' WHERE kid='%d'  ", $_POST["newName"], $_POST["renameId"]);
+		$sql = sprintf("UPDATE kategorijes SET knaziv=? WHERE kid=?  " );
 
-		/* "UPDATE kategorijes SET  knaziv='" . $_POST["newName"] . "'  WHERE kid='" . $_POST["renameId"] . "'   ";*/
-		//echo $sql;
-		$result = $db->query($sql) OR die(mysqli_error($db));
-		echo "Broj azuriranih redova: " . mysqli_affected_rows($db);
+		$params = array("naziv kategorije", "" /* $_POST["newName"], $_POST["renameId"] */);
+		$result = app('db')->update($sql, $params);
+
+		
+		echo "Broj azuriranih redova: " . $result;
 
 	}
 
@@ -305,12 +315,11 @@ class ImportController extends Controller
 		for ($no = 0; $no < count($items); $no++) {
 			$tokens = explode("-", $items[$no]);
 
-			$sql = "UPDATE kategorijes SET kowner='" . $tokens[1] . "', korder='$no' where kid='" . $tokens[0] . "'";
-			//echo $sql."<br>";
+			$sql = "UPDATE kategorijes SET kowner=?, korder=? where kid=?";
+			
 
-			// Example of sql
-
-			$db->query($sql) OR die(mysqli_error($db));
+			$params = array( $tokens[1], $no, $tokens[0] );
+			$result = app('db')->update($sql, $params);
 
 		}
 
