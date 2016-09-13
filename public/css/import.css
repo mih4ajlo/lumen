@@ -1,0 +1,117 @@
+body{
+	margin-top:0;
+}
+p{
+	font-size:12px !important;
+	font-family: sans-serif !important;
+}
+li{
+	
+}
+#top{
+    position: fixed;
+    background-color: #eeeeee;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 5px 20px;
+}
+#poruka{
+	color:red;
+	margin-bottom:15px;
+	text-align: center;
+	min-height:18px;
+	height:18px;
+}
+/* #year{
+	min-width:50%;
+} */
+#parsedNav, #outNav,#parsedCont, #outCont{
+	margin-top:100px;
+	border-right:1px solid #72D0EB;
+	box-sizing: border-box;
+	min-height:100px;
+	background-color:white;
+}
+#parsedNav, #outNav{
+	width:20%;
+	float:left;
+	display:inline-block;
+	margin-right:0.1%;
+    overflow-y: scroll;
+    height: 800px;;
+    overflow-x: hidden;	
+}
+#parsedCont, #outCont{
+	width:29%;
+	float:left;
+	display:inline-block;	
+	margin-right:0.1%;
+	overflow:hidden;
+}
+#mainDocContent{
+	clear:both;
+	margin-top:50px;
+	/* display: inline-block; */
+	display: none;
+}
+
+.active {
+    background-color: #72D0EB !important;
+    background-position: calc(100% + 1px);
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+}
+.activeHover {
+    background-color: #72D0EB !important;
+    /* background-image: url("../images/nav-active.png"); */
+	background: url("imgs/arrow.png") no-repeat 105% 105%; 
+    background-position: calc(100% + 1px);
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+}
+
+#outNav ul{
+	padding-left:16px;
+	/* list-style-type: none; */
+}
+#outNav >ul>li{
+	font-weight:600;
+	color:red;
+}
+#outNav p{
+	/* margin:5px 0; */
+	margin:0;
+}
+#draggableHelper{
+	margin:0px !important;
+	padding:0px !important;
+}
+.insertSub{
+    /* background-color: red; */
+	/* border:1px solid red; */
+    margin: 0;
+	padding:2px;
+	font-size:10px;
+    min-height: 10px;
+    height: 10px;
+    margin-left: 10px !important;
+color:white;	
+}
+
+#catOrder{
+	padding-top:90px;
+}
+
+.navH1{
+	font-weight:600;
+	color:red;
+}
+.navH2{
+	padding-left: 15px;
+}
+.navH3{
+	padding-left: 30px;
+}
+.navH4{
+	padding-left: 50px;
+}

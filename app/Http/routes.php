@@ -75,6 +75,8 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
  
    $app->get('import[/{naziv_funkcije}]',  [   'uses' => 'ImportController@glavna']);
 
+   $app->post('import/up/upload',  [   'uses' => 'ImportController@uploadFile']);
+
 });
 
 

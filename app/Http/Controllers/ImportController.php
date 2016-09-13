@@ -17,20 +17,51 @@ class ImportController extends Controller
     }
 
     public function glavna(Request $request, $naziv_funkcije =""  )
-    {
-    	
+    {	
+
     	//$this->showCategories();
     	if($naziv_funkcije == ""){
-    		//vrati import stranicu
-    		echo "import stranica";
+
+
+    		return view('import.main');
+    	}
+    	elseif ($naziv_funkcije == "uploadFile") {
+    		$this->$naziv_funkcije( $request );	
     	}
     	else{
+    		
     		$this->$naziv_funkcije();	
     	}
 		
     	
     }
 
+
+    public function uploadFile(Request $request)
+    {
+
+	    $target_file = "../storage/app/" . basename($_FILES['fileuplaod']['name']);	    
+	    $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+
+	    if($fileType!="html" AND $fileType!="htm"){
+	    	die("Mozete postaviti samo HTML fajlove");
+	    }
+
+			
+	    if (file_exists($target_file)) {
+	    	die("Fajl sa tim imenom vec postoji");
+	    } 
+
+
+	    if (move_uploaded_file($_FILES["fileuplaod"]["tmp_name"], $target_file)) {
+	            echo "Fajl je USPESNO postavljen.";
+	        } else {
+	            echo "Doslo je do greske. Fajl NIJE postavljen";
+	        }
+
+
+    }
 
 
     public function showCategories() {
@@ -324,6 +355,28 @@ class ImportController extends Controller
 		}
 
 		echo "Updated...";
+	}
+
+
+	function getMainCats (){
+	    
+
+		$sql = "SELECT knaziv FROM KATEGORIJES ";
+		$result = app('db')->select($sql);
+
+		$topmenu = '<ul>';
+
+		
+		for ($i=0; $i <  count($result) ; $i++) {
+
+		 $topmenu .=  '<li>'. $row->knaziv .'</li>';
+
+		}
+
+		$topmenu .=  '</ul>';
+
+		return $topmenu;
+
 	}
 
 
