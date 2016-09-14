@@ -15,7 +15,7 @@ $(document).ready(function() {
 function loadFile() {
     show("Loading file...");
 
-    $("#mainDocContent").load("imported/" + $.urlParam('file'), function(cond) {
+    $("#mainDocContent").load("getFile/?file=" + $.urlParam('file'), function(cond) {
         show("File loaded...");
         //h = $("h1,h2");
         h = $("h1,h2,h3,h4,h5");

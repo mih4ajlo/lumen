@@ -19,14 +19,15 @@ class ImportController extends Controller
     public function glavna(Request $request, $naziv_funkcije =""  )
     {	
 
+    		
+
     	//$this->showCategories();
     	if($naziv_funkcije == ""){
-
-
     		return view('import.main');
     	}
-    	elseif ($naziv_funkcije == "uploadFile") {
-    		$this->$naziv_funkcije( $request );	
+    	elseif ($naziv_funkcije == "order") {
+    		
+    		return view('import.uporedjivanje');	
     	}
     	else{
     		
@@ -34,6 +35,25 @@ class ImportController extends Controller
     	}
 		
     	
+    }
+
+    public function getFile( )
+    {
+	
+		//ucitaj fajl i vrati ga
+		
+ 		$target_file = "../storage/app/" . $_GET['file']; 
+ 		$er = file_exists( $target_file );
+
+ 		if( !$er )
+ 			return "nema fajla";
+
+ 		header("X-Sendfile: ".$_GET['file']);
+		header("Content-type: application/octet-stream");
+		header('Content-Disposition: attachment; filename="' . basename($_GET['file']) . '"');
+		readfile($target_file);
+		die();
+
     }
 
 
