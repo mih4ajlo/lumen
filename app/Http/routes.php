@@ -77,6 +77,8 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
 
 
    $app->post('import/up/upload',  [   'uses' => 'ImportController@uploadFile']);
+   $app->post('import/up/showCategories',  [   'uses' => 'ImportController@showCategories']);
+   $app->post('import/up/showStoredSectionForYear',  [   'uses' => 'ImportController@showStoredSectionForYear']);
  
 
 

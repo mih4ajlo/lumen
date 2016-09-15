@@ -186,7 +186,7 @@ function dropHelperCont(event, ui) {
 
 
 function loadCategories(tipDok) {
-    $.post("ajax.php", {
+    $.post("up/showCategories", {
             action: "showCategories",
             tip: tipDok,
             jezik: $("#jezik").val(),
@@ -213,7 +213,7 @@ function showStoredSectionForYear(contid) {
     $("#outNav ul li").children().removeClass("active");
     $('#storeCont' + contid).addClass('active');
 
-    $.post("ajax.php", {
+    $.post("up/showStoredSectionForYear", {
         action: "showStoredSectionForYear",
         year: $('#year :selected').text(),
         id: contid,

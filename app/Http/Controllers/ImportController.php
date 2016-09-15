@@ -84,8 +84,9 @@ class ImportController extends Controller
     }
 
 
-    public function showCategories() {
+    public function showCategories(Request $request) {
 		
+
 		$out = array();
 
 		$sql = 
@@ -300,7 +301,7 @@ class ImportController extends Controller
 		foreach ($tree as $item) {
 			echo '<li ><p onclick="showStoredSectionForYear(' . $item->kid . ')" class="header" data-owner="' . $item->kowner . '" data-kid="' . $item->kid . '"  id="storeCont' . $item->kid . '">' . $item->knaziv . ' (' . $item->count . ')</p> <p class="insertSub" data-owner="' . $item->kid . '">Unesi kao podkategoriju</p></li>';
 			if (isset($item->children)) {
-				olLiTree($item->children);
+				$this->olLiTree($item->children);
 			}
 		}
 
