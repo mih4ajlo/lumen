@@ -325,7 +325,7 @@ class ImportController extends Controller
 			$args =   array( $_GET['godina'], $_GET['tip'] );
 		}
 
-		$sql = "SELECT kid,kowner,knaziv FROM kategorijes $uslov ORDER BY korder  ";
+		$sql = "SELECT * FROM kategorijes $uslov ORDER BY korder  ";
 		
 		$result = app('db')->select($sql,$args);
 
@@ -351,7 +351,7 @@ class ImportController extends Controller
 		foreach ($tree as $item) {
 			
 				
-			$tekst .= '<li id="node' . $item->kid . '" ><a  >' . $item->knaziv . '</a>';
+			$tekst .= '<li id="node' . $item->kid . '" k_godina="' . $item->kgodina . '" ktags="' . $item->ktags . '" kowner="' . $item->kowner . '" ><a  >' . $item->knaziv . '</a>';
 			if (isset($item->children)) {
 
 				$this->olLiOrderTree($item->children,$tekst);

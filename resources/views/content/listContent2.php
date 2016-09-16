@@ -34,6 +34,27 @@
 
 
 hocu da se bira godina i tip dokumenta i da se onda izlista struktura i da tu budu dugmici za editovanje i neke druge informacije
+
+<select name="godina" id="godina">
+    
+    <option value="2015">2015</option>
+    <option value="2014">2014</option>
+    <option value="2013">2013</option>
+</select>
+
+
+<select name="tip" id="tip_dokumenta">
+    <option value="sadrzaj">sadrzaj</option>
+    <option value="referenca">referenca</option>
+</select>
+<select name="jezik" id="jezik">
+    <option value="rs-ci">Cirilica</option>
+    <option value="rs-lat">Latinica</option>
+    <option value="eng">Engleski</option>
+</select>
+
+<button id="prikazDokumenta">Prikazi</button>
+
 <div id="catOrder">
     <ul id="catsTree" class="dhtmlgoodies_tree">
     <li id="node0" noDrag="true" noSiblings="true" noDelete="true" noRename="true">
@@ -45,11 +66,35 @@ hocu da se bira godina i tip dokumenta i da se onda izlista struktura i da tu bu
 
 <script type="text/javascript">
     $(function() {
-        $.ajax({
+        prikaziDokument({tip:"sadrzaj","godina":2015});
+
+
+        $("#prikazDokumenta").click(function(el) {
+            var godina = $("#godina").val();
+            var tip_dokumenta = $("#tip_dokumenta").val();
+            var jezik = $("#jezik").val();
+
+             prikaziDokument({tip:tip_dokumenta,"godina":godina,jezik:jezik});
+        })
+    })
+        
+ 
+    
+    var treeObj;
+    var ajaxObjects = new Array();
+
+
+    function prikaziDokument( podaci) {
+
+       $.ajax({
             url: 'content/up/showCategoriesOrder',
-            data:{tip:"sadrzaj","godina":2015}
+            data: podaci
         })
         .done(function(data) {
+
+            //ukloni prethodni
+            $("#node0 ul").remove(); 
+
             $("#node0").append(data)    
             initTree();
         })
@@ -59,15 +104,8 @@ hocu da se bira godina i tip dokumenta i da se onda izlista struktura i da tu bu
         .always(function() {
             console.log("complete");
         });
-    })
-        
-    
-    
-</script>
-<script type="text/javascript">
-    
-    var treeObj;
-    var ajaxObjects = new Array();
+    }
+
 
     function initTree() {
         treeObj = new JSDragDropTree();
@@ -78,8 +116,6 @@ hocu da se bira godina i tip dokumenta i da se onda izlista struktura i da tu bu
         treeObj.expandAll();
     }
     
-
-
     // Use something like this if you want to save data by Ajax.
     function saveMyTree()
     {
