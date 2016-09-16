@@ -16,12 +16,8 @@ class ContentController extends Controller
        // $this->middleware(['auth']);
     }
 
-
-
     public function index($value='')
     {
- 			
-              
         //echo "string";
         return view('dashboard.home');
     }
@@ -29,8 +25,6 @@ class ContentController extends Controller
 
 	public function single(Request $request, $content_id )
 	{
-
-
 		try {
 			$unos = app('db')->select("SELECT * FROM sadrzajs where sid=? ",[$content_id] );	
 		} catch (Exception $e) {
@@ -47,6 +41,27 @@ class ContentController extends Controller
 
 	}
 
+
+
+
+    public function saveTree(Request $request)
+    {
+
+        
+       echo "uspesno";
+    }
+
+
+
+    public function list_content2(Request $request)
+    {
+
+        
+        return view(
+            "content.listContent2"
+        );
+    }
+
     public function list_content(Request $request)
     {
         
@@ -58,7 +73,6 @@ class ContentController extends Controller
             print_r("</pre>");
             //die();
         }
-              
         
         //var_dump($content_id);    
         return view(
@@ -109,7 +123,7 @@ class ContentController extends Controller
 
     public function new_content($value='')
     {
-        # code...
+        //showCategoriesOrder();
     }
     
 

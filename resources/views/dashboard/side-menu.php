@@ -5,7 +5,7 @@ $putanja =
 
 //"http://localhost:8075/";
 
-$meni  = array('Home'=>'','Akteri' =>'acters','Keywords' =>'keyword' ,'Sadrzaj' =>'content' , 'Users' =>'user', 'Dodatni sadrzaj'=>'referenca', "Footnotes"=>'footnote' , );
+$meni  = array('Home'=>'','Akteri' =>'acters','Keywords' =>'keyword' ,'Sadrzaj' =>'content' , 'Users' =>'user', 'Dodatni sadrzaj'=>'referenca', "Footnotes"=>'footnote', "Import"=>'import' , );
 ?>
 
 

@@ -17,10 +17,9 @@ class ImportController extends Controller
     }
 
     public function glavna(Request $request, $naziv_funkcije =""  )
-    {	
-
+    {		
+    			
     		
-
     	//$this->showCategories();
     	if($naziv_funkcije == ""){
     		return view('import.main');
@@ -316,10 +315,19 @@ class ImportController extends Controller
 	//categories reorder SECTION
 	///////////////////////////////////////////////////////////////////////////
 	public function showCategoriesOrder() {
+
+		//mora se proslediti neki parametar (godina, tip dokumenta)
+		$uslov = "";
+		$args = array();
+
+		if(count($_GET) > 0){
+			$uslov = "WHERE kgodina =? and tip=?";
+			$args =   array( $_GET['godina'], $_GET['tip'] );
+		}
+
+		$sql = "SELECT kid,kowner,knaziv FROM kategorijes $uslov ORDER BY korder  ";
 		
-		$sql = "SELECT kid,kowner,knaziv FROM kategorijes ORDER BY korder  ";
-		
-		$result = app('db')->select($sql);
+		$result = app('db')->select($sql,$args);
 
 		$topmenu = '';
 
@@ -328,24 +336,29 @@ class ImportController extends Controller
 			$out[] = $result[$i];
 		}
 
-
-
-		$outpreped = $this->buildMenuTree($out);
-		$this->olLiOrderTree($outpreped);
-
-		//echo $topmenu;
+		$promenljiva = "";
+		$outpreped = $this->buildMenuTree($out);			
+		$ukupno = $this->olLiOrderTree($outpreped, $promenljiva );
+				
+		
+		echo $ukupno;
 
 	}
 
-	public function olLiOrderTree($tree) {
-		echo '<ul >';
+	public function olLiOrderTree($tree,&$tekst) {				
+		
+		$tekst .= '<ul >';
 		foreach ($tree as $item) {
-			echo '<li id="node' . $item->kid . '" ><a  >' . $item->knaziv . '</a>';
+			
+				
+			$tekst .= '<li id="node' . $item->kid . '" ><a  >' . $item->knaziv . '</a>';
 			if (isset($item->children)) {
-				olLiOrderTree($item->children);
+
+				$this->olLiOrderTree($item->children,$tekst);
 			}
 		}
-		echo '</ul>';
+		$tekst .= '</ul>';
+		return $tekst;
 	}
 
 	public function renameCategory() {

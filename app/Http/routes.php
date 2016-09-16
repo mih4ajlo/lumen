@@ -32,6 +32,13 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
 
     /*content*/
    $app->get('content',  [   'uses' => 'ContentController@list_content']);
+
+  $app->get('content2',  [   'uses' => 'ContentController@list_content2']);
+
+   $app->post('content/saveTree',  [   'uses' => 'ContentController@saveTree']);
+   $app->get('content/saveTree',  [   'uses' => 'ContentController@saveTree']);
+
+
    $app->get('content/{content_id}',  [   'uses' => 'ContentController@single']);
    $app->post('content/edit',  [   'uses' => 'ContentController@edit_content']);
    $app->get('content/delete/{content_id}',  [   'uses' => 'ContentController@delete_content']);
@@ -72,7 +79,10 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
    $app->get('referenca/delete/{referenca_id}',  [   'uses' => 'ReferenceController@delete_referenca']);
 
 
- 
+
+
+   /*import*/
+  
    $app->get('import[/{naziv_funkcije}]',  [   'uses' => 'ImportController@glavna']);
 
 
@@ -81,6 +91,8 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
    $app->post('import/up/showStoredSectionForYear',  [   'uses' => 'ImportController@showStoredSectionForYear']);
  
 
+  //TODO videti gde se pojavljuje ova putanja
+    $app->get('content/up/showCategoriesOrder',  [   'uses' => 'ImportController@showCategoriesOrder']);
 
 
 });
