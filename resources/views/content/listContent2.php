@@ -1,12 +1,3 @@
-<?php
-
-
-//include("ajax.php");
-
-//echo getMainCats();
-
-
-?>
 
 <!DOCTYPE html>
 <html>
@@ -29,11 +20,9 @@
 <body>
 
 <div id="top">
-<div id="poruka">&nbsp;</div>
+    <div id="poruka">&nbsp;</div>
 </div>
 
-
-hocu da se bira godina i tip dokumenta i da se onda izlista struktura i da tu budu dugmici za editovanje i neke druge informacije
 
 <select name="godina" id="godina">
     

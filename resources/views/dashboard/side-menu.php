@@ -13,10 +13,10 @@ $meni  = array('Home'=>'','Akteri' =>'acters','Keywords' =>'keyword' ,'Sadrzaj' 
 	.side-menu{
 		margin: 20px;
 	}
-	ul{
+	.side-menu ul{
 		list-style: none;
 	}
-	li{   
+	.side-menu li{   
 		display: block;
 	    text-align: center;
 	    position: relative;
