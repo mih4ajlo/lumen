@@ -18,7 +18,7 @@ class ImportController extends Controller
 
     public function glavna(Request $request, $naziv_funkcije =""  )
     {		
-    			
+				
     		
     	//$this->showCategories();
     	if($naziv_funkcije == ""){
@@ -83,7 +83,7 @@ class ImportController extends Controller
     }
 
 
-    public function showCategories(Request $request) {
+    public function showCategories( ) {
 		
 
 		$out = array();
@@ -142,7 +142,7 @@ class ImportController extends Controller
 
 
 
-	public function showStoredSectionForYear() {
+	public function showStoredSectionForYear( Request $request) {
 	
 		$sql = sprintf(
 			"SELECT scont
@@ -177,8 +177,10 @@ class ImportController extends Controller
 	}
 
 	//insert update content for selected section and year
-	public function insertSectionForYear() {
+	public function insertSectionForYear( Request $request ) {
 		if( empty($_POST) ) 	return "la";
+
+
 		
 		$sql = sprintf(
 			"SELECT sid
@@ -197,6 +199,9 @@ class ImportController extends Controller
 				$_POST["jezik"]
 				) 
 		);
+
+
+		
 
 		$nr = count($result);	
 				
@@ -248,7 +253,7 @@ class ImportController extends Controller
 	}
 
 
-	public function insertNewCategory() {
+	public function insertNewCategory( Request $request  ) {
 
 	    
 		$sql = sprintf(
@@ -353,7 +358,6 @@ class ImportController extends Controller
 			$ikonica = '<span  clickId="' . $item->tip . '/' . $item->kid . '" class="glyphicon glyphicon-pencil editDugme" aria-hidden="true"></span>';	
 			$tekst .= '<li id="node' . $item->kid . '" k_godina="' . $item->kgodina . '" ktags="' . $item->ktags . '" kowner="' . $item->kowner . '" ><a  >' . $item->knaziv . '</a> <span  >'.$ikonica.'</span>';
 			if (isset($item->children)) {
-
 				$this->olLiOrderTree($item->children,$tekst);
 			}
 		}
@@ -403,8 +407,7 @@ class ImportController extends Controller
 		
 		for ($i=0; $i <  count($result) ; $i++) {
 
-		 $topmenu .=  '<li>'. $row->knaziv .'</li>';
-
+			$topmenu .=  '<li>'. $row->knaziv .'</li>';
 		}
 
 		$topmenu .=  '</ul>';

@@ -85,13 +85,19 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
   
    $app->get('import[/{naziv_funkcije}]',  [   'uses' => 'ImportController@glavna']);
 
+   $app->post('import/up/showStoredSectionForYear',  [   'uses' => 'ImportController@showStoredSectionForYear']);
+
+   $app->post('import/up/insertSectionForYear',  [   'uses' => 'ImportController@insertSectionForYear']);
+
+    $app->post('import/up/insertNewCategory',  [   'uses' => 'ImportController@insertNewCategory']);
+
+
 
    $app->post('import/up/upload',  [   'uses' => 'ImportController@uploadFile']);
    $app->post('import/up/showCategories',  [   'uses' => 'ImportController@showCategories']);
    $app->post('import/up/showStoredSectionForYear',  [   'uses' => 'ImportController@showStoredSectionForYear']);
  
 
-  //TODO videti gde se pojavljuje ova putanja
     $app->get('content/up/showCategoriesOrder',  [   'uses' => 'ImportController@showCategoriesOrder']);
 
 

@@ -1,3 +1,17 @@
+<?php 
+
+	$files = scandir("../storage/app");
+
+	echo "<h1>Izaberite fajl za import</h1>";
+	foreach($files as $key=>$value){
+
+	    if($value!="." && $value!=".."  && strpos($value, ".htm"  ))
+	    echo "<p><a href='import/order?file=".$value."' >".$value."</a></p>";
+	} 
+?>
+
+
+lista uploadovanih fajlova
 
 <br><br><br><br><br>
 
@@ -11,8 +25,8 @@
     
 </form>
 
-
+<a href="import/order">Link ka necem</a>
 
 list uploaded files
 upload new file
-select file for import.php?file=qqq&year=2015
+select file for import/order?file=qqq&year=2015

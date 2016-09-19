@@ -125,7 +125,7 @@ function dropHelperNav(event, ui) {
     }
 
     //upisi podatke iz parsedCont
-    $.post("ajax.php", {
+    $.post("up/insertNewCategory", {
             action: "insertNewCategory",
             owner: $(this)[0].dataset.owner,
             title: draggable[0].innerText,
@@ -168,7 +168,7 @@ function dropHelperCont(event, ui) {
 
 
     //upisi podatke iz parsedCont
-    $.post("ajax.php", {
+    $.post("up/insertSectionForYear", {
         action: "insertSectionForYear",
         year: $('#year :selected').text(),
         id: $("#outNav ul li .active")[0].dataset.kid,

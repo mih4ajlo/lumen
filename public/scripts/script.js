@@ -70,8 +70,10 @@ function showMenu(){
 		showSubNavAndActivate();
 
 		//move active to top
+        var selektovana =  $("#nav a[class='active']" );
+        selektovana = selektovana.position() ==undefined ? 0: selektovana.position().top;
 		$('#content').scrollTop( 0 );
-		$('#content').scrollTop( $("#nav a[class='active']" ).position().top );
+		$('#content').scrollTop(  );
 		
 
     })
@@ -87,7 +89,12 @@ function showMainCont(year,id){
 //load main content from API
     $.getJSON( apiLocation + lang+ "/content/"+year+"/"+id, function(mainContRes) {
         console.log( "JSON for main content loaded..." );
-        $("#displayCont").html(mainContRes[0].scont);
+        
+        if(mainContRes[0] ==undefined)return;
+
+        $("#displayCont").html(
+            mainContRes[0].scont
+            );
 
 clearStyles("displayCont");
 
@@ -138,7 +145,7 @@ function availableYearsToCompare(){
         if(yearsToCompareRes.length>1){
 
             $.each( yearsToCompareRes, function( key, value ) {
-                if(value.sgodina!=year){ $('#timelineList').append('<div class="item"><a href="#'+lang+'-'+year+'-'+id+'-'+value.sgodina+'">'+value.sgodina+'</a></div>');}
+                if(value.godina!=year){ $('#timelineList').append('<div class="item"><a href="#'+lang+'-'+year+'-'+id+'-'+value.godina+'">'+value.godina+'</a></div>');}
             });
         } else {
              $('#timelineList').html('<div class="item">Nema podataka za poredjenje.</div>');
@@ -247,7 +254,7 @@ $(function(){ // this will be called when the DOM is ready
 
                     //dodaj podatke sa list
                     $.each( searchRes, function( key, value ) {
-                        $('#rezultatiPretrage').append('<div class="stavka-pretrage"><a href="#'+lang+'-'+value.sgodina+'-'+value.kid+'--'+$("#filter").val()+'">'+value.saltnaslov+'</a></div>');
+                        $('#rezultatiPretrage').append('<div class="stavka-pretrage"><a href="#'+lang+'-'+value.godina+'-'+value.kid+'--'+$("#filter").val()+'">'+value.saltnaslov+'</a></div>');
                      });
 
                 } else {
@@ -290,10 +297,10 @@ function buildMenuList(data, isSub){
     for(item in data){
         html += '<li>';
         if(typeof(data[item].children) === 'object'){ // An array will return 'object'
-                html += '<a href="#'+lang+'-'+data[item].sgodina+'-'+data[item].kid+'">'+data[item].saltnaslov+'</a>'; // Submenu found, but top level list item.
+                html += '<a href="#'+lang+'-'+data[item].godina+'-'+data[item].kid+'">'+data[item].saltnaslov+'</a>'; // Submenu found, but top level list item.
             html += buildMenuList(data[item].children, true); // Submenu found. Calling recursively same method (and wrapping it in a div)
         } else {
-            html += '<a href="#'+lang+'-'+data[item].sgodina+'-'+data[item].kid+'">'+data[item].saltnaslov+'</a>'; // No submenu
+            html += '<a href="#'+lang+'-'+data[item].godina+'-'+data[item].kid+'">'+data[item].saltnaslov+'</a>'; // No submenu
         }
         html += '</li>';
     }
