@@ -350,8 +350,8 @@ class ImportController extends Controller
 		$tekst .= '<ul >';
 		foreach ($tree as $item) {
 			
-				
-			$tekst .= '<li id="node' . $item->kid . '" k_godina="' . $item->kgodina . '" ktags="' . $item->ktags . '" kowner="' . $item->kowner . '" ><a  >' . $item->knaziv . '</a>';
+			$ikonica = '<span  clickId="' . $item->tip . '/' . $item->kid . '" class="glyphicon glyphicon-pencil editDugme" aria-hidden="true"></span>';	
+			$tekst .= '<li id="node' . $item->kid . '" k_godina="' . $item->kgodina . '" ktags="' . $item->ktags . '" kowner="' . $item->kowner . '" ><a  >' . $item->knaziv . '</a> <span  >'.$ikonica.'</span>';
 			if (isset($item->children)) {
 
 				$this->olLiOrderTree($item->children,$tekst);

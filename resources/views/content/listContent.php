@@ -86,8 +86,10 @@
             var tip_dokumenta = $("#tip_dokumenta").val();
             var jezik = $("#jezik").val();
 
-             prikaziDokument({tip:tip_dokumenta,"godina":godina,jezik:jezik});
+            prikaziDokument({tip:tip_dokumenta,"godina":godina,jezik:jezik});
         })
+
+
     })
         
  
@@ -95,6 +97,18 @@
     var treeObj;
     var ajaxObjects = new Array();
 
+
+	function editRedirect(id) {
+
+		var por = window.location.href ;
+		var komponente = id.split("/");
+
+		por.replace("content",komponente[0]);
+		por += "/" + komponente[1];
+		
+		window.location = por;
+
+	}
 
     function prikaziDokument( podaci) {
 
@@ -116,7 +130,12 @@
             console.error("error");
         })
         .always(function() {
-            console.log("complete");
+            $(".editDugme").click(function(el) {
+	        	
+
+	        	editRedirect( $(el.target).attr('clickid') );
+	        	
+	        })
         });
     }
 
@@ -150,6 +169,8 @@
 
 
     }
+
+
 
 
 </script>
