@@ -145,7 +145,7 @@ function availableYearsToCompare(){
         if(yearsToCompareRes.length>1){
 
             $.each( yearsToCompareRes, function( key, value ) {
-                if(value.godina!=year){ $('#timelineList').append('<div class="item"><a href="#'+lang+'-'+year+'-'+id+'-'+value.godina+'">'+value.godina+'</a></div>');}
+                if(value.sgodina!=year){ $('#timelineList').append('<div class="item"><a href="#'+lang+'-'+year+'-'+id+'-'+value.sgodina+'">'+value.sgodina+'</a></div>');}
             });
         } else {
              $('#timelineList').html('<div class="item">Nema podataka za poredjenje.</div>');
@@ -245,16 +245,19 @@ $(function(){ // this will be called when the DOM is ready
 
             $('#rezultatiPretrage').html('');
 
+            
+
             if ($("#filter").val().length < 3) return;
             //get data from API
-            $.getJSON( apiLocation + lang+ "/search/"+$("#filter").val(), function(searchRes) {
+            $.getJSON( apiLocation + lang+ "/search/"+$("#filter").val(),
+                {god:"2015",tip:"sadrzaj"}, function(searchRes) {
                 console.log( "JSON for SEARCH..." );
 
                 if(searchRes.length>0){
 
                     //dodaj podatke sa list
                     $.each( searchRes, function( key, value ) {
-                        $('#rezultatiPretrage').append('<div class="stavka-pretrage"><a href="#'+lang+'-'+value.godina+'-'+value.kid+'--'+$("#filter").val()+'">'+value.saltnaslov+'</a></div>');
+                        $('#rezultatiPretrage').append('<div class="stavka-pretrage"><a href="#'+lang+'-'+value.sgodina+'-'+value.kid+'--'+$("#filter").val()+'">'+value.saltnaslov+'</a></div>');
                      });
 
                 } else {
@@ -272,15 +275,6 @@ $(function(){ // this will be called when the DOM is ready
 
 
 });
-
-
-
-
-
-
-
-
-
 
 
 

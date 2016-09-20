@@ -79,11 +79,23 @@ $app->get('{lang}/timeline/{kid}', function ($lang,$kid)  {
 
 //SEARCH DATABASE
 // lang obavezan / kid obavezan
-$app->get('{lang}/search/{search}', function ($search)  {
+$app->get('{lang}/search/{search}', function ($lang,$search)  {
 
 $search = urldecode($search);
 
-    $sql = "SELECT saltnaslov, sgodina,kid FROM sadrzajs NATURAL JOIN kategorijes  WHERE scont LIKE '%{$search}%' AND tip = 'sadrzaj'  ";
+if($lang =="cir"){
+    $lang = "rs-ci";
+}
+
+//lang
+//scont_notag
+//and sgodina=2015
+//tip      
+//AND slang = '{$lang}'
+      
+
+
+    $sql = "SELECT saltnaslov, sgodina,kid,sid FROM sadrzajs NATURAL JOIN kategorijes  WHERE scont LIKE '%{$search}%' AND tip = '{$_GET["tip"]}' AND sgodina = '{$_GET["god"]}' AND slang = '{$lang}' ";
 
     $out = frontSql($sql);
 
