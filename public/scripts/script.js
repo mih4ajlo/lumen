@@ -3,7 +3,7 @@
 apiLocation = '';
 lang = 'cir';
 year = '2015';
-id = '';
+id = '3';
 compareTo = '';
 searchFor = '';
 
@@ -12,6 +12,17 @@ $(document).ready(function() {
     //parse URL on start
     parseUrl();
 
+
+   $(document).scroll( function(el) {
+        if($(document).scrollTop() > 120 ){
+            //top position je 40px
+            $("#content").css('top', '40px');
+        }
+        else {
+            $("#content").css('top', '');
+        }
+
+    })
 
 });
 
@@ -105,6 +116,8 @@ function showMainCont(year, id) {
             clearStyles("displayCont");
 
             $("#uporediOff").hide();
+
+
 
         })
         .fail(function() {
@@ -380,11 +393,16 @@ function prependYear(elId) {
     var hash = window.location.hash.replace("#", "");
     var hashVars = hash.split("-");
 
+
+
     if (elId.indexOf("Compare") < 0) {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
-        
+        var god = hashVars[1];
+        if(god == undefined) 
+            god = 2015;
+
         $("#displayContYear").remove();
-        $('#mainLine').before("<span id='" + elId + "Year' >" + hashVars[1] + "</span>");
+        $('#mainLine').before("<span id='" + elId + "Year' >" + god + "</span>");
     } else {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[3]+"</span>" );
         $("#displayContCompareYear").remove();

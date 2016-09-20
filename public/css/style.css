@@ -95,7 +95,9 @@ text-align:right;
     margin-top: 8px;
     font-size: 20px;
     width: 100%;
-overflow:hidden;	
+    overflow:hidden;
+    -webkit-clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
 }
 #displayRefButton2222:before{
     content: '';
@@ -108,7 +110,7 @@ overflow:hidden;
 
 
 #displayRefButtonReference, #displayRefButtonNav{
-	display:none;
+	/* display:none; */
 }
 
 
@@ -212,6 +214,8 @@ padding-left:0px;
     background-position: calc(100% + 1px);
     background-repeat: no-repeat;
     background-size: 30px auto;
+    -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
 }
 
 
@@ -423,7 +427,7 @@ td{
     height: 100px;
     bottom: -50px;
     left: 0px;
-    background-image: url("../images/main-nav-active.png");
+    background-image: url("../img/main-nav-active.png");
     background-repeat: no-repeat;
     background-position: 0px;
     background-size: 100%;
