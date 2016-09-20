@@ -89,12 +89,27 @@ var sadrzaj;
 		
 		//uzeti sve naslove i prikazati ih
 		//treba sloziti u treestrukturu
+		var template = "";
 
 		for (var i = 0; i < response.length; i++) {
-						
+
+			var temp_el = response[i];
+			template += '<p class="side-menu-item"><a href="#'+temp_el.sid+'" sid="'+temp_el.sid+'">'+temp_el.saltnaslov+'</a></p>';
+
 		}
 
-		$("#sideMenu").html()
+		$("#sideMenu").html( template )
+
+		$(".side-menu-item").click(function(el) {
+
+			var el_id = $(el.target).attr('sid');
+			var temp_el = response.filter(function(el) {return el.sid == el_id});
+			temp_el = temp_el[0];
+
+			
+			$("#displayCont").empty();
+			$("#displayCont").append( temp_el.scont );
+		})
 	}
 
 
