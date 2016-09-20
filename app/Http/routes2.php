@@ -140,6 +140,37 @@ $app->get('{lang}/footnotes/{year}', function ($year)  {
 
 
 
+$app->get('{lang}/referenca/{year}', function ($lang, $year)  {
+
+     if($lang =="cir" || $lang =="ci"){
+        $lang = "rs-ci";
+    }
+
+    $sql = "SELECT sid, scont,saltnaslov,  s_related_to , saltorder FROM sadrzajs  WHERE sgodina = '{$year}' AND slang='{$lang}'  AND tip = 'referenca' ";
+
+         
+
+    $out = frontSql($sql);
+
+    return json_encode($out) ;
+});
+
+
+$app->get('{lang}/referencaProvera/{year}', function ($lang, $year)  {
+
+     if($lang =="cir" || $lang =="ci"){
+        $lang = "rs-ci";
+    }
+
+    $sql = "SELECT sid, scont,saltnaslov,  s_related_to, saltorder FROM sadrzajs  WHERE sgodina = '{$year}' AND slang='{$lang}'  AND tip = 'referenca' ";
+
+    $out = frontSql($sql);
+
+    return json_encode($out) ;
+});
+
+
+
 
 ///////////////////////////////
 //HELPER FUNCTIONS

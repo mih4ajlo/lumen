@@ -1,16 +1,17 @@
+
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Izvestaj 2015</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/black-tie/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="scripts/script.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="scripts/tags.js"></script>
+    <script src="scripts/reference.js"></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/dropdown.min.js"></script>
@@ -18,7 +19,7 @@
 
     <script type="text/javascript">
     $(document).ready(function() {
-        //console.log("ready!");
+        console.log("ready!");
 
         //define var for parsed data
         var cont = {};
@@ -32,7 +33,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
-                        <div class="logo krug">Izveštaj Zaštitnika Gradana</div>
+                        <div class="logo krug">Izveštaj Zaštitnika Građana</div>
                     </a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -50,10 +51,13 @@
                     <ul class="nav navbar-right">
                         <li>
                             <div class="versions" id="verzije">
-                                <a href="#ci">ci</a>
-                                <a href="#lat">lat</a>
-                                <a href="#en">en</a>
-
+                                <a href="#">lat</a>
+                                <a href="#">en</a>
+                               <!--  <a href="#">hun</a>
+                               <a href="#">slo</a>
+                               <a href="#">rus</a>
+                               <a href="#">rom</a>
+                               <a href="#">alb</a> -->
                             </div>
                         </li>
                         <li class="compare clear pull-left">
@@ -64,19 +68,18 @@
                               <div class="ui simple dropdown " >
                                <span id="uporedi">Uporedi po godinama</span>
                                 
-                                <div id="timelineList" class="menu">
+                                <div class="menu">
                                   <div class="item">2015</div>
                                   <div class="item">2014</div>
                                   <div class="item">2013</div>
                                 </div>
                               </div>
                             </div>
-
-                        </li>
-						<li class="search pull-left">
-                            <div >
-                                <span id="uporediOff">Isključi poredjenje po godinama</span>
-                            </div>
+                           <!--  <select name="godina" id="izvestajUporedi">
+                               <option value="2015">2015</option>
+                               <option value="2014">2014</option>
+                               <option value="2013">2013</option>
+                           </select> -->
                         </li>
                         <li class="search pull-left">
                             <div id="pretraga">
@@ -96,13 +99,15 @@
 	<div class="navigation col-xs-12 col-sm-6 col-md-2">
             <div id="content" class="left-side">
 
-                <div id="my-tab-content" class="tab-content">
-                    <div class="navig tab-pane active" id="nav">
-				
-                    </div>
-                    <div class="navig tab-pane" id="reference">
+                <div id="sideMenu" >
+                    <p class="refactive active">
+                        <a href="#ref1">test1</a>
+                    </p>
 
-                    </div>
+                    <p class="refactive active">
+                        <a href="#ref1">test1</a>
+                    </p>
+
                 </div>
             </div>
         </div>
@@ -117,35 +122,41 @@
                     <a id="hideSearch" href="#">sakrij</a>
                     <a id="closeSearch" href="#">X</a>
                 </div>
-                <div id="rezultatiPretrage" class="sadrzaj-pretrage">
+                <div class="sadrzaj-pretrage  ">
                 </div>
             </div>
         </div>
 		
 		<div class="navigation col-xs-12 col-sm-6 col-md-2">
-			<div id="displayRefButton" style="display: inline-block; vertical-align: top;">
-			<a id="displayRefButtonReference"  href="#reference" data-toggle="tab">Dodatne teme</a>
-			<!-- <a id="displayRefButtonNav" href="#nav" data-toggle="tab" aria-expanded="false">SADRŽAJ</a> -->
+			<div id="displayRefButton" style="display: inline-block; vertical-align: top;">			
+			<a id="displayRefButtonNav" href="#nav" data-toggle="tab" aria-expanded="false">SADRŽAJ</a>
 			</div>
 		</div>
     </section>
     <section>
         <div style="display: none" id="mainDocContent">
         </div>
-         
+        
     </section>
 
     <section>
-       <div id="footnoteContent">
-       </div>
-		<div id="footnoteContentCompare">
+        <div id="footnoteContent">
         </div>
     </section>
-	
-	
-<div id="toTop"><span class="glyphicon glyphicon-triangle-top"></span></div>	
-
-
+   
+    <script type="text/javascript">
+    function selected() {
+        var div = $(".navigation p.active")
+        var height = div.outerHeight();
+        div.css("background-size", "30px " + height + "px");
+    }
+    $(document).ready(function() {
+       // selected();
+    });
+    $(document).resize(function() {
+        // selected();
+    });
+    </script>
 </body>
 
 </html>

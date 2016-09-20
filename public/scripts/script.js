@@ -157,7 +157,10 @@ function availableYearsToCompare() {
             if (yearsToCompareRes.length > 1) {
 
                 $.each(yearsToCompareRes, function(key, value) {
-                    if (value.sgodina != year) { $('#timelineList').append('<div class="item"><a href="#' + lang + '-' + year + '-' + id + '-' + value.sgodina + '">' + value.sgodina + '</a></div>'); }
+                    if (value.sgodina != year) { 
+                        $('#timelineList').append(
+                            '<div class="item"><a href="#' + lang + '-' + year + '-' + id + '-' + value.sgodina + '">' + value.sgodina + '</a></div>');
+                         }
                 });
             } else {
                 $('#timelineList').html('<div class="item">Nema podataka za poredjenje.</div>');
@@ -211,6 +214,8 @@ function searchForString(searchFor) {
         scrollTop: $('.filtered:visible:first').offset().top - 50
     }, 500);
 
+//    $("#displayContYear").html('')
+
 }
 
 
@@ -263,8 +268,6 @@ $(function() { // this will be called when the DOM is ready
 
         $('#rezultatiPretrage').html('');
 
-
-
         if ($("#filter").val().length < 3) return;
         //get data from API
         $.getJSON(apiLocation + lang + "/search/" + $("#filter").val(), { god: "2015", tip: "sadrzaj" }, function(searchRes) {
@@ -292,10 +295,6 @@ $(function() { // this will be called when the DOM is ready
 
 
 });
-
-
-
-
 
 
 
@@ -383,6 +382,7 @@ function prependYear(elId) {
 
     if (elId.indexOf("Compare") < 0) {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
+        
         $("#displayContYear").remove();
         $('#mainLine').before("<span id='" + elId + "Year' >" + hashVars[1] + "</span>");
     } else {
