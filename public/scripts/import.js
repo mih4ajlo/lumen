@@ -113,6 +113,7 @@ $.urlParam = function(name) {
 var parseDoc = function(index,el) {
     //console.dir(h[index]);
     //trim &nbsp
+    if(h[index] == undefined) return;
     var temp_naslov = h[index].innerText.replace(/\u00a0/g, " ");
    
 

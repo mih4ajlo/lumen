@@ -59,6 +59,8 @@ class ImportController extends Controller
     public function uploadFile(Request $request)
     {
 
+    			  
+
 	    $target_file = "../storage/app/" . basename($_FILES['fileuplaod']['name']);	    
 	    $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
