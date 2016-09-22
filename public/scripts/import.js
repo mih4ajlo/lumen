@@ -1,6 +1,13 @@
 var cont = {};
 var curPage;
 
+var owner = -1; //trenutni owner
+var h1pos = -1; //kada se prolazi kroz stablo pozicija trentunog h1 el
+var h2pos = -1;
+var h3pos = -1;
+var h4pos = -1;
+
+
 $(document).ready(function() {
 
     loadFile();
@@ -9,6 +16,14 @@ $(document).ready(function() {
         loadCategories($("#tip").val());
     })
 
+
+    $("#bulk").click(function(el) {
+        var god = $("#year").val() ; //2015
+        var tip = $("#tip").val();//"reference";
+        var jezik = $("#jezik").val(); //"ci";
+
+        doBulkUpload(god, tip, jezik);
+    })
 
 });
 
@@ -28,6 +43,51 @@ function loadFile() {
 
 }
 
+
+//godina, jezik, tip dokumenta
+//ako vec postoji dokument, stopiraj
+function doBulkUpload(god, tip, jezik) {
+    //prepakuje se cont
+    //salje se niz objekata [{kategorija:'naslov',sadrzaj:"content",parent:"0",order:"order"}]
+    //sortira se prema parentima i orderu
+    //i ubacuje redom
+    
+    var svi = Object.keys(cont)
+    var result = [];
+
+    for (var i = 0; i < svi.length; i++) {
+        //ovde moram da proveravam kog su tipa i da odredjujem
+        var temp_obj = {}
+        temp_obj.kategorija = cont[ svi[i] ].naslov; 
+        temp_obj.sadrzaj = cont[ svi[i] ].sadrzaj; 
+        temp_obj.owner = cont[ svi[i] ].owner; 
+        /*temp_obj.order = cont[ svi[i] ].order;*/
+        temp_obj.godina = god; 
+        temp_obj.tipDok = tip; 
+        temp_obj.jezik = jezik; 
+        result.push(temp_obj);
+    }
+
+    $.ajax({
+        url: 'up/doBulkUpload',
+        type: 'POST',
+        data: {podaci: result, godina:god, tipDok:tip, jezik:jezik},
+    })
+    .done(function(data) {
+        console.log(data);
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+    
+
+
+}
+
+
 function show(message) {
     //console.log("message shown");
     //$("#poruka").fadeIn(100);
@@ -41,27 +101,71 @@ $.urlParam = function(name) {
     return results[1] || 0;
 }
 
-
-var parseDoc = function(index) {
+/**
+ * salje se H* element
+ * 
+ * 
+ * [parseDoc description]
+ * @param  {[type]} index [description]
+ * @param  {[type]} el    [description]
+ * @return {[type]}       [description]
+ */
+var parseDoc = function(index,el) {
     //console.dir(h[index]);
     //trim &nbsp
+    var temp_naslov = h[index].innerText.replace(/\u00a0/g, " ");
+   
 
     if (h[index].nodeName == "H1") {
-        $("#parsedNav").append('<p class="emptyHeader nav-section nav' + h[index].nodeName.toUpperCase() + ' " id="showCont' + index + '">' + h[index].innerText.replace(/\u00a0/g, " ") + '</p>'); //return true;
+        
+        owner = -1; //ako je h1 owner je sigurno 0
+        h1pos = index;
+
+        $("#parsedNav").append('<p class="emptyHeader nav-section nav' + h[index].nodeName.toUpperCase() + ' " id="showCont' + index + '">' + temp_naslov + '</p>'); //return true;
         oldH = index;
         //excludedSearch.push('showCont' + index);
         //set plain HTML for Chapters
 
     } else {
-        $("#parsedNav").append('<p class="header nav' + h[index].nodeName.toUpperCase() + ' " id="showCont' + index + '">' + h[index].innerText.replace(/\u00a0/g, " ") + '</p>');
+        var temp_h = h[index].nodeName.toUpperCase();    
+
+        $("#parsedNav").append('<p class="header nav' + temp_h + ' " id="showCont' + index + '">' + temp_naslov + '</p>');
+        
+        if(temp_h == "H2"){
+            
+            owner = h1pos ;
+            h2pos = index;
+            //neki element sa h1 nivo-a
+        }
+        else if(temp_h == "H3"){
+
+            owner = h2pos ;
+            h3pos = index;
+        }
+        else if(temp_h == "H4"){
+            owner = h3pos ;
+            h4pos = index;   
+        }
+        else if(temp_h == "H5"){
+            owner = h4pos ;
+            h5pos = index;      
+        }
     }
 
     //put everything between H tags into array
     cont['showCont' + index] = $(h[index]).nextUntil(h[index + 1]).andSelf();
 
+    cont['showCont' + index].sadrzaj = '';    
+    cont['showCont' + index].owner = owner;    
+    cont['showCont' + index].naslov = temp_naslov;  
+
+
     cont['showCont' + index].each(function() {
         var $this = $(this);
         $this.html($this.html().replace(/&nbsp;/g, ''));
+
+        cont['showCont' + index].sadrzaj +=" "+ $this[0].outerHTML;
+
     });
 
     //merge is ok as lon as you put header variable name into excluded search

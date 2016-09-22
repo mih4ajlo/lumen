@@ -44,7 +44,9 @@
         </select>
 
         <button>Izaberi</button>
+         <div><button id="bulk">Bulk upload</button></div>
     </div>
+
     <div id="parsedNav"></div>
     <div id="parsedCont"></div>
     <div id="outNav"></div>

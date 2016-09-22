@@ -140,7 +140,57 @@ class ImportController extends Controller
 	}
 
 
+	public function doBulkUpload(Request $request)
+	{
+		$sviPodaci = $_POST['podaci'];
 
+		//treba ubaciti kategorije i sadrzaje
+		$rootOwner = 0;
+
+				
+		for ($i=0; $i < count( $sviPodaci) ; $i++) { 
+		
+
+			$temp_own = $sviPodaci[$i]["owner"];
+			$own_temp = 0;
+			if($temp_own ==-1)  //svi H1 imaju ownera -1
+				$own_temp = -1; //root element kowner, ne sme da bude nijedna druga cifra zato sto ce moze da se pojavi u regularnim stvarima
+			else 
+				{
+				$own_temp = $rootOwner + $temp_own  ; //mora biti jednako idKat +temp_own
+				//root owner se setuje kada se ubaci prvi element
+				
+				}
+
+			$kategorija = array(
+	    	  $sviPodaci[$i]["kategorija"], $own_temp , $sviPodaci[$i]["godina"],
+	    	  $sviPodaci[$i]["tipDok"],  $sviPodaci[$i]["jezik"]
+	    	); 
+
+			$idKat = $this->insertCat($kategorija);
+			//pretpostavka je da se zadrzava konzistentnst
+
+			if($i==0) $rootOwner = $idKat; //npr. 156; referentan; u odnosu na njega sve ide
+			//pretpostavka da struktura nije narusena; nikako se ne desava
+			//prvi koji se unese je owner, svi ostali gledaju na njega
+			//a za nove dokumente owner nije nula nego proizvoljan broj
+
+
+			$sadr_temp = $sviPodaci[$i]['sadrzaj'];
+			$sadrzaj = array(
+				/*"25", "2015", "neki naslov", "neki naslov kopija", "referenca", "sadrzaj <br/>", "sadrzaj", "rs-ci" 	*/
+
+				/*$sviPodaci[$i]["id"]*/$idKat, $sviPodaci[$i]["godina"],
+				$sviPodaci[$i]["kategorija"], $sviPodaci[$i]["kategorija"], $sviPodaci[$i]["tipDok"],
+				stripslashes($sadr_temp), strip_tags($sadr_temp), $sviPodaci[$i]["jezik"]
+				);
+
+			$this->insertSad($sadrzaj);
+
+
+		}
+		
+	}
 
 	public function showStoredSectionForYear( Request $request) {
 	
@@ -211,7 +261,7 @@ class ImportController extends Controller
 		switch ($nr) {
 		case 0:
 			
-			$sql = sprintf("INSERT INTO sadrzajs (`kid`,`sgodina`,`saltnaslov`,`s_orgin_naslov`,tip , scont, `scont_notag`, slang) VALUES( ?,?,?,?,?,?,?,?  ) ");
+			/*$sql = sprintf("INSERT INTO sadrzajs (`kid`,`sgodina`,`saltnaslov`,`s_orgin_naslov`,tip , scont, `scont_notag`, slang) VALUES( ?,?,?,?,?,?,?,?  ) ");*/
 
 			$params = array(
 				/*"25", "2015", "neki naslov", "neki naslov kopija", "referenca", "sadrzaj <br/>", "sadrzaj", "rs-ci" 	*/
@@ -221,7 +271,8 @@ class ImportController extends Controller
 				stripslashes($sadr_temp), strip_tags($sadr_temp), $_POST["jezik"]
 				);
 
-			$res = app('db')->insert( $sql, $params ); 
+			$this->insertSad( $params );
+			/*$res = app('db')->insert( $sql, $params );*/ 
 
 			//$result = $db->query($sql) OR die(mysqli_error($db));
 			echo "Tekst unesen $red";
@@ -256,24 +307,58 @@ class ImportController extends Controller
 	public function insertNewCategory( Request $request  ) {
 
 	    
-		$sql = sprintf(
+		/*$sql = sprintf(
 		"INSERT INTO kategorijes (`knaziv`,`kowner`, `kgodina`,`tip`, `klang`)
 	    VALUES (?,?,?,?,?) ");
-
+*/
 	    $params = array(
 	    	 $_POST["title"], $_POST["owner"], $_POST["year"],
 	    	  $_POST["tip"],  $_POST["jezik"]
 	    	); 
 
+	    $res = $this->insertCat($params);
+
+
 		/* "INSERT INTO kategorijes (`knaziv`,`kowner`,`tip`) VALUES ('" . $_POST["title"] . "' , '" . $_POST["owner"] . "'   ) ";*/
 		//echo $sql;
+		
+		/*$result = app('db')->insert( 
+			$sql, $params 
+		);
+*/
+		
+		echo "Nova kategorija unesena";
+
+	}
+
+	private function insertSad( $params )
+	{
+			$sql = sprintf("INSERT INTO sadrzajs (`kid`,`sgodina`,`saltnaslov`,`s_orgin_naslov`,tip , scont, `scont_notag`, slang) VALUES( ?,?,?,?,?,?,?,?  ) ");
+
+
+			$res = app('db')->insert( $sql, $params ); 
+			
+			return $res ;
+	}
+
+	private function insertCat($params)
+	{
+		$sql = sprintf(
+		"INSERT INTO kategorijes (`knaziv`,`kowner`, `kgodina`,`tip`, `klang`)
+	    VALUES (?,?,?,?,?) ");
+
 		
 		$result = app('db')->insert( 
 			$sql, $params 
 		);
 
+				print_r("<pre>");
+				var_dump(app('db')->lastInsertId());
+				print_r("</pre>");
+				die();
 		
-		echo "Nova kategorija unesena";
+
+		return $result;
 
 	}
 
