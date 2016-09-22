@@ -89,7 +89,7 @@ class ImportController extends Controller
 		$out = array();
 
 		$sql = 
-	        "SELECT kid,kowner,knaziv 
+	        "SELECT kid, CASE WHEN kowner = -1 THEN 0 ELSE kowner END as kowner  ,knaziv 
 	        FROM kategorijes 
 	        WHERE tip =? AND  klang =? 
 	        AND  kgodina =?
@@ -352,13 +352,9 @@ class ImportController extends Controller
 			$sql, $params 
 		);
 
-				print_r("<pre>");
-				var_dump(app('db')->lastInsertId());
-				print_r("</pre>");
-				die();
+		$last_id = app('db')->select("SELECT kid FROM kategorijes ORDER BY kid DESC LIMIT 0,1 ");
 		
-
-		return $result;
+		return $last_id[0]->kid;
 
 	}
 
