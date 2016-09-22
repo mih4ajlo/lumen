@@ -141,57 +141,69 @@ class ImportController extends Controller
 
 	}
 
-
+	//treba ubaciti kategorije i sadrzaje
 	public function doBulkUpload(Request $request)
 	{
+		$sviPodaci 		= 	$_POST['podaci'];
+		$godina 		= 	$_POST['godina'];
+		$tip 			= 	$_POST['tip'];
+		$jezik 			= 	$_POST['jezik'];			
+		$nultiElement 	= 	1; //klasicno brojanje od nultog elementa
+								//u bazi ne moze imati indeks 0
+		$rootOwner		= 	-1; //nije ni jedan element parent
+		//minimalni sledeci broj je 1
+		//ako nije ubacen nijedan element root owner je -1;
+		//vraca prvu unetu kategoriju, u odnosu na nju se odredjuju sve ostale kategorije
 
-		$sviPodaci = $_POST['podaci'];
+				//dodji indeks broj 45 - 90
+		for ($i=0; $i < count( $sviPodaci) ; $i++) { 	
+			
 
-		$godina = 	$_POST['godina'];
-		$tip = 	$_POST['tip'];
-		$jezik = 	$_POST['jezik'];
-		
+			if($i == 0){ //prvi u ovoj tur
+				//idKat = 105
+				$nultiElement = $this->vratiNulti($godina, $tip, $jezik);
+			}
 
-		//treba ubaciti kategorije i sadrzaje
-		$rootOwner = 0;
+			$temp_ind = $sviPodaci[$i]["ind"]; 
+			$temp_own = $sviPodaci[$i]["owner"]; 
+			$own_temp = 0; 
 
-				
-		for ($i=0; $i < count( $sviPodaci) ; $i++) { 
-		
-			/*if(empty($sviPodaci[$i])   || empty($sviPodaci[$i]["owner"])  ) continue;*/
-			$temp_own = $sviPodaci[$i]["owner"];
-			$own_temp = 0;
-			if($temp_own ==-1)  //svi H1 imaju ownera -1
-				$own_temp = -1; //root element kowner, ne sme da bude nijedna druga cifra zato sto ce moze da se pojavi u regularnim stvarima
+			if($temp_own ==-1  )  
+				//svi H1 imaju ownera -1
+				$own_temp = 0; 
 			else 
 				{
-				$own_temp = $rootOwner + $temp_own  ; //mora biti jednako idKat +temp_own
-				//root owner se setuje kada se ubaci prvi element
-				
+				//u odnosu na prvi ubaceni element - nultiElement
+				$own_temp = $nultiElement + $temp_own   ; //105 +39
+				// moraju da se upisu u istom redosledu kao kad su posalti
+				// temp_own je index elementa u nizu, 
+				// ako se neki drugi element upise ranije (asyinc)
+				// narusava se cela struktura
+
 				}
 
 			$kategorija = array(
-	    	  $sviPodaci[$i]["kategorija"], $own_temp , $godina,
-	    	 $tip,  $jezik 
+				$sviPodaci[$i]["kategorija"], 
+				$own_temp, //owner nula ili bilo koji drugi broj
+				$godina,	 
+				$tip,  
+				$jezik 
 	    	); 
 
-			$idKat = $this->insertCat($kategorija);
-			//pretpostavka je da se zadrzava konzistentnst
+			//vrati id kategorije, da bi u odnosu na nju racunali ostale
+			$idKat = $this->insertCat($kategorija);	
 
-			if($i==0) $rootOwner =  $this->vratiNulti($godina, $tip, $jezik);
-			//$idKat; //npr. 156; referentan; u odnosu na njega sve ide
-			//pretpostavka da struktura nije narusena; nikako se ne desava
-			//prvi koji se unese je owner, svi ostali gledaju na njega
-			//a za nove dokumente owner nije nula nego proizvoljan broj
 
+			
+			//id kat ili
+			//$this->vratiNulti($godina, $tip, $jezik);
 
 			$sadr_temp = $sviPodaci[$i]['sadrzaj'];
 			$sadrzaj = array(
-				/*"25", "2015", "neki naslov", "neki naslov kopija", "referenca", "sadrzaj <br/>", "sadrzaj", "rs-ci" 	*/
-
-				/*$sviPodaci[$i]["id"]*/$idKat, $godina,
-				$sviPodaci[$i]["kategorija"], $sviPodaci[$i]["kategorija"],$tip,
-				stripslashes($sadr_temp), strip_tags($sadr_temp), $jezik 
+				$idKat, $godina,$sviPodaci[$i]["kategorija"], 
+				$sviPodaci[$i]["kategorija"],$tip,
+				stripslashes($sadr_temp), 
+				strip_tags($sadr_temp), $jezik 
 				);
 
 			$this->insertSad($sadrzaj);
@@ -203,10 +215,10 @@ class ImportController extends Controller
 
 	private function vratiNulti($godina, $tip, $jezik)
 	{
-		$last_id = app('db')->select("SELECT kid FROM kategorijes where `klang` = ? and `kgodina`=? and tip =? ORDER BY kid ASC LIMIT 0,1", array($jezik, $godina, $tip));
-		$ret = -1;
-		if( count($last_id) >0)
-		$ret = $last_id[0]->kid;
+		$firstEl = app('db')->select("SELECT kid FROM kategorijes where `klang` = ? and `kgodina`=? and tip =? ORDER BY kid ASC LIMIT 0,1", array($jezik, $godina, $tip));
+		$ret = 1;  //u bazi indeksi pocinju od jedan
+		if( count($firstEl) > 0)
+		$ret = $firstEl[0]->kid;
 
 		return $ret;
 	}
@@ -268,9 +280,6 @@ class ImportController extends Controller
 				$_POST["jezik"]
 				) 
 		);
-
-
-		
 
 		$nr = count($result);	
 				
@@ -359,6 +368,7 @@ class ImportController extends Controller
 			
 			return $res ;
 	}
+
 
 	private function insertCat($params)
 	{

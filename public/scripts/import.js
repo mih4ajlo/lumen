@@ -56,18 +56,15 @@ function doBulkUpload(god, tip, jezik) {
     var result = [];
 
     var granica1 = Number.parseInt (svi.length /3 );
-    var granica2 = Number.parseInt (2*  (svi.length /3 ) );
+    var granica2 = 2* granica1 ;
 
     for (var i = 0; i < granica1 ; i++) {
-        //ovde moram da proveravam kog su tipa i da odredjujem
+        
         var temp_obj = {}
         temp_obj.kategorija = cont[ svi[i] ].naslov || ""; 
         temp_obj.sadrzaj = cont[ svi[i] ].sadrzaj || ""; 
-        temp_obj.owner = cont[ svi[i] ].owner || ""; 
-        /*temp_obj.order = cont[ svi[i] ].order;*/
-       /* temp_obj.godina = god; 
-        temp_obj.tipDok = tip; 
-        temp_obj.jezik = jezik; */
+        temp_obj.owner = cont[ svi[i] ].ownerInd ; 
+        temp_obj.ind = cont[ svi[i] ].elInd ; 
         result.push(temp_obj);
     }
 
@@ -76,15 +73,13 @@ function doBulkUpload(god, tip, jezik) {
     result =[];
 
     for (var i = granica1; i < granica2  ; i++) {
-        //ovde moram da proveravam kog su tipa i da odredjujem
+        
         var temp_obj = {}
         temp_obj.kategorija = cont[ svi[i] ].naslov || ""; 
         temp_obj.sadrzaj = cont[ svi[i] ].sadrzaj || ""; 
-        temp_obj.owner = cont[ svi[i] ].owner || ""; 
-        /*temp_obj.order = cont[ svi[i] ].order;*/
-       /* temp_obj.godina = god; 
-        temp_obj.tipDok = tip; 
-        temp_obj.jezik = jezik; */
+        temp_obj.owner = cont[ svi[i] ].ownerInd ; 
+        temp_obj.ind = cont[ svi[i] ].elInd ; 
+        
         result.push(temp_obj);
     }
 
@@ -92,15 +87,13 @@ function doBulkUpload(god, tip, jezik) {
     result =[];
 
     for (var i = granica2; i < svi.length  ; i++) {
-        //ovde moram da proveravam kog su tipa i da odredjujem
+        
         var temp_obj = {}
         temp_obj.kategorija = cont[ svi[i] ].naslov || ""; 
         temp_obj.sadrzaj = cont[ svi[i] ].sadrzaj || ""; 
-        temp_obj.owner = cont[ svi[i] ].owner || ""; 
-        /*temp_obj.order = cont[ svi[i] ].order;*/
-       /* temp_obj.godina = god; 
-        temp_obj.tipDok = tip; 
-        temp_obj.jezik = jezik; */
+        temp_obj.owner = cont[ svi[i] ].ownerInd ; 
+        temp_obj.ind = cont[ svi[i] ].elInd ; 
+       
         result.push(temp_obj);
     }
 
@@ -116,6 +109,7 @@ function salji(podaci) {
         url: 'up/doBulkUpload',
         type: 'POST',
         data: podaci,
+        async: false
     })
     .done(function(data) {
         console.log(data);
@@ -152,7 +146,7 @@ $.urlParam = function(name) {
  * @param  {[type]} el    [description]
  * @return {[type]}       [description]
  */
-var parseDoc = function(index,el) {
+var parseDoc = function(index,el) { //index ide od 0
     //console.dir(h[index]);
     //trim &nbsp
     if(h[index] == undefined) return;
@@ -161,7 +155,9 @@ var parseDoc = function(index,el) {
 
     if (h[index].nodeName == "H1") {
         
-        owner = -1; //ako je h1 owner je sigurno 0
+        owner = -1; //ako je h1 owner je sigurno -1 
+                    // nema elementa u trenutnom nizu koji mu je parent
+                    // ne sme da bude 0-ti element
         h1pos = index;
 
         $("#parsedNav").append('<p class="emptyHeader nav-section nav' + h[index].nodeName.toUpperCase() + ' " id="showCont' + index + '">' + temp_naslov + '</p>'); //return true;
@@ -199,8 +195,9 @@ var parseDoc = function(index,el) {
     cont['showCont' + index] = $(h[index]).nextUntil(h[index + 1]).andSelf();
 
     cont['showCont' + index].sadrzaj = '';    
-    cont['showCont' + index].owner = owner;    
+    cont['showCont' + index].ownerInd = owner;    
     cont['showCont' + index].naslov = temp_naslov;  
+    cont['showCont' + index].elInd = index;  
 
 
     cont['showCont' + index].each(function() {
@@ -209,9 +206,6 @@ var parseDoc = function(index,el) {
 
         cont['showCont' + index].sadrzaj +=" "+ $this[0].outerHTML;
         
-
-        
-
 
     });
 
