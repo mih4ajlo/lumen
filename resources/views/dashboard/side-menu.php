@@ -1,7 +1,9 @@
 <?php
+		
+
 $putanja = 
 	($_SERVER['SERVER_NAME']=='localhost')?
-			"http://localhost:8075/"	:	"http://".$_SERVER['SERVER_NAME']."/";
+			"http://localhost:8075/"	:	"http://".$_SERVER['HTTP_HOST']."/";
 
 //"http://localhost:8075/";
 
