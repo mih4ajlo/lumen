@@ -144,9 +144,12 @@ class ImportController extends Controller
 
 	public function doBulkUpload(Request $request)
 	{
+
 		$sviPodaci = $_POST['podaci'];
 
-				
+		$godina = 	$_POST['godina'];
+		$tip = 	$_POST['tip'];
+		$jezik = 	$_POST['jezik'];
 		
 
 		//treba ubaciti kategorije i sadrzaje
@@ -155,7 +158,7 @@ class ImportController extends Controller
 				
 		for ($i=0; $i < count( $sviPodaci) ; $i++) { 
 		
-
+			/*if(empty($sviPodaci[$i])   || empty($sviPodaci[$i]["owner"])  ) continue;*/
 			$temp_own = $sviPodaci[$i]["owner"];
 			$own_temp = 0;
 			if($temp_own ==-1)  //svi H1 imaju ownera -1
@@ -168,14 +171,15 @@ class ImportController extends Controller
 				}
 
 			$kategorija = array(
-	    	  $sviPodaci[$i]["kategorija"], $own_temp , $sviPodaci[$i]["godina"],
-	    	  $sviPodaci[$i]["tipDok"],  $sviPodaci[$i]["jezik"]
+	    	  $sviPodaci[$i]["kategorija"], $own_temp , $godina,
+	    	 $tip,  $jezik 
 	    	); 
 
 			$idKat = $this->insertCat($kategorija);
 			//pretpostavka je da se zadrzava konzistentnst
 
-			if($i==0) $rootOwner = $idKat; //npr. 156; referentan; u odnosu na njega sve ide
+			if($i==0) $rootOwner =  $this->vratiNulti($godina, $tip, $jezik);
+			//$idKat; //npr. 156; referentan; u odnosu na njega sve ide
 			//pretpostavka da struktura nije narusena; nikako se ne desava
 			//prvi koji se unese je owner, svi ostali gledaju na njega
 			//a za nove dokumente owner nije nula nego proizvoljan broj
@@ -185,9 +189,9 @@ class ImportController extends Controller
 			$sadrzaj = array(
 				/*"25", "2015", "neki naslov", "neki naslov kopija", "referenca", "sadrzaj <br/>", "sadrzaj", "rs-ci" 	*/
 
-				/*$sviPodaci[$i]["id"]*/$idKat, $sviPodaci[$i]["godina"],
-				$sviPodaci[$i]["kategorija"], $sviPodaci[$i]["kategorija"], $sviPodaci[$i]["tipDok"],
-				stripslashes($sadr_temp), strip_tags($sadr_temp), $sviPodaci[$i]["jezik"]
+				/*$sviPodaci[$i]["id"]*/$idKat, $godina,
+				$sviPodaci[$i]["kategorija"], $sviPodaci[$i]["kategorija"],$tip,
+				stripslashes($sadr_temp), strip_tags($sadr_temp), $jezik 
 				);
 
 			$this->insertSad($sadrzaj);
@@ -195,6 +199,16 @@ class ImportController extends Controller
 
 		}
 		
+	}
+
+	private function vratiNulti($godina, $tip, $jezik)
+	{
+		$last_id = app('db')->select("SELECT kid FROM kategorijes where `klang` = ? and `kgodina`=? and tip =? ORDER BY kid ASC LIMIT 0,1", array($jezik, $godina, $tip));
+		$ret = -1;
+		if( count($last_id) >0)
+		$ret = $last_id[0]->kid;
+
+		return $ret;
 	}
 
 	public function showStoredSectionForYear( Request $request) {

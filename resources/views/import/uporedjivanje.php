@@ -4,6 +4,7 @@
 <html>
 
 <head>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="UTF-8">
     <title>Importer</title>

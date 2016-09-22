@@ -52,26 +52,70 @@ function doBulkUpload(god, tip, jezik) {
     //sortira se prema parentima i orderu
     //i ubacuje redom
     
-    var svi = Object.keys(cont)
+    var svi = Object.keys(cont) 
     var result = [];
 
-    for (var i = 0; i < svi.length; i++) {
+    var granica1 = Number.parseInt (svi.length /3 );
+    var granica2 = Number.parseInt (2*  (svi.length /3 ) );
+
+    for (var i = 0; i < granica1 ; i++) {
         //ovde moram da proveravam kog su tipa i da odredjujem
         var temp_obj = {}
-        temp_obj.kategorija = cont[ svi[i] ].naslov; 
-        temp_obj.sadrzaj = cont[ svi[i] ].sadrzaj; 
-        temp_obj.owner = cont[ svi[i] ].owner; 
+        temp_obj.kategorija = cont[ svi[i] ].naslov || ""; 
+        temp_obj.sadrzaj = cont[ svi[i] ].sadrzaj || ""; 
+        temp_obj.owner = cont[ svi[i] ].owner || ""; 
         /*temp_obj.order = cont[ svi[i] ].order;*/
-        temp_obj.godina = god; 
+       /* temp_obj.godina = god; 
         temp_obj.tipDok = tip; 
-        temp_obj.jezik = jezik; 
+        temp_obj.jezik = jezik; */
         result.push(temp_obj);
     }
 
+    
+    salji({ godina:god, tip:tip, jezik:jezik, podaci: result});
+    result =[];
+
+    for (var i = granica1; i < granica2  ; i++) {
+        //ovde moram da proveravam kog su tipa i da odredjujem
+        var temp_obj = {}
+        temp_obj.kategorija = cont[ svi[i] ].naslov || ""; 
+        temp_obj.sadrzaj = cont[ svi[i] ].sadrzaj || ""; 
+        temp_obj.owner = cont[ svi[i] ].owner || ""; 
+        /*temp_obj.order = cont[ svi[i] ].order;*/
+       /* temp_obj.godina = god; 
+        temp_obj.tipDok = tip; 
+        temp_obj.jezik = jezik; */
+        result.push(temp_obj);
+    }
+
+    salji({ godina:god, tip:tip, jezik:jezik, podaci: result});
+    result =[];
+
+    for (var i = granica2; i < svi.length  ; i++) {
+        //ovde moram da proveravam kog su tipa i da odredjujem
+        var temp_obj = {}
+        temp_obj.kategorija = cont[ svi[i] ].naslov || ""; 
+        temp_obj.sadrzaj = cont[ svi[i] ].sadrzaj || ""; 
+        temp_obj.owner = cont[ svi[i] ].owner || ""; 
+        /*temp_obj.order = cont[ svi[i] ].order;*/
+       /* temp_obj.godina = god; 
+        temp_obj.tipDok = tip; 
+        temp_obj.jezik = jezik; */
+        result.push(temp_obj);
+    }
+
+    salji({ godina:god, tip:tip, jezik:jezik, podaci: result});
+    result =[];
+
+    //podeliti na trecine i proslediti
+
+}
+
+function salji(podaci) {
     $.ajax({
         url: 'up/doBulkUpload',
         type: 'POST',
-        data: {podaci: result, godina:god, tipDok:tip, jezik:jezik},
+        data: podaci,
     })
     .done(function(data) {
         console.log(data);
@@ -83,8 +127,6 @@ function doBulkUpload(god, tip, jezik) {
         console.log("complete");
     });
     
-
-
 }
 
 
@@ -166,6 +208,10 @@ var parseDoc = function(index,el) {
         $this.html($this.html().replace(/&nbsp;/g, ''));
 
         cont['showCont' + index].sadrzaj +=" "+ $this[0].outerHTML;
+        
+
+        
+
 
     });
 
