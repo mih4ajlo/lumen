@@ -146,6 +146,12 @@ class ImportController extends Controller
 	{
 		$sviPodaci = $_POST['podaci'];
 
+				print_r("<pre>");
+				var_dump($sviPodaci);
+				print_r("</pre>");
+				die();
+		
+
 		//treba ubaciti kategorije i sadrzaje
 		$rootOwner = 0;
 
