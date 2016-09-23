@@ -19,11 +19,11 @@ $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
      if($year){
          //select only first 2 levels
         $sql = /*"SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} and tip = 'sadrzaj' order by korder";  */
-        "SELECT k.kid, kowner, knaziv, saltnaslov, kgodina as godina, sgodina  , saltorder FROM kategorijes k INNER JOIN sadrzajs s on k.kid=s.kid WHERE kgodina={$year} and klang='{$lang}' and k.tip = 'sadrzaj' order by korder";
+        "SELECT k.kid, k.korder, kowner, knaziv, saltnaslov, kgodina as godina, sgodina  , saltorder FROM kategorijes k INNER JOIN sadrzajs s on k.kid=s.kid WHERE kgodina={$year} and klang='{$lang}' and k.tip = 'sadrzaj' order by korder";
         //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kowner IN(SELECT sid FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} and kowner=0) OR (sgodina={$year} and kowner=0)  order by saltorder";
      } else {
          //default
-        $sql = "SELECT k.kid, kowner, knaziv, saltnaslov,sgodina , kgodina as godina, saltorder FROM kategorijes k INNER JOIN sadrzajs s on k.kid=s.kid WHERE kgodina=2015 and  klang='{$lang}' and k.tip = 'sadrzaj' order by korder";
+        $sql = "SELECT k.kid, k.korder, kowner, knaziv, saltnaslov,sgodina , kgodina as godina, saltorder FROM kategorijes k INNER JOIN sadrzajs s on k.kid=s.kid WHERE kgodina=2015 and  klang='{$lang}' and k.tip = 'sadrzaj' order by korder";
         /*"SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 and tip = 'sadrzaj' order by korder  ";*/
         //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 AND kowner IN(SELECT sid FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 and kowner=0) OR (sgodina=2015 and kowner=0)  order by saltorder";
      }
@@ -53,9 +53,9 @@ $app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
     }
 
 
-    //TODO ne kid nego kowner
+    //TODO ne kid nego korder;kid
      if($kid){
-        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kid={$kid} AND slang='{$lang}' AND tip = 'sadrzaj'  ";
+        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND korder={$kid} AND slang='{$lang}' AND tip = 'sadrzaj'  ";
      } else {
          //default
         $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 AND slang='{$lang}' AND tip = 'sadrzaj'  order by saltorder LIMIT 1  ";
@@ -92,8 +92,8 @@ $app->get('{lang}/timeline/{kid}', function ($lang,$kid)  {
     }
 
 
-    //TODO ne kid nego korder
-    $sql = "SELECT sgodina FROM sadrzajs NATURAL JOIN kategorijes WHERE kid={$kid} AND tip = 'sadrzaj'  GROUP BY sgodina ";
+    //TODO ne kid nego korder; kid
+    $sql = "SELECT sgodina FROM sadrzajs NATURAL JOIN kategorijes WHERE korder={$kid} AND tip = 'sadrzaj'  GROUP BY sgodina ";
 
     $out = frontSql($sql);
 
@@ -184,9 +184,11 @@ $app->get('{lang}/referencaProvera/{year}', function ($lang, $year)  {
 function buildMenuTree(array $elements, $root = 0) {
     $branch = array();
 
+
+    //TODO korder umesto kid
     foreach ($elements as $element) {
         if ($element->kowner == $root) {
-            $children = buildMenuTree($elements, $element->kid);
+            $children = buildMenuTree($elements, $element->korder);
             if ($children) {
                 $element->children = $children;
             }

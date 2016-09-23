@@ -75,7 +75,7 @@ function showMenu( yearPo ) {
     
     lang = vratiJezik();
 
-    $.getJSON(apiLocation + lang + "/nav/" + yearPo, function(menuRes) {
+    $.getJSON(apiLocation + lang + "/nav/" + yearPo,{tip:"sadrzaj"}, function(menuRes) {
             console.log("JSON for menu loaded...");
             menuOut = buildMenuList(menuRes, false);
             $("#nav").html(menuOut);
@@ -272,6 +272,10 @@ $(function() { // this will be called when the DOM is ready
 
     $("#filter").keyup(function(ev) {
 
+        var temp_tip = "sadrzaj";
+        if(window.location.pathname == "/dodatne.html")
+           temp_tip = "referenca";     
+
         console.log($("#filter").val());
         //remove filtered class from document
         //if ($("#filter").val().length == 0) pr.removeResult();
@@ -281,7 +285,7 @@ $(function() { // this will be called when the DOM is ready
         if ($("#filter").val().length < 3) return;
         //TODO uzeti vrednosti, da ne budu zakucane vrednosti
         //get data from API
-        $.getJSON(apiLocation + lang + "/search/" + $("#filter").val(), { god: "2015", tip: "sadrzaj" }, function(searchRes) {
+        $.getJSON(apiLocation + lang + "/search/" + $("#filter").val(), { god: "2015", tip: temp_tip }, function(searchRes) {
                 console.log("JSON for SEARCH...");
 
                 if (searchRes.length > 0) {
