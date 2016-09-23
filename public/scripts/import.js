@@ -277,6 +277,7 @@ function dropHelperNav(event, ui) {
             tip: $("#tip").val(),
             year: $("#year").val(),
             jezik:$("#jezik").val(),
+            order:$(this)[0].dataset.owner + 2 // samo dummy stvar
         },
         function(data) {
             show(data);

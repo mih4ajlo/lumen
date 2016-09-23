@@ -345,9 +345,10 @@ class ImportController extends Controller
 		"INSERT INTO kategorijes (`knaziv`,`kowner`, `kgodina`,`tip`, `klang`)
 	    VALUES (?,?,?,?,?) ");
 */
+	    //treba ubaciti korder
 	    $params = array(
 	    	 $_POST["title"], $_POST["owner"], $_POST["year"],
-	    	  $_POST["tip"],  $_POST["jezik"]
+	    	  $_POST["tip"],  $_POST["jezik"],  $_POST["order"]
 	    	); 
 
 	    $res = $this->insertCat($params);
