@@ -323,10 +323,10 @@ function buildMenuList(data, isSub) {
         html += '<li>';
         //TODO zameniti kid sa korder
         if (typeof(data[item].children) === 'object') { // An array will return 'object'
-            html += '<a href="#' + lang + '-' + data[item].godina + '-' + data[item].kid + '">' + data[item].saltnaslov + '</a>'; // Submenu found, but top level list item.
+            html += '<a href="#' + lang + '-' + data[item].godina + '-' + data[item].korder + '">' + data[item].saltnaslov + '</a>'; // Submenu found, but top level list item.
             html += buildMenuList(data[item].children, true); // Submenu found. Calling recursively same method (and wrapping it in a div)
         } else {
-            html += '<a href="#' + lang + '-' + data[item].godina + '-' + data[item].kid + '">' + data[item].saltnaslov + '</a>'; // No submenu
+            html += '<a href="#' + lang + '-' + data[item].godina + '-' + data[item].korder + '">' + data[item].saltnaslov + '</a>'; // No submenu
         }
         html += '</li>';
     }

@@ -91,7 +91,7 @@ class ImportController extends Controller
 		$out = array();
 
 		$sql = 
-	        "SELECT kid, CASE WHEN kowner = -1 THEN 0 ELSE kowner END as kowner  ,knaziv 
+	        "SELECT kid,  kowner  ,knaziv, korder 
 	        FROM kategorijes 
 	        WHERE tip =? AND  klang =? 
 	        AND  kgodina =?
@@ -110,8 +110,10 @@ class ImportController extends Controller
 
 		$topmenu = '';
 
-		for ($i=0; $i < count($result) ; $i++)  {
-			
+		for ($i=0; $i < count($result) ; $i++)  {			
+
+			// da li ovde treba da ide upit nad kategorijas
+			// ili mozda join za kategorijas
 	        $sql_upit = 
 		        sprintf(
 		            "SELECT count(*) AS number 
@@ -398,9 +400,10 @@ class ImportController extends Controller
 
 		$branch = array();
 
+		//korder umesto kid
 		foreach ($elements as $element) {
 			if ($element->kowner == $root) {
-				$children = buildMenuTree($elements, $element->kid);
+				$children = buildMenuTree($elements, $element->korder);
 				if ($children) {
 					$element->children = $children;
 				}
@@ -415,6 +418,8 @@ class ImportController extends Controller
 	//http://stackoverflow.com/questions/16837415
 	public function olLiTree($tree) {
 		echo '<ul>';
+
+		//todo treba videti da li se ovde stavlja korder
 
 		foreach ($tree as $item) {
 			echo '<li ><p onclick="showStoredSectionForYear(' . $item->kid . ')" class="header" data-owner="' . $item->kowner . '" data-kid="' . $item->kid . '"  id="storeCont' . $item->kid . '">' . $item->knaziv . ' (' . $item->count . ')</p> <p class="insertSub" data-owner="' . $item->kid . '">Unesi kao podkategoriju</p></li>';
