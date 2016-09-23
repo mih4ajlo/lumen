@@ -50,7 +50,7 @@ function parseUrl() {
 
     if (hashVars[0]) { lang = hashVars[0]; }
     if (hashVars[1]) { year = hashVars[1]; }
-    if (hashVars[2]) { id = hashVars[2]; }
+    if (hashVars[2]) { id = hashVars[2]; }  //korder
     if (hashVars[3]) { compareTo = hashVars[3]; }
     if (hashVars[4]) { searchFor = hashVars[4]; }
 
@@ -69,13 +69,13 @@ function parseUrl() {
 
 //get mainMenu from DB
 //year is mandatory
-function showMenu() {
+function showMenu( yearPo ) {
     $("#nav").html('');
     //load nav from API
     
     lang = vratiJezik();
 
-    $.getJSON(apiLocation + lang + "/nav/" + year, function(menuRes) {
+    $.getJSON(apiLocation + lang + "/nav/" + yearPo, function(menuRes) {
             console.log("JSON for menu loaded...");
             menuOut = buildMenuList(menuRes, false);
             $("#nav").html(menuOut);
@@ -98,13 +98,13 @@ function showMenu() {
 
 //get content from database for requested year/section
 //if no id DB will serve firs section of salorder
-function showMainCont(year, id) {
+function showMainCont(yearPo, id) {
     $("#displayCont").html('');
     //load main content from API
 
     lang = vratiJezik();
     
-    $.getJSON(apiLocation + lang + "/content/" + year + "/" + id, function(mainContRes) {
+    $.getJSON(apiLocation + lang + "/content/" + yearPo + "/" + id, function(mainContRes) {
             console.log("JSON for main content loaded...");
 
             if (mainContRes[0] == undefined) return;
@@ -116,9 +116,6 @@ function showMainCont(year, id) {
             clearStyles("displayCont");
 
             $("#uporediOff").hide();
-
-
-
         })
         .fail(function() {
             $("#displayCont").html('<p class="emptyHeader nav-section" >Greška prilikom učitavanja glavnog sadržaja.</p>');
@@ -282,6 +279,7 @@ $(function() { // this will be called when the DOM is ready
         $('#rezultatiPretrage').html('');
 
         if ($("#filter").val().length < 3) return;
+        //TODO uzeti vrednosti, da ne budu zakucane vrednosti
         //get data from API
         $.getJSON(apiLocation + lang + "/search/" + $("#filter").val(), { god: "2015", tip: "sadrzaj" }, function(searchRes) {
                 console.log("JSON for SEARCH...");
@@ -319,6 +317,7 @@ function buildMenuList(data, isSub) {
     html += '<ul>';
     for (item in data) {
         html += '<li>';
+        //TODO zameniti kid sa korder
         if (typeof(data[item].children) === 'object') { // An array will return 'object'
             html += '<a href="#' + lang + '-' + data[item].godina + '-' + data[item].kid + '">' + data[item].saltnaslov + '</a>'; // Submenu found, but top level list item.
             html += buildMenuList(data[item].children, true); // Submenu found. Calling recursively same method (and wrapping it in a div)

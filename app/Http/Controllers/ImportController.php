@@ -164,8 +164,11 @@ class ImportController extends Controller
 				$nultiElement = $this->vratiNulti($godina, $tip, $jezik);
 			}
 
-			$temp_ind = $sviPodaci[$i]["ind"]; 
+			$temp_ind = $sviPodaci[$i]["ind"] + 1; //pocinje od nultog elementa 
 			$temp_own = $sviPodaci[$i]["owner"]; 
+
+					
+			
 			$own_temp = 0; 
 
 			if($temp_own ==-1  )  
@@ -187,7 +190,8 @@ class ImportController extends Controller
 				$own_temp, //owner nula ili bilo koji drugi broj
 				$godina,	 
 				$tip,  
-				$jezik 
+				$jezik,
+				$temp_ind 
 	    	); 
 
 			//vrati id kategorije, da bi u odnosu na nju racunali ostale
@@ -373,8 +377,8 @@ class ImportController extends Controller
 	private function insertCat($params)
 	{
 		$sql = sprintf(
-		"INSERT INTO kategorijes (`knaziv`,`kowner`, `kgodina`,`tip`, `klang`)
-	    VALUES (?,?,?,?,?) ");
+		"INSERT INTO kategorijes (`knaziv`,`kowner`, `kgodina`,`tip`, `klang`, `korder`)
+	    VALUES (?,?,?,?,?,?) ");
 
 		
 		$result = app('db')->insert( 

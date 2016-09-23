@@ -53,6 +53,7 @@ $app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
     }
 
 
+    //TODO ne kid nego kowner
      if($kid){
         $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kid={$kid} AND slang='{$lang}' AND tip = 'sadrzaj'  ";
      } else {
@@ -90,6 +91,8 @@ $app->get('{lang}/timeline/{kid}', function ($lang,$kid)  {
         $lang = "rs-lat";
     }
 
+
+    //TODO ne kid nego korder
     $sql = "SELECT sgodina FROM sadrzajs NATURAL JOIN kategorijes WHERE kid={$kid} AND tip = 'sadrzaj'  GROUP BY sgodina ";
 
     $out = frontSql($sql);
