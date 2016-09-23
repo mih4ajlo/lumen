@@ -12,29 +12,36 @@ function prikaziTagovane(arg) {
     case "skupstina":
       naziv = "skupstina";
       break;
+    case "javne":
+      naziv = "javne";
+      break;  
     case "ostali":
       naziv = "ostali";
       break;
   }
 
-    $("p[akter]").hide()
+    $("[akter]").hide()
      
     if(naziv =="ministarstva"){
      //$("p[akter]").hide() 
-      $("p[akter]").filter(function(ind,la){if($(la).attr('akter')) return ($(la).attr('akter').indexOf('ministar')!=-1)}).show()
+      $("[akter]").filter(function(ind,la){if($(la).attr('akter')) return ($(la).attr('akter').indexOf('ministar')!=-1)}).show()
     }
     else if(naziv =="vlada"){
      //$("p[akter]").hide() 
-      $("p[akter='vlada']").show()
+      $("[akter*='vlada']").show()
     }
 
     else if(naziv =="skupstina"){
      //$("p[akter]").hide() 
-      $("p[akter='skupstina']").show()
+      $("[akter*='skupstina']").show()
+    }
+    else if(naziv =="javne"){
+     //$("p[akter]").hide() 
+      $("[akter*='javne']").show()
     }
     else if(naziv =="ostali"){
      //$("p[akter]").hide() 
-      $("p[akter='ostali']").show()
+      $("[akter*='ostali']").show()
     }
 
 }
