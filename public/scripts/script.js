@@ -97,8 +97,8 @@ function showMenu( yearPo ) {
             
             //:not(
             //$("#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active+ul").show()
-            var temp_selektor = $("#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active+ul");
-            temp_selektor.parents().filter('ul').show()
+            var temp_selektor = $("#nav>ul>li>a.activ,#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active, #nav>ul>li>ul>li>a.active+ul");
+            temp_selektor.parents().filter('ul').show();//svi parenti 
 
             $("#nav>ul>li>a>span").click(function(e) {                
 
