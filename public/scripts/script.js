@@ -24,6 +24,8 @@ $(document).ready(function() {
 
     })
 
+
+
 });
 
 
@@ -39,6 +41,11 @@ $(document).on('click', '#toTop', function() {
     $(document).scrollTop(0);
 });
 
+
+
+function promenaJezika() {
+    
+}
 
 function parseUrl() {
 
