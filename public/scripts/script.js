@@ -6,6 +6,7 @@ year = '2015';
 id = '3';
 compareTo = '';
 searchFor = '';
+tip="sadrzaj";
 
 $(document).ready(function() {
     console.log("ready!");
@@ -70,6 +71,9 @@ function parseUrl() {
     var hash = window.location.hash.replace("#", "");
     var hashVars = hash.split("-");
 
+    if(window.location.pathname == "/dodatne.html")
+        tip = "referenca";
+
     if (hashVars[0]) { lang = hashVars[0]; }
     if (hashVars[1]) { year = hashVars[1]; }
     if (hashVars[2]) { id = hashVars[2]; }  //korder
@@ -96,7 +100,7 @@ function showMenu( yearPo ) {
     
     lang = vratiJezik();
 
-    $.getJSON(apiLocation + lang + "/nav/" + yearPo,{tip:"sadrzaj"}, function(menuRes) {
+    $.getJSON(apiLocation + lang + "/nav/" + yearPo,{tip:tip}, function(menuRes) {
             console.log("JSON for menu loaded...");
             menuOut = buildMenuList(menuRes, false);
             $("#nav").html(menuOut);
@@ -149,7 +153,8 @@ function showMainCont(yearPo, id) {
 
     lang = vratiJezik();
     
-    $.getJSON(apiLocation + lang + "/content/" + yearPo + "/" + id, function(mainContRes) {
+    //TODO treba poslati tip dokumenta
+    $.getJSON(apiLocation + lang + "/content/" + yearPo + "/" + id,{tip:tip} function(mainContRes) {
             console.log("JSON for main content loaded...");
 
             if (mainContRes[0] == undefined) return;
@@ -333,7 +338,7 @@ $(function() { // this will be called when the DOM is ready
         if ($("#filter").val().length < 3) return;
         //TODO uzeti vrednosti, da ne budu zakucane vrednosti
         //get data from API
-        $.getJSON(apiLocation + lang + "/search/" + $("#filter").val(), { god: "2015", tip: temp_tip }, function(searchRes) {
+        $.getJSON(apiLocation + lang + "/search/" + $("#filter").val(), { god: year, tip: temp_tip }, function(searchRes) {
                 console.log("JSON for SEARCH...");
 
                 if (searchRes.length > 0) {

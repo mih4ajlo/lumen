@@ -3,45 +3,8 @@ var sadrzaj;
 
  $(function() {
 
+	loadReferencesFor();
 
- 	//uzmi referencu iz url-a
-	
-	
-
- 	loadReferencesFor();
-
-
-	/*
-	
-	 	$('#tabs').tab();
-
-	 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-	  var target = $(e.target).attr("href") // activated tab
-	  //alert(target);
-	  if(target == "#reference"){
-		
-		loadReferencesFor(curPage);
-		
-		$('#subNavHolder').html('');
-		
-		$('#displayRefButtonReference').hide();
-		$('#displayRefButtonNav').show();
-		//set colors to lime
-		$('#mainLine').css("background-color", "#cee66e");
-		$('#displayRefButton').css("background-color", "#cee66e");
-		
-	  } else {
-		  
-		  $('#'+curPage).trigger('click');
-		//set colors back to original
-		$('#mainLine').css("background-color", "#72D0EB");
-		$('#displayRefButton').css("background-color", "#72D0EB");
-		
-	  }
-	}); */
-
-	
-	
 	function loadReferencesFor(year){
 		
 		//treba da se prosledi samo id ka jednom elementu
