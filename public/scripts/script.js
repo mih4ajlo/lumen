@@ -89,9 +89,27 @@ function showMenu( yearPo ) {
             $('#content').scrollTop();
 
 
-            // SCROLL MENIJA
-            $("#nav").scrollTop($("#nav").scrollTop() + $("#nav a.active").position().top - 8 )
+            //sakrij sve h2-ove koji nisu na tom podstablu
+            //dodaj svim h1-ma glyph strelicu na dole 
+                
+            $("#nav>ul>li>a").append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
+            $("#nav>ul>li>ul").hide()
+            
+            //:not(
+            //$("#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active+ul").show()
+            var temp_selektor = $("#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active+ul");
+            temp_selektor.parents().filter('ul').show()
 
+            $("#nav>ul>li>a>span").click(function(e) {                
+
+                e.preventDefault();
+                //otkrij celo podstablo
+                $(this).parent().siblings().toggle('slow');
+            });
+
+
+            // SCROLL MENIJA
+            $("#nav").scrollTop($("#nav").scrollTop() + $("#nav a.active").position().top - 8 );
 
         })
         .fail(function() {
@@ -326,7 +344,8 @@ function buildMenuList(data, isSub) {
         html += '<li>';
         //TODO zameniti kid sa korder
         if (typeof(data[item].children) === 'object') { // An array will return 'object'
-            html += '<a href="#' + lang + '-' + data[item].godina + '-' + data[item].korder + '">' + data[item].saltnaslov + '</a>'; // Submenu found, but top level list item.
+            var strelica = ''; ///'<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'
+            html += '<a href="#' + lang + '-' + data[item].godina + '-' + data[item].korder + '">' + data[item].saltnaslov + " " + strelica + '</a>'; // Submenu found, but top level list item.
             html += buildMenuList(data[item].children, true); // Submenu found. Calling recursively same method (and wrapping it in a div)
         } else {
             html += '<a href="#' + lang + '-' + data[item].godina + '-' + data[item].korder + '">' + data[item].saltnaslov + '</a>'; // No submenu
