@@ -115,7 +115,7 @@ function showMenu( yearPo ) {
             //dodaj svim h1-ma glyph strelicu na dole 
             
             
-            $("#nav>ul>li>a+ul").append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
+            $("#nav>ul>li>a").append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
             $("#nav>ul>li>ul").hide()
             
             //:not(
