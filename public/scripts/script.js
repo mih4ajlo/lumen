@@ -64,7 +64,6 @@ function parseUrl() {
     if (compareTo) { compareToYear(compareTo); }
     if (searchFor) { searchForString(searchFor); }
 
-
 }
 
 //get mainMenu from DB
@@ -88,6 +87,10 @@ function showMenu( yearPo ) {
             selektovana = selektovana.position() == undefined ? 0 : selektovana.position().top;
             $('#content').scrollTop(0);
             $('#content').scrollTop();
+
+
+            // SCROLL MENIJA
+            $("#nav").scrollTop($("#nav").scrollTop() + $("#nav a.active").position().top - 8 )
 
 
         })

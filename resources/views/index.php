@@ -16,6 +16,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/dropdown.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/dropdown.min.css">
 
+
+    <style type="text/css">
+
+    #nav{
+        height: 100vh;
+        overflow: scroll;
+    }
+    </style>
+
     <script type="text/javascript">
     $(document).ready(function() {
         //console.log("ready!");
@@ -53,9 +62,9 @@
                     <ul class="nav navbar-right">
                         <li>
                             <div class="versions" id="verzije">
-                                <a href="#ci">ci</a>
-                                <a href="#lat">lat</a>
-                                <a href="#en">en</a>
+                                <a href="#ci">Ћир</a>
+                                <a href="#lat">Lat</a>
+                                <a href="#en">En</a>
 
                             </div>
                         </li>
@@ -103,9 +112,7 @@
                     <div class="navig tab-pane active" id="nav">
 				
                     </div>
-                    <div class="navig tab-pane" id="reference">
-
-                    </div>
+                 
                 </div>
             </div>
         </div>
