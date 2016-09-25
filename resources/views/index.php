@@ -43,7 +43,7 @@
                     <a class="navbar-brand" href="#">
                         <div class="logo krug hidden lat">Izveštaj Zaštitnika Građana</div>
                         <div class="logo krug cir">Извештај Заштитника Грађана</div>
-                        <div class="logo krug hidden eng">Public report</div>
+                        <div class="logo krug hidden en">Protectors Public <br> report</div>
                     </a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -77,9 +77,9 @@
                     <ul class="nav navbar-right">
                         <li>
                             <div class="versions" id="verzije">
-                                <a href="#ci">Ћир</a>
-                                <a href="#lat">Lat</a>
-                                <a href="#en">En</a>
+                                <a class="lang" href="#ci">Ћир</a>
+                                <a class="lang" href="#lat">Lat</a>
+                                <a class="lang" href="#en">En</a>
 
                             </div>
                         </li>
@@ -89,7 +89,9 @@
 
                             <div class="ui compact menu">
                               <div class="ui simple dropdown " >
-                               <span id="uporedi">Uporedi po godinama</span>
+                               <span id="uporedi" class="hidden lat">Uporedi po godinama</span>
+                               <span id="uporedi" class=" cir">Упореди по годинама</span>
+                               <span id="uporedi" class="hidden en">Uporedi po godinama</span>
                                 
                                 <div id="timelineList" class="menu">
                                   <div class="item">2015</div>
@@ -102,12 +104,16 @@
                         </li>
 						<li class="search pull-left">
                             <div >
-                                <span id="uporediOff">Isključi poredjenje po godinama</span>
+                                <span id="uporediOff" class="hidden cir">Искључи поређење по годинама</span>
+                                <span id="uporediOff" class="hidden lat">Isključi poredjenje po godinama</span>
+                                <span id="uporediOff" class="hidden en">Isključi poredjenje po godinama</span>
                             </div>
                         </li>
                         <li class="search pull-left">
                             <div id="pretraga">
-                                <input id="filter" type="text" placeholder="Pretražite">
+                                <input id="filter" class="hidden lat" type="text" placeholder="Pretražite">
+                                <input id="filter"  class=" cir" type="text" placeholder="Претражите">
+                                <input id="filter"  class="hidden en" type="text" placeholder="Search">
                             </div>
                         </li>
                     </ul>
@@ -149,7 +155,9 @@
 		
 		<div class="navigation col-xs-12 col-sm-6 col-md-2">
 			<div id="displayRefButton" style="display: inline-block; vertical-align: top;">
-			<a id="displayRefButtonReference"  href="dodatne.html#27" >Dodatne teme</a>
+			<a class=" cir" id="displayRefButtonReference"  href="dodatne.html#1" >Додатне теме</a>
+            <a class="hidden lat" id="displayRefButtonReference"  href="dodatne.html#1" >Dodatne teme</a>
+            <a class="hidden en" id="displayRefButtonReference"  href="dodatne.html#1" >Dodatne teme</a>
 			<!-- <a id="displayRefButtonNav" href="#nav" data-toggle="tab" aria-expanded="false">SADRŽAJ</a> -->
 			</div>
 		</div>

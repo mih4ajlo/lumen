@@ -24,6 +24,23 @@ $(document).ready(function() {
 
     })
 
+   $(".lang").click(function(ev) {
+        var lan = $(ev.target).attr("href")
+        if(lan == "#ci"){
+            $(".lat,.en").addClass('hidden');//cirilica
+            $(".cir").removeClass('hidden')
+        }
+        else if(lan == "#lat"){
+            $(".cir,.en").addClass('hidden');//cirilica
+            $(".lat").removeClass('hidden')
+        }
+        else if(lan == "#en"){
+            $(".cir,.lat").addClass('hidden');//cirilica
+            $(".en").removeClass('hidden')
+        }
+
+        //console.log(  );
+   })
 
 
 });
@@ -43,9 +60,7 @@ $(document).on('click', '#toTop', function() {
 
 
 
-function promenaJezika() {
-    
-}
+
 
 function parseUrl() {
 
@@ -98,14 +113,16 @@ function showMenu( yearPo ) {
 
             //sakrij sve h2-ove koji nisu na tom podstablu
             //dodaj svim h1-ma glyph strelicu na dole 
-                
-            $("#nav>ul>li>a").append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
+            
+            
+            $("#nav>ul>li>a+ul").append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
             $("#nav>ul>li>ul").hide()
             
             //:not(
             //$("#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active+ul").show()
             var temp_selektor = $("#nav>ul>li>a.activ,#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active, #nav>ul>li>ul>li>a.active+ul");
             temp_selektor.parents().filter('ul').show();//svi parenti 
+            temp_selektor.show();
 
             $("#nav>ul>li>a>span").click(function(e) {                
 
@@ -201,7 +218,10 @@ function availableYearsToCompare() {
                          }
                 });
             } else {
-                $('#timelineList').html('<div class="item">Nema podataka za poredjenje.</div>');
+               // u zavisnosti od jezika     
+               var  poruka = "Nema podataka za poredjenje.";
+                    poruka = "Нема података за поређење.";
+                $('#timelineList').html('<div class="item">' + poruka + '</div>');
             }
 
 
