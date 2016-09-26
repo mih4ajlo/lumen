@@ -154,7 +154,7 @@ function showMainCont(yearPo, id) {
     lang = vratiJezik();
     
     //TODO treba poslati tip dokumenta
-    $.getJSON(apiLocation + lang + "/content/" + yearPo + "/" + id,{tip:tip} function(mainContRes) {
+    $.getJSON(apiLocation + lang + "/content/" + yearPo + "/" + id,{tip:tip}, function(mainContRes) {
             console.log("JSON for main content loaded...");
 
             if (mainContRes[0] == undefined) return;
