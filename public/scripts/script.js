@@ -118,19 +118,15 @@ function showMenu( yearPo ) {
             $('#content').scrollTop();
 
 
-            //sakrij sve h2-ove koji nisu na tom podstablu
-            //dodaj svim h1-ma glyph strelicu na dole 
-            
+           
             //OTKRIVANJE MENIJA
             
-
-           
-              $("#nav>ul>li>a").each(function(index, el) {
+            $("#nav>ul>li>a").each(function(index, el) {
                    if( $(el).siblings('ul').length > 0 )
                     $(el).append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
               });
               
-              $("#nav>ul>li>ul").hide()
+            $("#nav>ul>li>ul").hide()
             
             
             //:not(
@@ -479,22 +475,41 @@ function clearStyles(elId) {
 function prependYear(elId) {
     var hash = window.location.hash.replace("#", "");
     var hashVars = hash.split("-");
+    var god = hashVars[1];
+    var stil = "margin-45-left";
 
+    var meni =   '<span id="' + elId + 'Year" class="ui header '+ stil +'">'+
+      '<div class="ui inline dropdown">'+
+          '<div class="text">2015</div>'+
+          '<i class="dropdown icon"></i>'+
+          '<div class="menu">       '+
+            '<div class="item" data-text="2015">2015</div>'+
+            '<div class="item" data-text="2014">2014</div>'+
+            '<div class="item" data-text="2013">2013</div>'+
+          '</div>'+
+        '</div>'+
+    '</span>';
 
 
     if (elId.indexOf("Compare") < 0) {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
-        var god = hashVars[1];
+       
         if(god == undefined) 
             god = 2015;
 
         $("#displayContYear").remove();
-        $('#mainLine').before("<span id='" + elId + "Year' >" + god + "</span>");
+        $('#mainLine').before( meni );
+        $('.ui.inline.dropdown').dropdown();
+    
     } else {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[3]+"</span>" );
         $("#displayContCompareYear").remove();
-        $('#mainLine').before("<span id='" + elId + "Year' >" + hashVars[3] + "</span>");
+        god = hashVars[3];
+        $('#mainLine').before("<span id='" + elId + "Year'  >" + god + "</span>");
     }
+    //DISPLAY CONT YEAR
+    
+   
 
 }
 

@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dodatne teme</title>
+    <title>Додатне теме | Годишњи Извештај Заштитника Грађана</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
@@ -33,10 +33,8 @@
         <nav class="main-nav navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <div class="logo krug hidden">Izveštaj Zaštitnika Građana</div>
-
-                        <div class="logo krug">Извештај Заштитника Грађана</div>
+                    <a class="navbar-brand" href="/">
+                         <div class="logo krug cir">Годишњи Извештај Заштитника Грађана</div>   
                     </a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -47,59 +45,25 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav"  style="display: none;">
-                        <li class="active lat" onclick="prikaziTagovane('vlada')"><a href="#">Vlada</a></li>
-                        <li class="lat" onclick="prikaziTagovane('ministarstva')"><a href="#">Ministarstva</a></li>
-                        <li class="lat" onclick="prikaziTagovane('skupstina')"><a href="#">Skupština</a></li>
-                        <li class="lat" onclick="prikaziTagovane('javne')"><a href="#">Javne institucije</a></li>
-                        <li class="lat" onclick="prikaziTagovane('ostali')"><a href="#">Ostali organi i organizacije</a></li>
+                        
+                        <li id="filterSve" class=" active  cir" onclick="prikaziTagovane('sve')"><a >Све</a></li>
+                        <li id="filterVlada" class="   cir" onclick="prikaziTagovane('vlada')"><a >Влада</a></li>
+                        <li id="filterMin" class="  cir" onclick="prikaziTagovane('ministarstva')"><a >Министарства</a></li>
+                        <li id="filterSkup" class="  cir" onclick="prikaziTagovane('skupstina')"><a >Скупштина</a></li>
+                        <!-- <li id="filterJavne"  class="  cir" onclick="prikaziTagovane('javne')"><a >Јавне институције</a></li> -->
+                        <li id="filterOstali" class="  cir" onclick="prikaziTagovane('ostali')"><a >Остали органи и организације</a></li>
 
-
-                        <li class=" hidden active cir" onclick="prikaziTagovane('vlada')"><a href="#">Влада</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('ministarstva')"><a href="#">Министарства</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('skupstina')"><a href="#">Скупштина</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('javne')"><a href="#">Јавне институције</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('ostali')"><a href="#">Остали органи и организације</a></li>
-
-                        <li class=" hidden active en" onclick="prikaziTagovane('vlada')"><a href="#">Vlada</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('ministarstva')"><a href="#">Ministarstva</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('skupstina')"><a href="#">Skupština</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('javne')"><a href="#">Javne institucije</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('ostali')"><a href="#">Ostali organi i organizacije</a></li>
+                      
 
                     </ul>
                     <ul class="nav navbar-right">
-                        <li>
-                           <div class="versions" id="verzije">
-                                <a class="lang" href="#ci">Ћир</a>
-                                <a class="lang" href="#lat">Lat</a>
-                                <a class="lang" href="#en">En</a>
-
-                            </div>
-                        </li>
+                        
                         <li class="compare clear pull-left">
-                            <!-- <button id="uporedi">Uporedi sa prethodnim izveštajima</button> -->
-
-
-                            <!-- <div class="ui compact menu">
-                              <div class="ui simple dropdown " >
-                               <span id="uporedi">Uporedi po godinama</span>
-                                
-                                <div class="menu">
-                                  <div class="item">2015</div>
-                                  <div class="item">2014</div>
-                                  <div class="item">2013</div>
-                                </div>
-                              </div>
-                            </div> -->
-                           <!--  <select name="godina" id="izvestajUporedi">
-                               <option value="2015">2015</option>
-                               <option value="2014">2014</option>
-                               <option value="2013">2013</option>
-                           </select> -->
+                          
                         </li>
                         <li class="search pull-left">
                             <div id="pretraga">
-                                <input id="filter" type="text" placeholder="Pretražite">
+                                 <input id="filter" class=" " type="text" placeholder="Претражите">
                             </div>
                         </li>
                     </ul>
@@ -129,7 +93,7 @@
             <div id="clearFloat"></div>
             <div id="rezultat-pretrage">
                 <div class="control" style="display: none">
-                    <a id="hideSearch" href="#">sakrij</a>
+                    <a id="hideSearch" href="#">сакриј</a>
                     <a id="closeSearch" href="#">X</a>
                 </div>
                 <div class="sadrzaj-pretrage  ">
@@ -139,7 +103,7 @@
 		
 		<div class="navigation col-xs-12 col-sm-6 col-md-2">
 			<div id="displayRefButton" style="display: inline-block; vertical-align: top;">			
-			<a id="displayRefButtonNav" class="hidden" href="./" >SADRŽAJ</a>
+			
             <a id="displayRefButtonNav" href="./" >САДРЖАЈ</a>
 			</div>
 		</div>
@@ -161,12 +125,7 @@
         var height = div.outerHeight();
         div.css("background-size", "30px " + height + "px");
     }
-    $(document).ready(function() {
-       // selected();
-    });
-    $(document).resize(function() {
-        // selected();
-    });
+    
     </script>
 </body>
 

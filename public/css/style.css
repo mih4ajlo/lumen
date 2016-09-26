@@ -9,7 +9,9 @@ body {
 }
 
 #displayCont{
-	
+	display: inline-block;
+    vertical-align: top;
+    width: 100%;
 }
 #displayContCompare{
 	
@@ -45,10 +47,22 @@ body {
 }
 #displayContYear{
     font-size: 30px;
-    margin-top: -50px;
+    margin-top: -50px;    
     /* position: absolute; */
 	float: left;
 }
+
+.margin-45-left{
+    margin-left: 45%;
+}
+.margin-20-left{
+    margin-left: 20%;
+}
+
+.margin-20-right{
+    margin-right: 20%;
+}
+
 #displayContCompareYear{
     font-size: 30px;
     margin-top: -50px;
@@ -451,7 +465,7 @@ td{
     width: 140px;
     height: 140px;
     padding-right: 30px;
-    padding-top: 30px;
+    padding-top: 20px;
     background-color: #58595B;
     color: #72D0EB;
     font-size: 18px;

@@ -2,10 +2,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Izvestaj 2015</title>
+    <title>Годишњи Извештај Заштитника Грађана</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/dropdown.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/dropdown.min.css">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/transition.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/transition.min.css">
 
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/black-tie/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
@@ -14,22 +20,14 @@
     <script src="scripts/tags.js"></script>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/dropdown.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/dropdown.min.css">
-
-
-    <style type="text/css">
-
     
-    </style>
+
 
     <script type="text/javascript">
     $(document).ready(function() {
         //console.log("ready!");
-
         //define var for parsed data
         var cont = {};
-
 
     })
     </script>
@@ -40,7 +38,7 @@
         <nav class="main-nav navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">                       
+                    <a class="navbar-brand" href="/">                       
                         <div class="logo krug cir">Годишњи Извештај Заштитника Грађана</div>                       
                     </a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -112,9 +110,11 @@
             </div>
         </div>
 		
+
+         <!-- style="display: inline-block; vertical-align: top;" -->
         <div  class="col-xs-12 col-sm-6 col-md-8">
 		<div id="mainLine"></div>
-            <div id="displayCont" style="display: inline-block; vertical-align: top;"></div>
+            <div id="displayCont"></div>
             <div id="displayContCompare" style="display: inline-block; vertical-align: top;"> </div>
             <div id="clearFloat"></div>
             <div id="rezultat-pretrage">
