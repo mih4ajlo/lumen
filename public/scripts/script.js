@@ -169,6 +169,8 @@ function showMainCont(yearPo, id) {
 
             if($("#displayCont [akter]").length > 0)
                 $(".nav.navbar-nav").show() ; 
+            else 
+                $(".nav.navbar-nav").hide() ; 
         })
         .fail(function() {
             $("#displayCont").html('<p class="emptyHeader nav-section" >Greška prilikom učitavanja glavnog sadržaja.</p>');
