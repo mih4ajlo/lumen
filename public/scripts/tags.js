@@ -1,4 +1,4 @@
-function prikaziTagovane(arg) {
+function prikaziTagovane(arg,ev) {
   
   var naziv = "";
 
