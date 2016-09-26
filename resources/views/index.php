@@ -33,7 +33,7 @@
         //define var for parsed data
         var cont = {};
 
-        
+
     })
     </script>
 </head>
@@ -60,20 +60,20 @@
                         <li class="active lat" onclick="prikaziTagovane('vlada')"><a >Vlada</a></li>
                         <li class="lat" onclick="prikaziTagovane('ministarstva')"><a >Ministarstva</a></li>
                         <li class="lat" onclick="prikaziTagovane('skupstina')"><a >Skupština</a></li>
-                        <li class="lat" onclick="prikaziTagovane('javne')"><a >Javne institucije</a></li>
+                        <!-- <li class="lat" onclick="prikaziTagovane('javne')"><a >Javne institucije</a></li> -->
                         <li class="lat" onclick="prikaziTagovane('ostali')"><a >Ostali organi i organizacije</a></li>
 
 
                         <li class=" hidden active cir" onclick="prikaziTagovane('vlada')"><a >Влада</a></li>
                         <li class=" hidden cir" onclick="prikaziTagovane('ministarstva')"><a >Министарства</a></li>
                         <li class=" hidden cir" onclick="prikaziTagovane('skupstina')"><a >Скупштина</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('javne')"><a >Јавне институције</a></li>
+                        <!-- <li class=" hidden cir" onclick="prikaziTagovane('javne')"><a >Јавне институције</a></li> -->
                         <li class=" hidden cir" onclick="prikaziTagovane('ostali')"><a >Остали органи и организације</a></li>
 
                         <li class=" hidden active en" onclick="prikaziTagovane('vlada')"><a >Vlada</a></li>
                         <li class=" hidden en" onclick="prikaziTagovane('ministarstva')"><a >Ministarstva</a></li>
                         <li class=" hidden en" onclick="prikaziTagovane('skupstina')"><a >Skupština</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('javne')"><a >Javne institucije</a></li>
+                        <!-- <li class=" hidden en" onclick="prikaziTagovane('javne')"><a >Javne institucije</a></li> -->
                         <li class=" hidden en" onclick="prikaziTagovane('ostali')"><a >Ostali organi i organizacije</a></li>
 
                     </ul>
