@@ -20,10 +20,7 @@
 
     <style type="text/css">
 
-    #nav{
-        height: 100vh;
-        overflow: scroll;
-    }
+    
     </style>
 
     <script type="text/javascript">

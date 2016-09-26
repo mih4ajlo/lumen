@@ -138,6 +138,12 @@ text-align:right;
 .navig{
 
 }    
+
+#nav{
+    height: 100vh;
+    overflow: scroll;
+    margin-bottom: 100px;
+}
 .navigation {
     /*height: calc(100% - 200px);
     overflow-x: hidden;

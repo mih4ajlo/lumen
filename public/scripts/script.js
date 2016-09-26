@@ -92,6 +92,9 @@ function parseUrl() {
 
 }
 
+
+
+
 //get mainMenu from DB
 //year is mandatory
 function showMenu( yearPo ) {
@@ -118,13 +121,17 @@ function showMenu( yearPo ) {
             //sakrij sve h2-ove koji nisu na tom podstablu
             //dodaj svim h1-ma glyph strelicu na dole 
             
-            
+            //OTKRIVANJE MENIJA
             $("#nav>ul>li>a").append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
             $("#nav>ul>li>ul").hide()
             
             //:not(
             //$("#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active+ul").show()
-            var temp_selektor = $("#nav>ul>li>a.activ,#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active, #nav>ul>li>ul>li>a.active+ul");
+            var temp_selektor = 
+                $("#nav>ul>li>a.activ,#nav>ul>li>a.active+ul,"+
+                " #nav>ul>li>ul>a.active, #nav>ul>li>ul>a.active+ul,"+
+                " #nav>ul>li>ul>li>a.active, #nav>ul>li>ul>li>a.active+ul,"+
+                " #nav>ul>li>ul>li>ul>li>a.active, #nav>ul>li>ul>li>ul>li>a.active+ul");
             temp_selektor.parents().filter('ul').show();//svi parenti 
             temp_selektor.show();
 
@@ -167,6 +174,8 @@ function showMainCont(yearPo, id) {
 
             $("#uporediOff").hide();
 
+
+            //PRIKAZ filter kontrola    
             if($("#displayCont [akter]").length > 0)
                 $(".nav.navbar-nav").show() ; 
             else 
