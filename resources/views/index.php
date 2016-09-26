@@ -55,24 +55,24 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav"  style="display: none;">
-                        <li class="active lat" onclick="prikaziTagovane('vlada')"><a href="#">Vlada</a></li>
-                        <li class="lat" onclick="prikaziTagovane('ministarstva')"><a href="#">Ministarstva</a></li>
-                        <li class="lat" onclick="prikaziTagovane('skupstina')"><a href="#">Skupština</a></li>
-                        <li class="lat" onclick="prikaziTagovane('javne')"><a href="#">Javne institucije</a></li>
-                        <li class="lat" onclick="prikaziTagovane('ostali')"><a href="#">Ostali organi i organizacije</a></li>
+                        <li class="active lat" onclick="prikaziTagovane('vlada')"><a >Vlada</a></li>
+                        <li class="lat" onclick="prikaziTagovane('ministarstva')"><a >Ministarstva</a></li>
+                        <li class="lat" onclick="prikaziTagovane('skupstina')"><a >Skupština</a></li>
+                        <li class="lat" onclick="prikaziTagovane('javne')"><a >Javne institucije</a></li>
+                        <li class="lat" onclick="prikaziTagovane('ostali')"><a >Ostali organi i organizacije</a></li>
 
 
-                        <li class=" hidden active cir" onclick="prikaziTagovane('vlada')"><a href="#">Влада</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('ministarstva')"><a href="#">Министарства</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('skupstina')"><a href="#">Скупштина</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('javne')"><a href="#">Јавне институције</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('ostali')"><a href="#">Остали органи и организације</a></li>
+                        <li class=" hidden active cir" onclick="prikaziTagovane('vlada')"><a >Влада</a></li>
+                        <li class=" hidden cir" onclick="prikaziTagovane('ministarstva')"><a >Министарства</a></li>
+                        <li class=" hidden cir" onclick="prikaziTagovane('skupstina')"><a >Скупштина</a></li>
+                        <li class=" hidden cir" onclick="prikaziTagovane('javne')"><a >Јавне институције</a></li>
+                        <li class=" hidden cir" onclick="prikaziTagovane('ostali')"><a >Остали органи и организације</a></li>
 
-                        <li class=" hidden active en" onclick="prikaziTagovane('vlada')"><a href="#">Vlada</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('ministarstva')"><a href="#">Ministarstva</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('skupstina')"><a href="#">Skupština</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('javne')"><a href="#">Javne institucije</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('ostali')"><a href="#">Ostali organi i organizacije</a></li>
+                        <li class=" hidden active en" onclick="prikaziTagovane('vlada')"><a >Vlada</a></li>
+                        <li class=" hidden en" onclick="prikaziTagovane('ministarstva')"><a >Ministarstva</a></li>
+                        <li class=" hidden en" onclick="prikaziTagovane('skupstina')"><a >Skupština</a></li>
+                        <li class=" hidden en" onclick="prikaziTagovane('javne')"><a >Javne institucije</a></li>
+                        <li class=" hidden en" onclick="prikaziTagovane('ostali')"><a >Ostali organi i organizacije</a></li>
 
                     </ul>
                     <ul class="nav navbar-right">
