@@ -20,7 +20,7 @@ function prikaziTagovane(arg) {
       break;
   }
 
-    $("[akter]").hide()
+    $("[akter]").parents().filter('p').hide()
      
     if(naziv =="ministarstva"){
      //$("p[akter]").hide() 
@@ -28,20 +28,20 @@ function prikaziTagovane(arg) {
     }
     else if(naziv =="vlada"){
      //$("p[akter]").hide() 
-      $("[akter*='vlada']").show()
+      $("[akter*='vlada']").parents().filter('p').show()
     }
 
     else if(naziv =="skupstina"){
      //$("p[akter]").hide() 
-      $("[akter*='skupstina']").show()
+      $("[akter*='skupstina']").parents().filter('p').show()
     }
     else if(naziv =="javne"){
      //$("p[akter]").hide() 
-      $("[akter*='javne']").show()
+      $("[akter*='javne']").parents().filter('p').show()
     }
     else if(naziv =="ostali"){
      //$("p[akter]").hide() 
-      $("[akter*='ostali']").show()
+      $("[akter*='ostali']").parents().filter('p').show()
     }
 
 }
