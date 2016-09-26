@@ -84,7 +84,7 @@
 
             <script type="text/javascript">
                 $(function() {
-                    prikaziDokument({tip:"sadrzaj","godina":2015});
+                    prikaziDokument({tip:"sadrzaj","godina":2015,jezik:'rs-ci'});
 
 
                     $("#prikazDokumenta").click(function(el) {

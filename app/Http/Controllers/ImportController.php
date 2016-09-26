@@ -442,17 +442,25 @@ class ImportController extends Controller
 	public function showCategoriesOrder() {
 
 		//mora se proslediti neki parametar (godina, tip dokumenta)
+		
+		$lang = $_GET['jezik'] ;
+		if($lang =="cir" || $lang =="ci"){
+	        $lang = "rs-ci";
+	    }
 		$uslov = "";
 		$args = array();
 
 		if(count($_GET) > 0){
-			$uslov = "WHERE kgodina =? and tip=?";
-			$args =   array( $_GET['godina'], $_GET['tip'] );
+			$uslov = "WHERE kgodina =? and tip=? and klang=?";
+			$args =   array( $_GET['godina'], $_GET['tip'], $lang );
 		}
 
 		$sql = "SELECT * FROM kategorijes $uslov ORDER BY korder  ";
 		
 		$result = app('db')->select($sql,$args);
+
+			
+		
 
 		$topmenu = '';
 
