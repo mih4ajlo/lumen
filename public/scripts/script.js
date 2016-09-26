@@ -122,8 +122,16 @@ function showMenu( yearPo ) {
             //dodaj svim h1-ma glyph strelicu na dole 
             
             //OTKRIVANJE MENIJA
-            $("#nav>ul>li>a").append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
-            $("#nav>ul>li>ul").hide()
+            
+
+           
+              $("#nav>ul>li>a").each(function(index, el) {
+                   if( $(el).siblings('ul').length > 0 )
+                    $(el).append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
+              });
+              
+              $("#nav>ul>li>ul").hide()
+            
             
             //:not(
             //$("#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active+ul").show()
@@ -145,6 +153,8 @@ function showMenu( yearPo ) {
 
             // SCROLL MENIJA
             $("#nav").scrollTop($("#nav").scrollTop() + $("#nav a.active").position().top - 8 );
+            //if() ako je h1 koristit ovo
+            //$("#nav").offset({top:-300})
 
         })
         .fail(function() {
