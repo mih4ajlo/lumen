@@ -150,11 +150,17 @@ function showMenu( yearPo ) {
                 $(this).parent().siblings().toggle('slow');
             });
 
+            var maxScrollTop = $("#nav").prop('scrollHeight') - $("#nav").outerHeight();
+
+            // if maxScrollTop < $("#nav a.active").position().top, radi offset nekako
 
             // SCROLL MENIJA
             $("#nav").scrollTop($("#nav").scrollTop() + $("#nav a.active").position().top - 8 );
-            //if() ako je h1 koristit ovo
+            //if() ako je h1 koristit ovo; meni se prikaze 95% i onda je moguci skrol jako mali
+            //
             //$("#nav").offset({top:-300})
+            //$("#nav").prop('scrollHeight')
+            
 
         })
         .fail(function() {
