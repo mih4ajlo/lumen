@@ -166,6 +166,9 @@ function showMainCont(yearPo, id) {
             clearStyles("displayCont");
 
             $("#uporediOff").hide();
+
+            if($("#displayCont [akter]").length > 0)
+                $(".nav.navbar-nav").show() ; 
         })
         .fail(function() {
             $("#displayCont").html('<p class="emptyHeader nav-section" >Greška prilikom učitavanja glavnog sadržaja.</p>');
