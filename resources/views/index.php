@@ -107,7 +107,7 @@
                         </li>
 						<li class="search pull-left">
                             <div >
-                                <span id="uporediOff" class="hidden cir">Искључи поређење по годинама</span>
+                                <span id="uporediOff" class=" cir">Искључи поређење по годинама</span>
                                 <span id="uporediOff" class="hidden lat">Isključi poredjenje po godinama</span>
                                 <span id="uporediOff" class="hidden en">Isključi poredjenje po godinama</span>
                             </div>
