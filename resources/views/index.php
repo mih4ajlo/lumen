@@ -114,7 +114,7 @@
                         </li>
                         <li class="search pull-left">
                             <div id="pretraga">
-                                <input id="filter" class="hidden " type="text" placeholder="Pretražite">
+                                <input id="filter" class=" " type="text" placeholder="Pretražite">
                                <!--  <input id="filter"  class=" cir" type="text" placeholder="Претражите">
                                <input id="filter"  class="hidden en" type="text" placeholder="Search"> -->
                             </div>
