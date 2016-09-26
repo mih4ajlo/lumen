@@ -24,7 +24,8 @@ function prikaziTagovane(arg,ev) {
      
     if(naziv =="ministarstvo"){
      //$("p[akter]").hide() 
-      $("[akter]").filter(function(ind,la){if($(la).attr('akter')) return ($(la).attr('akter').indexOf('ministar')!=-1)}).show()
+      $("[akter*='ministarstvo']").parents().filter('p').show()
+      //$("[akter]").filter(function(ind,la){if($(la).attr('akter')) return ($(la).attr('akter').indexOf('ministar')!=-1)}).show()
     }
     else if(naziv =="vlada"){
      //$("p[akter]").hide() 
