@@ -40,10 +40,8 @@
         <nav class="main-nav navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <div class="logo krug hidden lat">Izveštaj Zaštitnika Građana</div>
-                        <div class="logo krug cir">Извештај Заштитника Грађана</div>
-                        <div class="logo krug hidden en">Protectors Public <br> report</div>
+                    <a class="navbar-brand" href="#">                       
+                        <div class="logo krug cir">Годишњи Извештај Заштитника Грађана</div>                       
                     </a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -54,45 +52,24 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav"  style="display: none;">
-                        <li class="active lat" onclick="prikaziTagovane('vlada')"><a >Vlada</a></li>
-                        <li class="lat" onclick="prikaziTagovane('ministarstva')"><a >Ministarstva</a></li>
-                        <li class="lat" onclick="prikaziTagovane('skupstina')"><a >Skupština</a></li>
-                        <!-- <li class="lat" onclick="prikaziTagovane('javne')"><a >Javne institucije</a></li> -->
-                        <li class="lat" onclick="prikaziTagovane('ostali')"><a >Ostali organi i organizacije</a></li>
+                        <li id="filterSve" class=" active  cir" onclick="prikaziTagovane('sve')"><a >Све</a></li>
+                        <li id="filterVlada" class="   cir" onclick="prikaziTagovane('vlada')"><a >Влада</a></li>
+                        <li id="filterMin" class="  cir" onclick="prikaziTagovane('ministarstva')"><a >Министарства</a></li>
+                        <li id="filterSkup" class="  cir" onclick="prikaziTagovane('skupstina')"><a >Скупштина</a></li>
+                        <!-- <li id="filterJavne"  class="  cir" onclick="prikaziTagovane('javne')"><a >Јавне институције</a></li> -->
+                        <li id="filterOstali" class="  cir" onclick="prikaziTagovane('ostali')"><a >Остали органи и организације</a></li>
 
-
-                        <li class=" hidden active cir" onclick="prikaziTagovane('vlada')"><a >Влада</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('ministarstva')"><a >Министарства</a></li>
-                        <li class=" hidden cir" onclick="prikaziTagovane('skupstina')"><a >Скупштина</a></li>
-                        <!-- <li class=" hidden cir" onclick="prikaziTagovane('javne')"><a >Јавне институције</a></li> -->
-                        <li class=" hidden cir" onclick="prikaziTagovane('ostali')"><a >Остали органи и организације</a></li>
-
-                        <li class=" hidden active en" onclick="prikaziTagovane('vlada')"><a >Vlada</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('ministarstva')"><a >Ministarstva</a></li>
-                        <li class=" hidden en" onclick="prikaziTagovane('skupstina')"><a >Skupština</a></li>
-                        <!-- <li class=" hidden en" onclick="prikaziTagovane('javne')"><a >Javne institucije</a></li> -->
-                        <li class=" hidden en" onclick="prikaziTagovane('ostali')"><a >Ostali organi i organizacije</a></li>
 
                     </ul>
                     <ul class="nav navbar-right">
-                        <li>
-                            <div class="versions" id="verzije">
-                                <a class="lang" href="#ci">Ћир</a>
-                                <a class="lang" href="#lat">Lat</a>
-                                <a class="lang" href="#en">En</a>
-
-                            </div>
-                        </li>
+                        
                         <li class="compare clear pull-left">
                             <!-- <button id="uporedi">Uporedi sa prethodnim izveštajima</button> -->
 
 
                             <div class="ui compact menu">
                               <div class="ui simple dropdown " >
-                               <span id="uporedi" class="hidden lat">Uporedi po godinama</span>
                                <span id="uporedi" class=" cir">Упореди по годинама</span>
-                               <span id="uporedi" class="hidden en">Uporedi po godinama</span>
-                                
                                 <div id="timelineList" class="menu">
                                   <div class="item">2015</div>
                                   <div class="item">2014</div>
@@ -105,15 +82,12 @@
 						<li class="search pull-left">
                             <div >
                                 <span id="uporediOff" class=" cir">Искључи поређење по годинама</span>
-                                <span id="uporediOff" class="hidden lat">Isključi poredjenje po godinama</span>
-                                <span id="uporediOff" class="hidden en">Isključi poredjenje po godinama</span>
                             </div>
                         </li>
                         <li class="search pull-left">
                             <div id="pretraga">
-                                <input id="filter" class=" " type="text" placeholder="Pretražite">
-                               <!--  <input id="filter"  class=" cir" type="text" placeholder="Претражите">
-                               <input id="filter"  class="hidden en" type="text" placeholder="Search"> -->
+                                <input id="filter" class=" " type="text" placeholder="Претражите">
+                               
                             </div>
                         </li>
                     </ul>
@@ -145,7 +119,7 @@
             <div id="clearFloat"></div>
             <div id="rezultat-pretrage">
                 <div class="control" style="display: none">
-                    <a id="hideSearch" href="#">sakrij</a>
+                    <a id="hideSearch" href="#">сакриј</a>
                     <a id="closeSearch" href="#">X</a>
                 </div>
                 <div id="rezultatiPretrage" class="sadrzaj-pretrage">
@@ -156,9 +130,7 @@
 		<div class="navigation col-xs-12 col-sm-6 col-md-2">
 			<div id="displayRefButton" style="display: inline-block; vertical-align: top;">
 			<a class=" cir" id="displayRefButtonReference"  href="dodatne.html#1" >Додатне теме</a>
-            <a class="hidden lat" id="displayRefButtonReference"  href="dodatne.html#1" >Dodatne teme</a>
-            <a class="hidden en" id="displayRefButtonReference"  href="dodatne.html#1" >Dodatne teme</a>
-			<!-- <a id="displayRefButtonNav" href="#nav" data-toggle="tab" aria-expanded="false">SADRŽAJ</a> -->
+			
 			</div>
 		</div>
     </section>
