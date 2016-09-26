@@ -4,7 +4,7 @@ function prikaziTagovane(arg,ev) {
 
   switch( arg ) {
     case "ministarstva":
-      naziv = "ministarstva";   
+      naziv = "ministarstvo";   
       break;
     case "vlada":
       naziv = "vlada";
@@ -22,7 +22,7 @@ function prikaziTagovane(arg,ev) {
 
     $("[akter]").parents().filter('p').hide()
      
-    if(naziv =="ministarstva"){
+    if(naziv =="ministarstvo"){
      //$("p[akter]").hide() 
       $("[akter]").filter(function(ind,la){if($(la).attr('akter')) return ($(la).attr('akter').indexOf('ministar')!=-1)}).show()
     }
