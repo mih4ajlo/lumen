@@ -499,7 +499,14 @@ function prependYear(elId) {
 
         $("#displayContYear").remove();
         $('#mainLine').before( meni );
-        $('.ui.inline.dropdown').dropdown();
+        var godina = $('.ui.inline.dropdown').dropdown('get value');
+
+
+        /*
+        $('.ui.inline.dropdown').dropdown().select(function(ev) {
+            var godina  = $('.ui.inline.dropdown').dropdown('get value');
+            console.log(godina);
+        });*/
     
     } else {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[3]+"</span>" );
