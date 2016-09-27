@@ -1,5 +1,6 @@
 <html>
 <head>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Годишњи Извештај Заштитника Грађана</title>
@@ -114,8 +115,8 @@
             <div id="displayCont"></div>
             <div id="displayContCompare" style="display: inline-block; vertical-align: top;"> </div>
             <div id="clearFloat"></div>
-            <div id="rezultat-pretrage">
-                <div class="control" style="display: none">
+            <div id="rezultat-pretrage"  style="display: none">
+                <div class="control">
                     <a id="hideSearch" href="#">сакриј</a>
                     <a id="closeSearch" href="#">X</a>
                 </div>

@@ -15,7 +15,7 @@ $(function() {
         $('#displayRefButtonReference').hide();
         $('#displayRefButtonNav').show();
         //set colors to lime
-        $('#mainLine').css("background-color", "#cee66e");
+        $('#mainLine').css("border-top", "10px solid #cee66e");
         $('#displayRefButton').css("background-color", "#cee66e");
 
     }
@@ -69,9 +69,16 @@ $(function() {
     var parseDoc = function(index, el) {
         //console.dir(el);
         //trim &nbsp
+        var klasa ="";
 
         if (el.nodeName == "H1") {
-            $("#sideMenu").append('<p class="emptyHeader nav-section" id="showCont' + index + '">' + el.innerText.replace(/\u00a0/g, " ") + '</p>'); //return true;
+        	if(index == 0) 
+        	{
+        		klasa ="active";
+        	}	
+
+
+            $("#sideMenu").append('<p class="emptyHeader nav-section '+klasa+'" id="showCont' + index + '">' + el.innerText.replace(/\u00a0/g, " ") + '</p>'); //return true;
             oldH = index;
             excludedSearch.push('showCont' + index);
             //set plain HTML for Chapters
@@ -99,7 +106,7 @@ $(function() {
             $('#displayCont').html();
             $('#displayCont').html(contentArr['showCont' + index]);
             //posto se vec ucitao u #displayCont
-            parseH3subsection('showCont' + index, el.nodeName);
+            //parseH3subsection('showCont' + index, el.nodeName);
             //scroll clicked button to top
             $('#content').scrollTop(0);
             $('#content').scrollTop($('#showCont' + index).position().top);
@@ -108,7 +115,7 @@ $(function() {
             curPage = 'showCont' + index;
             //check if references exist
             $('#displayRefButtonReference').hide();
-            $('#displayRefButtonNav').hide();
+            //$('#displayRefButtonNav').hide();
 
           /*  $.get("reference/" + curPage + ".html", { "_": $.now() }, function(response) {
                 $('#displayRefButtonReference').show();

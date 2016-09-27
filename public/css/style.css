@@ -452,6 +452,9 @@ td{
     background-position: 0px;
     background-size: 100%;
 }
+
+.navbar-right{    margin-top: 15px; }
+
 .navbar-header button {
     margin-top: 85px;
 }
