@@ -474,7 +474,7 @@ function prependYear(elId) {
     var hashVars = hash.split("-");
     var god = hashVars[1];
     var stil = "margin-45-left";
-
+    if(god == undefined) god =2015;
 
 
     
