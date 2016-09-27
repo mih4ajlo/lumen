@@ -17,6 +17,13 @@ body {
     
 }
 
+#displayCont h1,
+#displayCont h2,
+#displayCont h3,
+#displayCont h4{
+    margin-bottom: 40px;
+}
+
 #displayCont h1, #displayContCompare h1 {
     color: #337ab7;
     font-size: 24px;
@@ -273,6 +280,7 @@ max-width: 20%;
     margin-left: -12px;
     margin-top: 8px;
     border-top: 10px solid #72D0EB;
+
         }   
 
         
@@ -454,6 +462,13 @@ td{
 }
 
 .navbar-right{    margin-top: 15px; }
+
+@media screen and (max-width: 1300px){
+    
+    .navbar-nav{    max-width: 45% !important ; }
+}
+    
+
 
 .navbar-header button {
     margin-top: 85px;
