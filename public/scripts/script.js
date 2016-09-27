@@ -24,11 +24,7 @@ $(document).ready(function() {
         else {
             $("#content").css('top', '');
         }
-
     })
-
-
-
 
 });
 
@@ -77,8 +73,6 @@ function parseUrl() {
     if (searchFor) { searchForString(searchFor); }
 
 }
-
-
 
 
 //get mainMenu from DB
@@ -146,7 +140,9 @@ function showMenu( yearPo ) {
 
         })
         .fail(function() {
-            $("#nav").html('<p class="emptyHeader nav-section" >Greška prilikom učitavanja menija.</p>');
+            var poruka = 'Greška prilikom učitavanja menija.';
+                poruka = 'Грешка приликом учитавања менија.';
+            $("#nav").html('<p class="emptyHeader nav-section" >'+poruka +'</p>');
         });
 }
 
@@ -180,7 +176,9 @@ function showMainCont(yearPo, id) {
                 $(".nav.navbar-nav").hide() ; 
         })
         .fail(function() {
-            $("#displayCont").html('<p class="emptyHeader nav-section" >Greška prilikom učitavanja glavnog sadržaja.</p>');
+            var poruka = 'Greška prilikom učitavanja glavnog sadržaja.';
+                poruka = 'Грешка приликом учитавања главног садржаја.';
+            $("#displayCont").html('<p class="emptyHeader nav-section" >'+poruka+'</p>');
         });
 }
 
@@ -212,7 +210,9 @@ function compareToYear(yearToCompare) {
 
         })
         .fail(function() {
-            $("#displayContCompare").html('<p>Greška prilikom učitavanja sadržaja za uporedjivanje.</p>');
+            var poruka = 'Greška prilikom učitavanja sadržaja za uporedjivanje.';
+                poruka = 'Грешка приликом учитавања садржаја за упоређивање.';
+            $("#displayContCompare").html('<p>'+ poruka +'</p>');
         });
 
 }
@@ -244,7 +244,9 @@ function availableYearsToCompare() {
 
         })
         .fail(function() {
-            $("#timelineList").html('<div class="item">Greška prilikom učitavanja sadržaja za uporedjivanje.</div>');
+            var poruka = 'Greška prilikom učitavanja sadržaja za uporedjivanje.';
+                poruka = 'Грешка приликом учитавања садржаја за упоређивање.';
+            $("#timelineList").html('<div class="item">' + poruka + '</div>');
         });
 
 }
@@ -308,7 +310,9 @@ function loadFootNotes(year) {
 
         })
         .fail(function() {
-            $("#footnoteContent").html('Greška prilikom učitavanja fusnota.');
+            var poruka = 'Greška prilikom učitavanja fusnota.';
+                poruka = 'Грешка приликом учитавања фуснота.';
+            $("#footnoteContent").html(poruka);
         });
 
 }
@@ -326,7 +330,9 @@ function loadFootNotesCompare(year) {
 
         })
         .fail(function() {
-            $("#footnoteContentCompare").html('Greška prilikom učitavanja fusnota.');
+            var poruka = 'Greška prilikom učitavanja fusnota.';
+                poruka = 'Грешка приликом учитавања фуснота.';
+            $("#footnoteContentCompare").html( poruka );
         });
 
 }
@@ -367,7 +373,9 @@ $(function() { // this will be called when the DOM is ready
 
             })
             .fail(function() {
-                $("#displayCont").html('<p class="emptyHeader nav-section" >Greška prilikom učitavanja sadržaja za uporedjivanje.</p>');
+                var poruka = 'Greška prilikom učitavanja sadržaja za uporedjivanje.';
+                    poruka = 'Грешка приликом учитавања садржаја за упоређивање.';
+                $("#displayCont").html('<p class="emptyHeader nav-section" >'+poruka+'</p>');
             });
 
 
@@ -408,6 +416,9 @@ function turnOffCompare() {
     $("#uporediOff").hide();
 
     $("#displayContCompareYear").remove();
+
+    $('#displayContYear').addClass('margin-45-left') ;
+    $('#displayContYear').removeClass('margin-20-left') ;
 
     $(function() {
         $("#displayCont").animate({
@@ -464,19 +475,24 @@ function prependYear(elId) {
     var god = hashVars[1];
     var stil = "margin-45-left";
 
-    var meni =   '<span id="' + elId + 'Year" class="ui header '+ stil +'">'+
-      '<div class="ui inline dropdown">'+
-          '<div class="text">2015</div>'+
-          '<i class="dropdown icon"></i>'+
-          '<div class="menu">       '+
-            '<div class="item" data-text="2015">2015</div>'+
-            '<div class="item" data-text="2014">2014</div>'+
-            '<div class="item" data-text="2013">2013</div>'+
-          '</div>'+
-        '</div>'+
-    '</span>';
 
 
+    
+    var meni =   
+        '<span id="' + elId + 'Year" class="ui header '+ stil +'">'+
+          '<div class="ui inline dropdown">'+
+              '<div class="text">'+god+'</div>'+
+              '<i class="dropdown icon"></i>'+
+              '<div class="menu">'+
+                '<div class="item" data-text="2015">2015</div>'+
+                '<div class="item" data-text="2014">2014</div>'+
+                '<div class="item" data-text="2013">2013</div>'+
+              '</div>'+
+            '</div>'+
+        '</span>';
+
+
+        //ako nema compare 
     if (elId.indexOf("Compare") < 0) {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
        
@@ -488,17 +504,21 @@ function prependYear(elId) {
         var godina = $('.ui.inline.dropdown').dropdown('get value');
 
 
-        /*
-        $('.ui.inline.dropdown').dropdown().select(function(ev) {
+        
+        $('.ui.inline.dropdown').dropdown('setting', 'onChange', function(ev) {
             var godina  = $('.ui.inline.dropdown').dropdown('get value');
-            console.log(godina);
-        });*/
+            window.location = "#"+lang+"-"+godina;
+            //parseUrl();
+        });
     
     } else {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[3]+"</span>" );
         $("#displayContCompareYear").remove();
         god = hashVars[3];
         $('#mainLine').before("<span id='" + elId + "Year'  >" + god + "</span>");
+
+        $('#displayContYear').removeClass('margin-45-left') ;
+        $('#displayContYear').addClass('margin-20-left') ;
     }
     //DISPLAY CONT YEAR
     
