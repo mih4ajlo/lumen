@@ -257,6 +257,8 @@ function searchForString(searchFor) {
     if ($('#displayCont').is(':empty')) { setTimeout(function() { searchForString(searchFor); }, 200);
         return; }
 
+
+
     console.log("Searching for " + searchFor);
     //console.log( $("#displayCont").html() );
 
@@ -284,7 +286,10 @@ function searchForString(searchFor) {
             count++;
         }
 
+
         return valspan;
+
+
     });
 
     $('html, body').animate({
@@ -292,7 +297,7 @@ function searchForString(searchFor) {
     }, 500);
 
 //    $("#displayContYear").html('')
-
+    $
 }
 
 
@@ -370,6 +375,15 @@ $(function() { // this will be called when the DOM is ready
                     $('#rezultatiPretrage').html('<div class="stavka-pretrage">Nema rezultata.</div>');
                 }
 
+                $("#rezultat-pretrage").show();
+
+                $("#hideSearch").click(function(ev) {
+                    hideResult();
+                })
+
+                $("#closeSearch").click(function(ev) {
+                    removeResult();
+                })
 
             })
             .fail(function() {
@@ -597,3 +611,25 @@ function vratiJezik() {
         lang ='ci';
     return lang;
 }
+
+
+
+var hideResult = function(arg) {
+        $(".sadrzaj-pretrage").hide();
+        //setuj opciju show
+        $("#hideSearch").attr("show", true);
+        $("#hideSearch").html("show");
+        //return arg;
+    }
+
+    var removeResult = function(arg) {
+        $(".control").hide()
+        $('#filter').val('')
+        $('.filtered').removeClass('filtered')
+            //ukloni sve dugmice
+
+        //zasad skrivanje, treba da se ukloni lista pretrage
+        $(".sadrzaj-pretrage").hide();
+
+
+    }

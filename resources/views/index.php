@@ -116,7 +116,7 @@
             <div id="clearFloat"></div>
             <div id="rezultat-pretrage"  style="display: none">
                 <div class="control">
-                    <a id="hideSearch" href="#">сакриј</a>
+                    <!-- <a id="hideSearch" href="#">сакриј</a> -->
                     <a id="closeSearch" href="#">X</a>
                 </div>
                 <div id="rezultatiPretrage" class="sadrzaj-pretrage">
