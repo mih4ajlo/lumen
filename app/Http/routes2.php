@@ -104,6 +104,24 @@ $app->get('{lang}/reference/{year}', function ($year)  {
 });
 
 
+//FIRST CHILD
+// lang obavezan / godina obavezna / kid opcioni - defoult na ORDER BY saltorder LIMIT1
+$app->get('{lang}/firstchild/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
+
+     if($kid){
+        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kowner={$kid} ORDER BY korder LIMIT 1  ";
+     }
+
+    $out = frontSql($sql);
+
+    return json_encode($out) ;
+});
+
+
+
+
+
+
 
 
 

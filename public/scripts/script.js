@@ -553,6 +553,10 @@ function showSubNavAndActivate() {
 
         });
         $(".navig a[href='" + hash + "']").parents().show();
+		
+
+		
+		loadFirstChild();
 
     }
 
@@ -572,6 +576,17 @@ function showSubNavAndActivate() {
     }
 
 }
+
+
+function loadFirstChild(){
+
+    $.getJSON(apiLocation + lang + "/firstchild/" + year + "/"+id, function(loadFirstChildRes) {
+            console.log("first child loaded");
+            if (loadFirstChildRes.length > 0) { $("#displayCont").append(loadFirstChildRes[0].scont); }
+        })
+	}	
+	
+	
 
 
 function vratiJezik() {
