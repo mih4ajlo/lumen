@@ -40,7 +40,7 @@ function prikaziTagovane(arg) {
     }
     else if(naziv =="sve"){
      //$("p[akter]").hide() 
-      $("p[akter]").show()
+      $("p").show()
     }
     else if(naziv =="vlada"){
      //$("p[akter]").hide() 
