@@ -1,9 +1,14 @@
 body{
 	margin-top:0;
+    background-size: 60px 60px;
+    background-image: linear-gradient(to right, grey 0px, transparent 0px), linear-gradient(to bottom, #eeeeee 30px, white 30px);
+
 }
 p{
 	font-size:12px !important;
 	font-family: sans-serif !important;
+	margin-top: 15px;
+    margin-bottom: 17px;
 }
 li{
 	
@@ -29,8 +34,8 @@ li{
 	margin-top:100px;
 	border-right:1px solid #72D0EB;
 	box-sizing: border-box;
-	min-height:100px;
-	background-color:white;
+	min-height:600px;
+	background-color:transparent;
 }
 #parsedNav, #outNav{
 	width:20%;
@@ -78,6 +83,11 @@ li{
 	font-weight:600;
 	color:red;
 }
+#outNav >ul>ul>li{
+	font-weight:600;
+    color: fuchsia;
+    font-weight: 600;
+}
 #outNav p{
 	/* margin:5px 0; */
 	margin:0;
@@ -99,7 +109,7 @@ color:white;
 }
 
 #catOrder{
-	padding-top:90px;
+	padding-top:10px;
 }
 
 .navH1{
@@ -108,6 +118,8 @@ color:white;
 }
 .navH2{
 	padding-left: 15px;
+    color: fuchsia;
+    font-weight: 600;	
 }
 .navH3{
 	padding-left: 30px;

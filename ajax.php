@@ -193,7 +193,7 @@ function updateCatsOrder(){
 
     }
 
-     echo "Updated..."; 
+     echo "Updated...";
 }
 
 ?>

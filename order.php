@@ -33,6 +33,10 @@ include("ajax.php");
 <div id="poruka">&nbsp;</div>
 </div>
 
+<br /><br /><br /><br /><br />
+    <a href="#" onclick="treeObj.collapseAll()">Collapse all</a> |
+    <a href="#" onclick="treeObj.expandAll()">Expand all</a>
+
 <div id="catOrder">
     <ul id="catsTree" class="dhtmlgoodies_tree">
     <li id="node0" noDrag="true" noSiblings="true" noDelete="true" noRename="true"><a href="#">Root node</a>
