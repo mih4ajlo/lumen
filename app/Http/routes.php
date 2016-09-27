@@ -55,14 +55,11 @@ $app->group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'namespace' => '
 
 $app->group([/*'middleware' => ['auth'],*/ 'prefix' => 'auth', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
 
-    $app->get('login',  [   'uses' => 'UserController@login']);
-
-    $app->post('login',  [   'uses' => 'UserController@login']);
-
-    $app->get('logout',  [   'uses' => 'UserController@logout']);
-
-    $app->get('register',  [   'uses' => 'UserController@register']);    
-    $app->get('error/{err}',  [   'uses' => 'UserController@error' ]);
+    $app->get('login',  [ 'uses' => 'UserController@login']);
+    $app->post('login',  [ 'uses' => 'UserController@login']);
+    $app->get('logout',  [ 'uses' => 'UserController@logout']);
+    $app->get('register',  [ 'uses' => 'UserController@register']);
+    $app->get('error/{err}',  [ 'uses' => 'UserController@error']);
 
 });
 

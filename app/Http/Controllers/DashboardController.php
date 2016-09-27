@@ -57,6 +57,11 @@ class DashboardController extends Controller
         return view('dashboard.users',[ "users"=>$users]);
     }
 
+    public function reference($value='')
+    {
+        # code...
+    }
+
 
 
 

@@ -91,6 +91,19 @@ $app->get('{lang}/footnotes/{year}', function ($year)  {
 });
 
 
+//FOOTNOTES
+// lang obavezan / kid obavezan
+$app->get('{lang}/reference/{year}', function ($year)  {
+
+
+    $sql = "SELECT rcont FROM refs  WHERE ryear = '{$year}'  ";
+
+    $out = frontSql($sql);
+
+    return ($out) ;
+});
+
+
 
 
 
