@@ -93,10 +93,10 @@ function insertNewCategory(){
 
 function deleteTextForYear(){
     global $db;
-    $sql = "DELETE FROM sadrzajs WHERE sgodina='".$_POST["sgodina"]."' AND kid='".$_POST["kid"]."'   '   ) ";
+    $sql = "DELETE FROM sadrzajs WHERE sgodina='".$_POST["sgodina"]."' AND kid='".$_POST["kid"]."'   ";
     echo $sql;
-    //$result = $db->query($sql) OR die(mysqli_error($db));
-    echo "<br>Tekst obrisan za godinu ".$_POST["sgodina"]." i id ".$_POST["kid"] ;
+    $result = $db->query($sql) OR die(mysqli_error($db));
+    echo " Tekst obrisan za godinu ".$_POST["sgodina"]." i id ".$_POST["kid"] ;
 
 }
 

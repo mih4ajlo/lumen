@@ -184,6 +184,14 @@ function obrisiTextZaGodinu(){
 	var godina = $('#year :selected').text();
 	var ownerid = $( "#outNav ul li .active" )[0].dataset.kid;
 	console.dir(godina +"/"+ownerid);
+	
+	//obrisi selectovani tekst
+	$.post( "ajax.php",{ action: "deleteTextForYear", sgodina:godina,kid:ownerid }, function( data ) {
+	  show( data );
+	  //reload right Nav
+	  loadCategories();
+	});
+	
 }
 
 	
