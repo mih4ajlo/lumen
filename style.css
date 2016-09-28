@@ -127,3 +127,11 @@ color:white;
 .navH4{
 	padding-left: 50px;
 }
+
+#obrisiTextZaGodinu{
+    float: right;
+    margin-right: 20px;
+    background-color: red;
+    padding: 5px;
+	cursor: pointer;
+}

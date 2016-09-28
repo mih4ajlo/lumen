@@ -33,7 +33,7 @@ Izaberite godinu sa kojom radite:
 <option value="2015">2015</option>
 <option value="2016">2016</option>
 </select>
-
+<div id="obrisiTextZaGodinu">Obrisi ovaj tekst</div>  
 </div>
 
 <div id="parsedNav"></div>
