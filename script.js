@@ -6,7 +6,9 @@ $(document).ready(function() {
 	loadFile();
 	loadCategories();
 
-
+$('#obrisiTextZaGodinu').click(function(){
+	obrisiTextZaGodinu();
+	});
 	
 	
 	
@@ -176,6 +178,10 @@ function showStoredSectionForYear(contid){
 	$.post( "ajax.php",{ action: "showStoredSectionForYear", year:$('#year :selected').text(),id:contid }, function( data ) {
 	  $( "#outCont" ).html( data );
 	});	
+}
+
+function obrisiTextZaGodinu(){
+	
 }
 
 	
