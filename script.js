@@ -181,7 +181,9 @@ function showStoredSectionForYear(contid){
 }
 
 function obrisiTextZaGodinu(){
-	
+	var godina = $('#year :selected').text();
+	var ownerid = $( "#outNav ul li .active" )[0].dataset.kid;
+	console.dir(godina +"/"+ownerid);
 }
 
 	
