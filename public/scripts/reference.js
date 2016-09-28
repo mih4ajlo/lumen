@@ -1,7 +1,7 @@
 var sadrzaj;
 var excludedSearch = [];
 var oldH = 0;
-var contentArr = [];
+var contentArr = {};
 var h = $("h1,h2");
 
 $(function() {
@@ -95,10 +95,10 @@ $(function() {
 
         $('#showCont' + index).click(function() {
 
-            if (index > 4 && index < 23)
+           /* if (index > 4 && index < 23)
                 $(".navbar-nav").show();
             else
-                $(".navbar-nav").hide();
+                $(".navbar-nav").hide();*/
 
             //remove active class
             $(this).parent().children().removeClass("active")
@@ -117,27 +117,36 @@ $(function() {
             $('#displayRefButtonReference').hide();
             //$('#displayRefButtonNav').hide();
 
-          /*  $.get("reference/" + curPage + ".html", { "_": $.now() }, function(response) {
-                $('#displayRefButtonReference').show();
-            });*/
+          
 
         });
 
     }
 
 
-/*
-    $("#mainDocContent").load("content.html", function(cond) {
-        h = $("h1,h2");
-        $('h1,h2').each(parseDoc);
 
-        var footnotes = $('#footnotes').html();
-        $('#footnoteContent').html(footnotes);
 
-        //load init text
-        $('#showCont0').trigger('click');
-    });*/
+function h4meni(argument) {
+	// body...
+}
 
+
+function pretraga( pojam ) {
+	
+	var kljucevi = Object.keys(contentArr);
+
+	for (var i = 0; i < kljucevi.length; i++) {
+		var temp_cont = contentArr[kljucevi[i]];
+		
+		temp_cont.each(function(ind,el){
+			//console.log(ind + " sadraaj :" + $(el).html() )
+			
+			var broj_nadjenih = $(el).text().match(new RegExp( "\s+(\w+" +pojam+"\w+)\s+" ,'ig'));
+
+
+		})
+	}
+}
 
 
 
