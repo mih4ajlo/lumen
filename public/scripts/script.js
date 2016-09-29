@@ -67,6 +67,7 @@ function parseUrl() {
     showMainCont(year, id);
     availableYearsToCompare(); //za padajuci COMPARE meni
     loadFootNotes(year);
+	loadReferences();
 
     //if compare active
     if (compareTo) { compareToYear(compareTo); }
@@ -180,6 +181,7 @@ function showMainCont(yearPo, id) {
                 poruka = 'Грешка приликом учитавања главног садржаја.';
             $("#displayCont").html('<p class="emptyHeader nav-section" >'+poruka+'</p>');
         });
+		
 }
 
 function compareToYear(yearToCompare) {
@@ -600,7 +602,16 @@ function loadFirstChild(){
         })
 	}	
 	
+function loadReferences(){
 	
+    $.getJSON(apiLocation + lang + "/findref/" + year + "/"+id, function(loadReferencesRes) {
+            console.log("find ref loaded");
+            console.dir(loadReferencesRes);
+            if (loadReferencesRes.length > 0) { $("#displayRefButton").html(' <a class=" cir" id="displayRefButtonReference" target="_blank" href="dodatne.html#'+loadReferencesRes[0].lang+'-'+loadReferencesRes[0].year+'-'+loadReferencesRes[0].id+'">Додатне теме'+loadReferencesRes[0].note+'</a>  '); }else 
+				{$("#displayRefButton").html(' ');}
+        })	
+	
+}	
 
 
 function vratiJezik() {

@@ -80,7 +80,7 @@ $search = urldecode($search);
 });
 
 //FOOTNOTES
-// lang obavezan / kid obavezan
+// lang obavezan / year obavezan
 $app->get('{lang}/footnotes/{year}', function ($year)  {
 
     $sql = "SELECT fcont FROM footnotes  WHERE fyear = '{$year}'  ";
@@ -91,12 +91,12 @@ $app->get('{lang}/footnotes/{year}', function ($year)  {
 });
 
 
-//FOOTNOTES
-// lang obavezan / kid obavezan
-$app->get('{lang}/reference/{year}', function ($year)  {
+//Reference - Dodatne teme
+// lang obavezan / year obavezan / kid obavezan
+$app->get('{lang}/reference/{year}/{kid}', function ($year,$kid)  {
 
 
-    $sql = "SELECT rcont FROM refs  WHERE ryear = '{$year}'  ";
+    $sql = "SELECT rcont FROM refs  WHERE ryear = '{$year}' AND kid = '{$kid}'  ";
 
     $out = frontSql($sql);
 
@@ -117,6 +117,31 @@ $app->get('{lang}/firstchild/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  
     return json_encode($out) ;
 });
 
+
+//FIND REFERENCES - dodatne teme
+// lang obavezan / godina obavezna / kid obavezan
+$app->get('{lang}/findref/{year}/{kid}', function ($lang,$year,$kid)  {
+
+    $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year} AND kid={$kid} ";
+    $results = DB::select($sql);
+
+    if(count($results)>0){
+
+        $results[0]->note = '';
+        return json_encode($results) ;
+
+    } else {
+
+        //no ref found check in owner category
+        //SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear=2015 AND kid=(SELECT kowner FROM `kategorijes` WHERE kid=454)
+        $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year} AND kid=(SELECT kowner FROM `kategorijes` WHERE kid={$kid}) ";
+        $results = DB::select($sql);
+        $results[0]->note = '<span style="color:red;">*</span>';
+        return json_encode($results);
+    }
+
+
+});
 
 
 

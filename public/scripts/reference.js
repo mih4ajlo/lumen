@@ -3,6 +3,9 @@ var excludedSearch = [];
 var oldH = 0;
 var contentArr = {};
 var h = $("h1,h2");
+var ryear = 2015;
+var rkid = 170;
+var rlang = "ci"
 
 $(function() {
 
@@ -25,9 +28,18 @@ $(function() {
 
     function loadReferencesFor(cpage) {
 
+	var hash = window.location.hash.replace("#", "");
+    var hashVars = hash.split("-");
+
+
+    if (hashVars[0]) { rlang = hashVars[0]; }
+    if (hashVars[1]) { ryear = hashVars[1]; }
+    if (hashVars[2]) { rkid = hashVars[2]; }  
+	
+	
         $('#reference').html('');
 
-        $.get("ci/reference/2015", { "_": $.now() }, function(response) {
+        $.get(rlang+"/reference/"+ryear+"/"+rkid, { "_": $.now() }, function(response) {
 
             parseRefResponse(response);
 
