@@ -136,7 +136,9 @@ $app->get('{lang}/findref/{year}/{kid}', function ($lang,$year,$kid)  {
         //SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear=2015 AND kid=(SELECT kowner FROM `kategorijes` WHERE kid=454)
         $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year} AND kid=(SELECT kowner FROM `kategorijes` WHERE kid={$kid}) ";
         $results = DB::select($sql);
-        $results[0]->note = '<span style="color:red;">*</span>';
+
+        if(count($results)>0){$results[0]->note = '<span style="color:red;">*</span>';return json_encode($results);}
+    
         return json_encode($results);
     }
 
