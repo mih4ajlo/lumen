@@ -98,26 +98,24 @@ text-align:right;
 
 
 #displayRefButton{
+   
     background-color: #72D0EB;
+    color: #676565 !important;
     z-index: 5;
-    /*background: url("../images/corner.png")  no-repeat scroll right center #72D0EB ;*/
-    
-    /*background-image:url("../images/corner.png") bottom right no-repeat;
-    background-repeat: no-repeat;
-    background-position: bottom right;  
-    no-repeat bootom right;*/
+    /* background: url("../images/corner.png") no-repeat scroll right center #72D0EB; */
     border-radius: 25px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    /* border-top-right-radius: 0px; */
+    /* border-bottom-right-radius: 0px; */
     /* background-image: url("../images/nav-active.png"); */
     background-position: calc(100% + 1px);
     background-repeat: no-repeat;
     padding: 20px 30px;
     margin-top: 8px;
     font-size: 20px;
-    width: 100%;
-    overflow:hidden;
-    -webkit-clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+    width: 90%;
+    text-align: right;
+    overflow: hidden;
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%);
     clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
 }
 #displayRefButton2222:before{
@@ -132,6 +130,7 @@ text-align:right;
 
 #displayRefButtonReference, #displayRefButtonNav{
     /* display:none; */
+    color: #676565 !important;
 }
 
 
@@ -218,7 +217,14 @@ padding-left:0px;
       display:none; 
 } 
  .navig   > ul > li > a{
-    background-color: #cccccc;
+    background-color: #828282;
+    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+    border-radius: 25px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    color: white !important;
+
 }
  .navig   > ul > li > ul > li >a{
 
@@ -234,6 +240,7 @@ padding-left:0px;
 
 .navigation a.active {
     background: #72D0EB;
+    color: #676565 !important;
     border-radius: 25px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -487,7 +494,8 @@ td{
     background-color: #58595B;
     color: #72D0EB;
     font-size: 18px;
-    text-align: right;
+    text-align: left;
+    padding-left: 29px;
     margin: 0 auto;
     line-height: 25px;
 }

@@ -21,6 +21,8 @@
     
     .naslov img {
         margin-left: 40vw;
+        margin-top: 100px;
+        cursor: pointer;
     }
     
     .planirano {
@@ -28,7 +30,21 @@
         margin-left: 30px;
         margin-top: 100px;
     }
-    
+
+    .okvir{
+    	margin-top: 45px !important;
+	    text-align: center;
+    }
+    .aktivan {
+    	height: 110px !important;
+    	margin-top: 10px;
+    }
+
+    .dugme{
+    	color: #4fb6ce;
+    	height: 130px !important;
+    }
+
     .planirano>div {
         vertical-align: middle;
         display: inline-block;
@@ -36,6 +52,28 @@
     
     .img-container {
         min-width: 90%;
+    }
+    .img-container div {
+        margin-top: 20px;
+    }
+
+
+	.pomeren{
+		text-align: center;
+	}
+	.ls{
+		background-color: #449eb3;
+    border-radius: 90px 100px 100px 104px;
+   /*  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); */
+	}
+
+    @media (min-width: 1200px){
+		.pomeren {
+	        margin-left:  4%;
+			
+	    }    	
     }
     
     .planirano span {
@@ -60,41 +98,52 @@
     .row p {
         margin: 5px 20px;
     }
-
-	@media (min-width: 1200px){
-		.bottom-div
-		{
-		    position: absolute;
-		    bottom: 20px;
-		    width: 97%;
-		}
-		
-	}
-	
-
+    
+    @media (min-width: 1200px) {
+        .bottom-div {
+            position: absolute;
+            bottom: 20px;
+            width: 97%;
+        }
+    }
     </style>
+
+    <script type="text/javascript">
+    /*	$(function() {
+    		$(".okvir").hover(function(ev) {
+	    		$('.regular').toggle()
+	    		$('.dugme').toggle()
+	    	})	
+    	})*/
+    	
+    </script>
 </head>
 
 <body>
     <div class="container-fluid main">
         <div class="row naslov">
-            <h3>Годишњи извештаји независних државних институција</h3>
-            <img src="svgs/ombdusman_logo.svg">
+            <h3>Годишњи извештаји независних државних органа</h3>
         </div>
         <div class="row planirano">
-            <div>Планирано 2017 <span class="glyphicon glyphicon-play" aria-hidden="true"></span></div>
             <div class="img-container">
-                <div class="col-lg-3 col-md-6 col-xs-10 col-xs-offset-1 col-lg-offset-0">
-                    <img src="svgs/acas_logo.svg">
+                <div class="col-lg-2 okvir ">
+                    <img class="regular aktivan" src="svgs/zastitnik_gradjana.svg">
+                   <!--  <img class="dugme aktivan" style="display:none" src="svgs/zastitnik_gradjana_gumb.svg"> -->
                 </div>
-                <div class="col-lg-3 col-md-6 col-xs-10 col-xs-offset-1 col-lg-offset-0">
-                    <img src="svgs/dri_logo.svg">
+                
+                <div>Планирано 2017 <span class="glyphicon glyphicon-play" aria-hidden="true"></span></div>
+
+                <div class="col-lg-2 col-md-6 col-xs-5 col-xs-offset-1 col-lg-offset-0 pomeren">
+                    <img src="svgs/acas_notext.svg">
                 </div>
-                <div class="col-lg-3 col-md-6 col-xs-10 col-xs-offset-1 col-lg-offset-0">
-                    <img src="svgs/ravnopravnost_logo.svg">
+                <div class="col-lg-2 col-md-6 col-xs-5 col-xs-offset-1 col-lg-offset-0 pomeren">
+                    <img src="svgs/dri_notext.svg">
                 </div>
-                <div class="col-lg-3 col-md-6 col-xs-10 col-xs-offset-1 col-lg-offset-0">
-                    <img src="svgs/poverenik_logo.svg">
+                <div class="col-lg-2 col-md-6 col-xs-5 col-xs-offset-1 col-lg-offset-0 pomeren">
+                    <img src="svgs/ravnopravnost_notext.svg">
+                </div>
+                <div class="col-lg-2 col-md-6 col-xs-5 col-xs-offset-1 col-lg-offset-0 pomeren">
+                    <img src="svgs/info_notext.svg">
                 </div>
             </div>
         </div>
