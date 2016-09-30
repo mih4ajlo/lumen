@@ -470,6 +470,19 @@ td{
 
 .navbar-right{    margin-top: 15px; }
 
+.icoNavCont{
+    position: absolute;
+    top: 80px;
+    left: 235px;
+}
+.icoNav{
+    margin-left: 10px;
+    border-radius: 17px;
+    border-color: #6abdd5;
+    box-shadow: 6px 6px 10px #888888;
+    background-color: #6abdd5;
+}
+
 @media screen and (max-width: 1300px){
     
     .navbar-nav{    max-width: 45% !important ; }

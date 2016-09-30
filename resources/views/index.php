@@ -38,6 +38,11 @@
                     <a class="navbar-brand" href="/">                       
                         <div class="logo krug cir">Годишњи извештај Заштитника грађана</div>                       
                     </a>
+                    <div class="icoNavCont">
+                        <a href="http://izvestaj.rs/" target="_blank"><img class="icoNav" src="svgs/home.svg"></a>
+                        <a href="http://www.zastitnik.rs/" target="_blank"><img class="icoNav" src="svgs/web.svg"></a>
+                        <a href="api.html" target="_blank"><img class="icoNav" src="svgs/api.svg"></a>
+                    </div>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
