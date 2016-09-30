@@ -2,16 +2,30 @@
 <html lang="en">
 
 <head>
+
+
     <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
     <title>Извештаји независних државних институција</title>
     <style type="text/css">
+    body *{
+    	font-family: 'Source Sans Pro', sans-serif !important;
+    	/* font-family: "Open Sans script=all rev=2" !important; */
+    	font-weight: 400;
+    	font-style: normal;
+    }
     .main {
         background-color: #41b5ce;
         min-height: 100vh;
         color: white;
+    }
+
+    .naslov{
+    	margin-top: 25px;
     }
     
     .naslov h3 {
@@ -37,8 +51,10 @@
     }
     
     .aktivan {
-        height: 110px !important;
-        margin-top: 10px;
+    	-webkit-filter: opacity(75%) !important;
+		filter: opacity(75%) !important;
+        /* height: 110px !important;
+        margin-top: 10px; */
     }
     
     .dugme {
@@ -63,10 +79,13 @@
         text-align: center;
     }
     
-    .okvir-cont{cursor: pointer;}
+    .okvir-cont{
+    	cursor: pointer;
+    	margin: 0 auto;
+    }
     
     .okvir-cont:hover{
-        margin: 0 auto;
+        
         background-color: #449eb3;
 	    padding: 10px 10px 20px 10px;
 	    max-width: 175px;
@@ -111,6 +130,12 @@
             bottom: 20px;
             width: 97%;
         }
+    }
+
+    hr{margin-bottom: 0px !important;}
+
+    .margin-top-20{
+    	margin-top: 20px;
     }
     </style>
     <script type="text/javascript">
@@ -158,11 +183,13 @@
             </div>
         </div>
         <div class="bottom-div">
-            <div class="row powered"> <span>powered by</span> <img src="svgs/crta-logo.png"></div>
-            <hr>
-            <div class="row">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+           <hr>
+           <div class="row margin-top-20">
+                <p>Независни државни органи имају важну контролну улогу и својим радом доприносе успостављању владавине права у демократским друштвима. Независни државни органи подносе јавности извештај о свом раду једном годишње, у ком износе препоруке за унапређење стања из свог делокруга рада. Пажњу смо усмерили на пет контролних институција које непосредно доприносе већој заштити и унапређењу људских права и слобода, борби против корупције и одговорнијем раду институција и јавних функционера у Србији. Почели смо са отварањем извештаја Заштитника грађана, а у 2017. години, планирамо да на овакав начин објавимо и остале извештаје. Извештаје објављујемо у отвореном формату, и тиме омогућавамо лаку претрагу извештаја, поређење стања, налаза и препорука по областима из године у годину, као и преузимање садржаја преко <a href="http://www.google.rs"><abbr title="Апликативни програмски интерфејс - програмски интерфејс апликације">API</abbr></a>. Садржај се може користити у складу са ауторским правима независних државних органа чије извештаје објављујемо. Тим ЦРТЕ.</p>
             </div>
+            <hr>
+             <div class="row powered pull-right"> <span>powered by</span> <a href="http://www.crta.rs"><img src="svgs/crta-logo.png"></a></div>
+            
         </div>
     </div>
 </body>
