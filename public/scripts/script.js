@@ -452,6 +452,7 @@ function turnOffCompare() {
 
 
 function disableFootNotesAddHover() {
+	console.log('fixing content clicks');
     $("#displayCont a[href*='#']").click(function(e) {
         e.preventDefault();
     });
@@ -548,7 +549,7 @@ function showSubNavAndActivate() {
     var hash = window.location.hash;
 
     var level = $(".navig a[href='" + hash + "']").parents('ul').length
-    console.dir(level);
+    //console.dir(level);
     // subcats za 4 nivi preko levela ??
 
     //mark NAv link active
@@ -561,10 +562,10 @@ function showSubNavAndActivate() {
     }
 
     if (level == 3) {
-        console.dir($(".navig a[href='" + hash + "']").parent().children("ul"));
+        //console.dir($(".navig a[href='" + hash + "']").parent().children("ul"));
 
         $(".navig a[href='" + hash + "']").parent().children("ul").find("li").each(function() {
-            console.dir($(this)[0].innerHTML);
+            //console.dir($(this)[0].innerHTML);
             $("#mainLine").append($(this)[0].innerHTML);
 
         });
@@ -598,7 +599,7 @@ function loadFirstChild(){
 
     $.getJSON(apiLocation + lang + "/firstchild/" + year + "/"+id, function(loadFirstChildRes) {
             console.log("first child loaded");
-            if (loadFirstChildRes.length > 0) { $("#displayCont").append(loadFirstChildRes[0].scont); }
+            if (loadFirstChildRes.length > 0) { $("#displayCont").append(loadFirstChildRes[0].scont); disableFootNotesAddHover(); }
         })
 	}	
 	
@@ -606,7 +607,7 @@ function loadReferences(){
 	
     $.getJSON(apiLocation + lang + "/findref/" + year + "/"+id, function(loadReferencesRes) {
             console.log("find ref loaded");
-            console.dir(loadReferencesRes);
+            //console.dir(loadReferencesRes);
             if (loadReferencesRes.length > 0) { $("#displayRefButton").html(' <a class=" cir" id="displayRefButtonReference" target="_blank" href="dodatne.html#'+loadReferencesRes[0].lang+'-'+loadReferencesRes[0].year+'-'+loadReferencesRes[0].id+'">Додатне теме'+loadReferencesRes[0].note+'</a>  '); }else 
 				{$("#displayRefButton").html(' ');}
         })	
