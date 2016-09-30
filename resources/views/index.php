@@ -95,6 +95,11 @@
             </div>
         </nav>
     </header>
+
+    <div class="socialCont">
+        <a href="http://facebook.com/" target="_blank"><img class="socialImg" src="svgs/facebook.svg"></a>
+        <a href="http://www.twitter.com/" target="_blank"><img class="socialImg" src="svgs/twitter.svg"></a>
+    </div>
     <!--dummy content-->
     <section class="content">
 

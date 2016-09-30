@@ -483,6 +483,21 @@ td{
     background-color: #6abdd5;
 }
 
+.socialCont{
+	position: fixed;
+	right: 10px;
+	top: 112px;
+	width: 40px;
+	z-index: 1;	
+}
+
+.socialImg{
+	margin-bottom: 8px;
+    width: 36px;
+    display: block;
+}
+
+
 @media screen and (max-width: 1300px){
     
     .navbar-nav{    max-width: 45% !important ; }
