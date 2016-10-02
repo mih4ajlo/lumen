@@ -23,7 +23,7 @@ $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 //    echo "</pre>";
 
 
-    return json_encode($outf) ;
+    return response()->json($outf) ;
 });
 
 //SECTION CONTENT
@@ -51,7 +51,7 @@ $app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
 //    echo "</pre>";
 
 
-    return json_encode($out) ;
+    return response()->json($out) ;
 });
 
 
@@ -63,7 +63,7 @@ $app->get('{lang}/timeline/{kid}', function ($lang,$kid)  {
 
     $out = frontSql($sql);
 
-    return json_encode($out) ;
+    return response()->json($out) ;
 });
 
 //SEARCH DATABASE
@@ -76,7 +76,7 @@ $search = urldecode($search);
 
     $out = frontSql($sql);
 
-    return json_encode($out) ;
+    return response()->json($out) ;
 });
 
 //FOOTNOTES
@@ -87,7 +87,7 @@ $app->get('{lang}/footnotes/{year}', function ($year)  {
 
     $out = frontSql($sql);
 
-    return json_encode($out) ;
+    return response()->json($out) ;
 });
 
 
@@ -114,7 +114,7 @@ $app->get('{lang}/firstchild/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  
 
     $out = frontSql($sql);
 
-    return json_encode($out) ;
+    return response()->json($out) ;
 });
 
 
@@ -128,7 +128,7 @@ $app->get('{lang}/findref/{year}/{kid}', function ($lang,$year,$kid)  {
     if(count($results)>0){
 
         $results[0]->note = '';
-        return json_encode($results) ;
+        return response()->json($results) ;
 
     } else {
 
@@ -137,9 +137,9 @@ $app->get('{lang}/findref/{year}/{kid}', function ($lang,$year,$kid)  {
         $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year} AND kid=(SELECT kowner FROM `kategorijes` WHERE kid={$kid}) ";
         $results = DB::select($sql);
 
-        if(count($results)>0){$results[0]->note = '<span style="color:red;">*</span>';return json_encode($results);}
+        if(count($results)>0){$results[0]->note = '<span style="color:red;">*</span>';return response()->json($results);}
     
-        return json_encode($results);
+        return response()->json($results);
     }
 
 
