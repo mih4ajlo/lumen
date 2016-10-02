@@ -96,9 +96,11 @@
         </nav>
     </header>
 
+
+
     <div class="socialCont">
-        <a href="http://facebook.com/" target="_blank"><img class="socialImg" src="svgs/facebook.svg"></a>
-        <a href="http://www.twitter.com/" target="_blank"><img class="socialImg" src="svgs/twitter.svg"></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://izvestaj.rs/zastitnikgradjana&display=popup&ref=plugin&src=like" target="_blank"><img class="socialImg" src="svgs/facebook.svg"></a>
+        <a href="https://twitter.com/intent/tweet?original_referer=http://izvestaj.rs/zastitnikgradjana&text= &tw_p=tweetbutton&url=http://izvestaj.rs/zastitnikgradjana" target="_blank"><img class="socialImg" src="svgs/twitter.svg"></a>
     </div>
     <!--dummy content-->
     <section class="content">
