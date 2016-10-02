@@ -31,4 +31,8 @@ $app = require __DIR__.'/../bootstrap/app.php';
 
 
 /*http://loige.co/developing-a-web-application-with-lumen-and-mysql/*/
-$app->run();
+//$app->run();
+
+
+//http://stackoverflow.com/a/36436984
+$app->run($app->make('request'));
