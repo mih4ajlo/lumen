@@ -485,8 +485,8 @@ td{
 
 .socialCont{
 	position: fixed;
-	right: 10px;	
-    top: 50vh;
+	right: 10px;
+	top: 50%;
 	width: 40px;
 	z-index: 1;	
 }
