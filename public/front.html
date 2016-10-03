@@ -1,62 +1,59 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-
     <meta charset="UTF-8">
-
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
     <title>Извештаји независних државних институција</title>
     <style type="text/css">
-    body *{
-    	font-family: 'Source Sans Pro', sans-serif !important;
-    	/* font-family: "Open Sans script=all rev=2" !important; */
-    	font-weight: 400;
-    	font-style: normal;
+    body * {
+        font-family: 'Source Sans Pro', sans-serif !important;
+        /* font-family: "Open Sans script=all rev=2" !important; */
+        font-weight: 400;
+        font-style: normal;
     }
+    
     .main {
         background-color: #41b5ce;
         min-height: 100vh;
         color: white;
     }
-
-	.naslov-container{
-		margin:20px;
-	}
-
-	.naslov-container img{
-		position: absolute;
-	}
-
-    .naslov{
-    	margin: 0 auto;
-  		width: 100%;
-    	margin-top: 110px;
-	    display: inline-block;
-	    padding-bottom: 10px;
-	    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);	    
+    
+    .naslov-container {
+        margin: 15px;
     }
-
+    
+    .naslov-container img {
+        position: absolute;
+    }
+    
+    .naslov {
+        margin: 0 auto;
+        width: 100%;
+        margin-top: 110px;
+        display: inline-block;
+        padding-bottom: 10px;
+        box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+    }
+    
     .naslov p {
-    	font-size: 30px;
-	    text-align: center;
-	    text-transform: uppercase;
+        font-size: 30px;
+        text-align: center;
+        text-transform: uppercase;
     }
-
-    @media screen and (max-width: 1300px){
-    	.naslov p{
-    		margin-right: 20px;
-			max-width: 65%;
-		    /* margin-right: 10px !important; */
-		    float: right;
-    	}
-    	.naslov{
-    		margin-top: 80px;
-    	}
+    
+    @media screen and (max-width: 1300px) {
+        .naslov p {
+            margin-right: 20px;
+            max-width: 65%;
+            /* margin-right: 10px !important; */
+            float: right;
+        }
+        .naslov {
+            margin-top: 80px;
+        }
     }
     
     .naslov h3 {
@@ -72,7 +69,6 @@
     
     .planirano {
         font-size: 20px;
-        margin-left: 30px;
         margin-top: 100px;
     }
     
@@ -82,10 +78,10 @@
     }
     
     .aktivan {
-    	-webkit-filter: opacity(75%) !important;
-		filter: opacity(75%) !important;
+        -webkit-filter: opacity(75%) !important;
+        filter: opacity(75%) !important;
         /* height: 110px !important;
-        margin-top: 10px; */
+margin-top: 10px; */
     }
     
     .dugme {
@@ -110,40 +106,39 @@
         text-align: center;
     }
     
-    .okvir-cont{
-    	cursor: pointer;
-    	margin: 0 auto;
+    .okvir-cont {
+        cursor: pointer;
+        margin: 0 auto;
     }
     
-    .okvir-cont:hover{
-        
+    .okvir-cont:hover {
         background-color: #449eb3;
-	    padding: 10px 10px 20px 10px;
-	    max-width: 175px;
-	    max-height: 145px;
-	    border-radius: 79px 80px 71px;
-	   
-	    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-	}
+        padding: 10px 10px 20px 10px;
+        max-width: 175px;
+        max-height: 145px;
+        border-radius: 79px 80px 71px;
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    }
+    
     @media (min-width: 1200px) {
         .pomeren {
             margin-left: 2%;
-    		max-width: 250px;
+            max-width: 250px;
         }
     }
     
-
-   @media (max-width: 1200px) {
-       .pomeren {
-           float: center;
-   		margin-top: 60px !important;
-       }
-   }
-
-    .planirano-text{
-    	float: left;
-    	margin-top: 60px !important;
+    @media (max-width: 1200px) {
+        .pomeren {
+            float: center;
+            margin-top: 60px !important;
+        }
     }
+    
+    .planirano-text {
+        float: left;
+        margin-top: 60px !important;
+    }
+    
     .planirano span {
         font-size: 16px;
     }
@@ -152,6 +147,12 @@
         height: 90px;
         -webkit-filter: opacity(50%);
         filter: opacity(50%);
+    }
+    
+    @media screen and (max-width: 992px) {
+        .okvir {
+            margin-bottom: 30px;
+        }
     }
     
     .powered {
@@ -166,92 +167,102 @@
     .row p {
         margin: 5px 20px;
     }
-
-    @media (min-width: 1300px){
-
-		.veliki {
-		    width: 20%;
-		}
-	}
     
-    @media (min-width: 1400px) {
+    .veliki {
+        text-align: center;
+        min-height: 200px;
+    }
+    /*@media (min-width: 1400px) {
+.bottom-div {
+position: absolute;
+bottom: 20px;
+width: 97%;
+}
+}*/
+    
+    @media screen and (min-height: 850px) and (min-width: 1400px) {
         .bottom-div {
             position: absolute;
             bottom: 20px;
             width: 97%;
         }
     }
-
-    hr{margin-bottom: 0px !important;}
-
-    .margin-top-20{
-    	margin-top: 20px;
+    
+    hr {
+        margin-bottom: 0px !important;
     }
-	
-	/* bootstrap overwrite */
-    .glyphicon{
-    	font-family: 'Glyphicons Halflings' !important;
+    
+    .margin-top-20 {
+        margin-top: 20px;
+    }
+    /* bootstrap overwrite */
+    
+    .glyphicon {
+        font-family: 'Glyphicons Halflings' !important;
     }
     </style>
     <script type="text/javascript">
-    /*	$(function() {
-        		$(".okvir").hover(function(ev) {
-    	    		$('.regular').toggle()
-    	    		$('.dugme').toggle()
-    	    	})	
-        	})*/
+    /*  $(function() {
+    $(".okvir").hover(function(ev) {
+    $('.regular').toggle()
+    $('.dugme').toggle()
+    })  
+    })*/
     </script>
 </head>
 
 <body>
     <div class="container-fluid main">
         <div class="row naslov-container">
-           
-			<img src="svgs/izvestaji.svg">
+            <img src="http://izvestaj.rs/svgs/izvestaji.svg">
             <div class="naslov">
-            	<p>Годишњи извештаји независних државних органа</p>
-            
+                <p>Годишњи извештаји независних државних органа</p>
             </div>
         </div>
-        <div class="row planirano">
+        <div class="planirano">
             <div class="img-container">
-                <div class="col-lg-2 okvir ">
+                <div class="col-xs-12 col-md-2 okvir ">
                     <div class="okvir-cont">
-                      <a href="./zastitnikgradjana">  <img class="regular aktivan" src="svgs/zastitnik_gradjana.svg"></a>
-                        
+                        <a href="./zastitnikgradjana"> <img class="regular aktivan" src="http://izvestaj.rs/svgs/zastitnik_gradjana.svg"></a>
                     </div>
                     <div>Заштитник грађана</div>
                     <!--  <img class="dugme aktivan" style="display:none" src="svgs/zastitnik_gradjana_gumb.svg"> -->
                 </div>
-                <div class="planirano-text">Планирано 2017 <span class="glyphicon glyphicon-play" aria-hidden="true"></span></div>
-                <div class="veliki col-md-5 col-xs-5 col-xs-offset-1  col-lg-offset-0 pomeren">
-                    <img src="svgs/acas_notext.svg">
-                    <div>Агенција за борбу против корупције</div>
-                </div>
-                <div class="veliki col-md-5 col-xs-5 col-xs-offset-1 col-lg-offset-0 pomeren">
-                    <img src="svgs/dri_notext.svg">
-                    <div>Државна ревизорска институција</div>
-                </div>
-                <div class="veliki col-md-5 col-xs-5 col-xs-offset-1 col-lg-offset-0 pomeren">
-                    <img src="svgs/ravnopravnost_notext.svg">
-                    <div>Повереник за заштиту ревноправноси</div>
-                </div>
-                <div class="veliki col-md-5 col-xs-5 col-xs-offset-1 col-lg-offset-0 pomeren">
-                    <img src="svgs/info_notext.svg">
-                    <div>Повереник за заштиту информације од јавног значаја и заштиту података о личности</div>
-                </div>
+                <div class="planirano-text col-xs-12 col-sm-3 col-lg-2">Планирано 2017 <span class="glyphicon glyphicon-play" aria-hidden="true"></span></div>
+                <section class="planirano-info col-xs-12 col-sm-9 col-md-7 col-lg-8">
+                    <div class="veliki col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                        <img src="http://izvestaj.rs//svgs/acas_notext.svg">
+                        <div>Агенција за борбу против корупције</div>
+                    </div>
+                    <div class="veliki col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                        <img src="http://izvestaj.rs/svgs/dri_notext.svg">
+                        <div>Државна ревизорска институција</div>
+                    </div>
+                    <div class="veliki col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                        <img src="http://izvestaj.rs/svgs/ravnopravnost_notext.svg">
+                        <div>Повереник за заштиту равноправности</div>
+                    </div>
+                    <div class="veliki col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                        <img src="http://izvestaj.rs/svgs/info_notext.svg">
+                        <div>Повереник за заштиту информације од јавног значаја и заштиту података о личности</div>
+                    </div>
+                </section>
             </div>
         </div>
         <div class="bottom-div">
-           <hr>
-           <div class="row margin-top-20">
-                <p>Независни државни органи имају важну контролну улогу и својим радом доприносе успостављању владавине права у демократским друштвима. Независни државни органи подносе јавности извештај о свом раду једном годишње, у ком износе препоруке за унапређење стања из свог делокруга рада. Пажњу смо усмерили на пет контролних институција које непосредно доприносе већој заштити и унапређењу људских права и слобода, борби против корупције и одговорнијем раду институција и јавних функционера у Србији. Почели смо са отварањем извештаја Заштитника грађана, а у 2017. години, планирамо да на овакав начин објавимо и остале извештаје. Извештаје објављујемо у отвореном формату, и тиме омогућавамо лаку претрагу извештаја, поређење стања, налаза и препорука по областима из године у годину, као и преузимање садржаја преко <a href="./zastitnikgradjana/api.html"><abbr title="Апликативни програмски интерфејс - програмски интерфејс апликације">API</abbr></a>. Садржај се може користити у складу са ауторским правима независних државних органа чије извештаје објављујемо. Тим ЦРТЕ.</p>
+            <hr>
+            <div class="row margin-top-20">
+                <p>Независни државни органи имају важну контролну улогу и својим радом доприносе успостављању владавине права у демократским друштвима. Независни државни органи подносе јавности извештај о свом раду једном годишње, у ком износе препоруке за унапређење стања из свог делокруга рада. Пажњу смо усмерили на пет контролних институција које непосредно доприносе већој заштити и унапређењу људских права и слобода, борби против корупције и одговорнијем раду институција и јавних функционера у Србији. Почели смо са отварањем извештаја Заштитника грађана, а у 2017. години, планирамо да на овакав начин објавимо и остале извештаје. Извештаје објављујемо у отвореном формату, и тиме омогућавамо лаку претрагу извештаја, поређење стања, налаза и препорука по областима из године у годину, као и преузимање садржаја преко
+                    <a href="./zastitnikgradjana/api.html">
+                        <abbr title="Апликативни програмски интерфејс - програмски интерфејс апликације">API</abbr>
+                    </a>. Садржај се може користити у складу са ауторским правима независних државних органа чије извештаје објављујемо. Тим ЦРТЕ.</p>
             </div>
             <hr>
-             <div class="row powered pull-right"> <span>powered by</span> <a href="http://www.crta.rs"><img src="svgs/crta-logo.png"></a></div>
-            
+            <div class="powered pull-right"> <span>powered by</span>
+                <a href="http://www.crta.rs"><img src="http://izvestaj.rs/svgs/crta-logo.png"></a>
+            </div>
         </div>
-    </div>
+       
 </body>
 
 </html>
