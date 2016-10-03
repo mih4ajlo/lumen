@@ -1,5 +1,15 @@
 <html>
 <head>
+
+    <meta name="keywords" content="zastitnik gradjana, izvestaj, nezavisna institucija, zastitnik, zastita, kontrola, drzavni organi" />
+    <meta name="description" content="opis za izvestaj zastitnika gradjana " />
+    <meta property="og:title" content="Godišnji izveštaj zaštitnika građana" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.izvestaj.rs/zastitnikgradjana" />
+    <meta property="og:image" content="http://www.izvestaj.rs/v1.png" />
+    
+    <meta property="og:description" content="Nezavisni državni organi imaju važnu kontrolnu ulogu i svojim radom doprinose uspostavljanju vladavine prava u demokratskim društvima. Nezavisni državni organi podnose javnosti izveštaj o svom radu jednom godišnje, u kom iznose preporuke za unapređenje stanja iz svog delokruga rada. Pažnju smo usmerili na pet kontrolnih institucija koje neposredno doprinose većoj zaštiti i unapređenju ljudskih prava i sloboda, borbi protiv korupcije i odgovornijem radu institucija i javnih funkcionera u Srbiji. " />
+
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
