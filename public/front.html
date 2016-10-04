@@ -54,17 +54,6 @@
         text-transform: uppercase;
     }
     
-    @media screen and (max-width: 1300px) {
-        .naslov p {
-            margin-right: 20px;
-            max-width: 65%;
-            /* margin-right: 10px !important; */
-            float: right;
-        }
-        .naslov {
-            margin-top: 80px;
-        }
-    }
     
     .naslov h3 {
         text-align: center;
@@ -130,23 +119,12 @@ margin-top: 10px; */
         box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
     }
     
-    @media (min-width: 1200px) {
-        .pomeren {
-            margin-left: 2%;
-            max-width: 250px;
-        }
-    }
-    
-    @media (max-width: 1200px) {
-        .pomeren {
-            float: center;
-            margin-top: 60px !important;
-        }
-    }
-    
+   
     .planirano-text {
         float: left;
         margin-top: 60px !important;
+        margin-bottom: 60px !important;
+		text-align: center;
     }
     
     .planirano span {
@@ -158,12 +136,9 @@ margin-top: 10px; */
         -webkit-filter: opacity(50%);
         filter: opacity(50%);
     }
+
     
-    @media screen and (max-width: 992px) {
-        .okvir {
-            margin-bottom: 30px;
-        }
-    }
+
     
     .powered {
         text-align: center;
@@ -181,6 +156,7 @@ margin-top: 10px; */
     .veliki {
         text-align: center;
         min-height: 200px;
+		font-size: 1vw;
     }
     /*@media (min-width: 1400px) {
 .bottom-div {
@@ -197,6 +173,57 @@ width: 97%;
             width: 97%;
         }
     }
+	
+    @media (min-width: 1200px) {
+        .pomeren {
+            margin-left: 2%;
+            max-width: 250px;
+        }
+    }
+    
+    @media (max-width: 1200px) {
+        .pomeren {
+            float: center;
+            margin-top: 60px !important;
+        }
+		.veliki {
+			font-size: 1.3vw;
+		}
+    }
+
+    @media screen and (max-width: 992px) {
+        .okvir {
+            margin-bottom: 30px;
+        }
+		.veliki {
+			font-size: 2vw;
+		}
+		.planirano-info {
+			width:100%;
+		}
+    }
+	
+    @media screen and (max-width: 768px) {
+		.veliki {
+			font-size: 3vw;
+		}
+    }	
+
+    @media screen and (max-width: 1300px) {
+        .naslov p {
+            margin-right: 20px;
+            max-width: 65%;
+            /* margin-right: 10px !important; */
+            float: right;
+        }
+        .naslov {
+            margin-top: 80px;
+        }
+    }
+
+
+
+	
     
     hr {
         margin-bottom: 0px !important;
@@ -238,21 +265,21 @@ width: 97%;
                     <div>Заштитник грађана</div>
                     <!--  <img class="dugme aktivan" style="display:none" src="svgs/zastitnik_gradjana_gumb.svg"> -->
                 </div>
-                <div class="planirano-text col-xs-12 col-sm-3 col-lg-2">Планирано 2017 <span class="glyphicon glyphicon-play" aria-hidden="true"></span></div>
-                <section class="planirano-info col-xs-12 col-sm-9 col-md-7 col-lg-8">
-                    <div class="veliki col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="planirano-text col-xs-12 col-md-2">Планирано 2017 <span class="glyphicon glyphicon-play" aria-hidden="true"></span></div>
+                <section class="planirano-info col-xs-12 col-sm-9 col-md-8 col-lg-8">
+                    <div class="veliki col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <img src="http://izvestaj.rs//svgs/acas_notext.svg">
                         <div>Агенција за борбу против корупције</div>
                     </div>
-                    <div class="veliki col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="veliki col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <img src="http://izvestaj.rs/svgs/dri_notext.svg">
                         <div>Државна ревизорска институција</div>
                     </div>
-                    <div class="veliki col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="veliki col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <img src="http://izvestaj.rs/svgs/ravnopravnost_notext.svg">
                         <div>Повереник за заштиту равноправности</div>
                     </div>
-                    <div class="veliki col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="veliki col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <img src="http://izvestaj.rs/svgs/info_notext.svg">
                         <div>Повереник за заштиту информације од јавног значаја и заштиту података о личности</div>
                     </div>
