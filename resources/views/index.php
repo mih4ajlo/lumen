@@ -126,7 +126,7 @@
     <div class="socialCont">
 
         <a href="https://www.facebook.com/sharer/sharer.php?display=popup&ref=plugin&src=like&u="
-           onclick="javascript:window.open(this.href + window.location.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+           onclick="javascript:window.open(this.href + window.location.href.replace('#','%23'), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
            target="_blank" title="Share on Facebook"><img class="socialImg" src="svgs/facebook.svg">
         </a>
 
