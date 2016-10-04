@@ -46,13 +46,13 @@
         <nav class="main-nav navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/">                       
+                    <a class="navbar-brand" href="/zastitnikgradjana">                       
                         <div class="logo krug cir">Годишњи извештај Заштитника грађана</div>                       
                     </a>
                     <div class="icoNavCont">
-                        <a href="http://izvestaj.rs/" target="_blank"><img class="icoNav" src="svgs/home.svg"></a>
-                        <a href="http://www.zastitnik.rs/" target="_blank"><img class="icoNav" src="svgs/web.svg"></a>
-                        <a href="api.html" target="_blank"><img class="icoNav" src="svgs/api.svg"></a>
+                        <a href="http://izvestaj.rs/" title="Повратак на izvestaj.rs" target="_blank"><img class="icoNav" src="svgs/home.svg"></a>
+                        <a href="http://www.zastitnik.rs/" title="Web Заштитника грађана" target="_blank"><img class="icoNav" src="svgs/web.svg"></a>
+                        <a href="api.html" title="Део за програмере" target="_blank"><img class="icoNav" src="svgs/api.svg"></a>
                     </div>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -150,7 +150,7 @@
 		
 		<div class="navigation col-xs-12 col-sm-6 col-md-2">
 			<div id="displayRefButton" style="display: inline-block; vertical-align: top;">
-			<a class=" cir" id="displayRefButtonReference"  href="dodatne.html#1" >Додатне теме</a>
+			<a class=" cir" id="displayRefButtonReference"  href="dodatne.html#1">Додатне теме</a>
 			
 			</div>
 		</div>

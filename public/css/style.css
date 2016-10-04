@@ -506,6 +506,13 @@ td{
         margin-left: 40%;
     }
 
+    /* kada se treba na hamburger menjati stil */
+    .left-side .ovo{
+        z-index: 5;
+        width: 70%;
+        background-color: white;
+    }
+
 }
 
 .icoNav{
@@ -535,8 +542,6 @@ td{
     
     .navbar-nav{    max-width: 45% !important ; }
 }
-    
-
 
 .navbar-header button {
     margin-top: 85px;
