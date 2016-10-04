@@ -131,7 +131,7 @@
         </a>
 
         <a href="https://twitter.com/intent/tweet?text= &tw_p=tweetbutton&url="
-           onclick="javascript:window.open( this.href +  window.location.href.replace("#","%23") + '&original_referer=' +  window.location.href.replace("#","%23") , '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+           onclick="javascript:window.open( this.href +  window.location.href.replace('#','%23') + '&original_referer=' +  window.location.href.replace('#','%23') , '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
            target="_blank" title="Share on Twitter"><img class="socialImg" src="svgs/twitter.svg">
         </a>
         <!-- <a href="https://www.facebook.com/sharer/sharer.php?u=http://izvestaj.rs/zastitnikgradjana&display=popup&ref=plugin&src=like" target="_blank"><img class="socialImg" src="svgs/facebook.svg"></a> -->
