@@ -121,9 +121,21 @@
 
 
 
+
+
     <div class="socialCont">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://izvestaj.rs/zastitnikgradjana&display=popup&ref=plugin&src=like" target="_blank"><img class="socialImg" src="svgs/facebook.svg"></a>
-        <a href="https://twitter.com/intent/tweet?original_referer=http://izvestaj.rs/zastitnikgradjana&text= &tw_p=tweetbutton&url=http://izvestaj.rs/zastitnikgradjana" target="_blank"><img class="socialImg" src="svgs/twitter.svg"></a>
+
+        <a href="https://www.facebook.com/sharer/sharer.php?display=popup&ref=plugin&src=like&u="
+           onclick="javascript:window.open(this.href + window.location.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+           target="_blank" title="Share on Facebook"><img class="socialImg" src="svgs/facebook.svg">
+        </a>
+
+        <a href="https://twitter.com/intent/tweet?original_referer=http://izvestaj.rs/zastitnikgradjana&text= &tw_p=tweetbutton&url="
+           onclick="javascript:window.open( this.href +  window.location.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+           target="_blank" title="Share on Twitter"><img class="socialImg" src="svgs/twitter.svg">
+        </a>
+        <!-- <a href="https://www.facebook.com/sharer/sharer.php?u=http://izvestaj.rs/zastitnikgradjana&display=popup&ref=plugin&src=like" target="_blank"><img class="socialImg" src="svgs/facebook.svg"></a> -->
+        <!-- <a href="https://twitter.com/intent/tweet?original_referer=http://izvestaj.rs/zastitnikgradjana&text= &tw_p=tweetbutton&url=http://izvestaj.rs/zastitnikgradjana" target="_blank"><img class="socialImg" src="svgs/twitter.svg"></a> -->
     </div>
     <!--dummy content-->
     <section class="content">
