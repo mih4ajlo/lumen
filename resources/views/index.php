@@ -37,7 +37,18 @@
         //define var for parsed data
         var cont = {};
 
+
+       
+        $('.navbar-toggle').on('click', function(e) {
+            e.preventDefault();
+            $(".navigation").toggle();
+            $('.left-side').toggleClass('left-side-mobile');
+        });
+
     })
+
+   
+    
     </script>
 </head>
 
@@ -50,11 +61,12 @@
                         <div class="logo krug cir">Годишњи извештај Заштитника грађана</div>                       
                     </a>
                     <div class="icoNavCont">
-                        <a href="http://izvestaj.rs/" title="Повратак на izvestaj.rs" target="_blank"><img class="icoNav" src="svgs/home.svg"></a>
+                        <a href="http://izvestaj.rs/" title="Повратак на izvestaj.rs" ><img class="icoNav" src="svgs/home.svg"></a>
                         <a href="http://www.zastitnik.rs/" title="Web Заштитника грађана" target="_blank"><img class="icoNav" src="svgs/web.svg"></a>
                         <a href="api.html" title="Део за програмере" target="_blank"><img class="icoNav" src="svgs/api.svg"></a>
                     </div>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <!-- data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" -->
+                    <button type="button" class="navbar-toggle collapsed" >
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>

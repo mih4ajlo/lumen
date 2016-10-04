@@ -507,9 +507,9 @@ td{
     }
 
     /* kada se treba na hamburger menjati stil */
-    .left-side .ovo{
+    .left-side-mobile{
         z-index: 5;
-        width: 70%;
+        width: 90% !important;
         background-color: white;
     }
 
