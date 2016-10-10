@@ -99,10 +99,10 @@ text-align:right;
 
 #displayRefButton{
    
-    background-color: #72D0EB;
+    background-color: #2CB5C0;
     color: #676565 !important;
     z-index: 5;
-    /* background: url("../images/corner.png") no-repeat scroll right center #72D0EB; */
+    /* background: url("../images/corner.png") no-repeat scroll right center #2CB5C0; */
     border-radius: 25px;
     /* border-top-right-radius: 0px; */
     /* border-bottom-right-radius: 0px; */
@@ -138,7 +138,7 @@ text-align:right;
     clear: both;
 }
 .main-nav {
-    background-color: #72D0EB;
+    background-color: #2CB5C0;
     min-height: 100px;
     position: relative;
 }
@@ -239,7 +239,7 @@ padding-left:0px;
 }
 
 .navigation a.active {
-    background: #72D0EB;
+    background: #2CB5C0;
     color: #676565 !important;
     border-radius: 25px;
     border-top-right-radius: 0px;
@@ -261,7 +261,7 @@ padding-left:0px;
     }
     #subNavHolder p{
         cursor: hand;
-        background: #72D0EB;
+        background: #2CB5C0;
         border-radius: 25px;
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
@@ -277,7 +277,7 @@ max-width: 20%;
     }
 
 #mainLine {
-    /* background-color: #72D0EB; */
+    /* background-color: #2CB5C0; */
     /* content: " "; */
     display: block;
     height: auto;
@@ -286,7 +286,7 @@ max-width: 20%;
     z-index: -1;
     margin-left: -12px;
     margin-top: 8px;
-    border-top: 10px solid #72D0EB;
+    border-top: 10px solid #2CB5C0;
 
         }   
 
@@ -297,7 +297,7 @@ max-width: 20%;
     background: #58595B;
     border-radius: 20px;
     border: 1px solid #58595b;
-    color: #72D0EB;
+    color: #2CB5C0;
     padding: 5px 15px;
     font-weight: bold;
     min-width: 20%; 
@@ -315,7 +315,7 @@ max-width: 20%;
     right: 30;
     bottom: 10;
     font-size: 40px;
-    color: #72D0EB;
+    color: #2CB5C0;
 }
 #toTop:hover{
     color: #58595B;
@@ -359,7 +359,7 @@ max-width: 20%;
         background: #58595B;
         border-radius: 20px;
         border: 1px solid #58595b;
-        color: #72D0EB;
+        color: #2CB5C0;
         padding: 5px 15px;
         font-weight: bold;
     }
@@ -373,7 +373,7 @@ max-width: 20%;
     }
     .ui.dropdown .menu>.item {
           background: #58595B !important;
-          color: #72D0EB !important;
+          color: #2CB5C0 !important;
         text-align: center !important;
         font-size: 2rem !important;
         border-bottom: 1px solid black !important;
@@ -383,7 +383,7 @@ max-width: 20%;
     background: #58595B;
     border-radius: 20px;
     border: 1px solid #58595b;
-    color: #72D0EB;
+    color: #2CB5C0;
     padding: 5px 15px;
     font-weight: bold;
 } */
@@ -558,7 +558,7 @@ td{
     padding-right: 30px;
     padding-top: 20px;
     background-color: #58595B;
-    color: #72D0EB;
+    color: #2CB5C0;
     font-size: 18px;
     text-align: left;
     padding-left: 29px;
@@ -590,7 +590,7 @@ td{
     padding: 7px 15px;
 }
 .navigation p.active {
-    background: #72D0EB;
+    background: #2CB5C0;
     border-radius: 25px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
