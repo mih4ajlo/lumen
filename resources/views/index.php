@@ -2,19 +2,19 @@
 <head>
 
 
-    <meta name="keywords" content="zastitnik gradjana, izvestaj, nezavisna institucija, zastitnik, zastita, kontrola, drzavni organi" />
-    <meta name="description" content="Izveštaj Zaštitnika građana u otvorenom formatu. Pretraga izveštaja, poređenje stanja, nalaza i preporuka po oblastima iz godine u godinu, kao i preuzimanje sadržaja preko API." />
-    <meta property="og:title" content="Godišnji izveštaj zaštitnika građana" />
+    <meta name="keywords" content="gradjanin na strazi, gradjani, straza, politika, pravo, izbori, ucestvovanje grajdana, participacija, izvestaj, nepravilnosti, korupcija, sigurnost, sistem, uredjeno drustvo" />
+    <meta name="description" content="Izveštaj inicijative 'Građanin na straži' u otvorenom formatu. Pretraga izveštaja, preuzimanje sadržaja preko API." />
+    <meta property="og:title" content="Izveštaj inicijative 'Građanin na straži'" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://www.izvestaj.rs/zastitnikgradjana" />
-    <meta property="og:image" content="http://www.izvestaj.rs/zastitnikgradjana/logo-fb.png" />
+    <meta property="og:url" content="http://izvestaj.gradjaninastrazi.rs" />
+    <meta property="og:image" content="gradjaninastrazi.rs/logo-fb.png" />
     
-    <meta property="og:description" content="Izveštaj Zaštitnika građana u otvorenom formatu. Pretraga izveštaja, poređenje stanja, nalaza i preporuka po oblastima iz godine u godinu, kao i preuzimanje sadržaja preko API." />
+    <meta property="og:description" content="Izveštaj inicijative 'Građanin na straži' u otvorenom formatu. Pretraga izveštaja, preuzimanje sadržaja preko API." />
 
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Годишњи извештај Заштитника грађана</title>
+    <title>Izveštaj inicijative 'Građanin na straži'</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -58,7 +58,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/zastitnikgradjana">                       
-                        <div class="logo krug cir">Годишњи извештај Заштитника грађана</div>                       
+                        <div class="logo krug cir">Izveštaj inicijative 'Građanin na straži'</div>                       
                     </a>
                     <div class="icoNavCont">
                         <a href="http://izvestaj.rs/" title="Повратак на izvestaj.rs" ><img class="icoNav" src="svgs/home.svg"></a>
@@ -90,7 +90,7 @@
                             <!-- <button id="uporedi">Uporedi sa prethodnim izveštajima</button> -->
 
 
-                            <div class="ui compact menu">
+                            <!-- <div class="ui compact menu">
                               <div class="ui simple dropdown " >
                                <span id="uporedi" class=" cir">Упореди по годинама</span>
                                 <div id="timelineList" class="menu">
@@ -99,12 +99,12 @@
                                   <div class="item">2013</div>
                                 </div>
                               </div>
-                            </div>
+                            </div> -->
 
                         </li>
 						<li class="search pull-left">
                             <div >
-                                <span id="uporediOff" class=" cir">Искључи поређење по годинама</span>
+                               <!--  <span id="uporediOff" class=" cir">Искључи поређење по годинама</span> -->
                             </div>
                         </li>
                         <li class="search pull-left">
