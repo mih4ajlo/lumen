@@ -3,8 +3,8 @@
 //Set globals
 //apiLocation = 'http://z.com/';
 apiLocation = '';
-lang = 'cir';
-year = '2015';
+lang = 'lat';
+year = '2016';
 id = '40';
 compareTo = '';
 searchFor = '';
