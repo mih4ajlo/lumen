@@ -57,8 +57,10 @@
         <nav class="main-nav navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/zastitnikgradjana">                       
-                        <div class="logo krug cir">Izveštaj inicijative 'Građanin na straži'</div>                       
+                    <a class="navbar-brand" href="/zastitnikgradjana" style="    padding-top: 40px !important;">     
+                        
+
+                        <div class="logo krug cir"><img src="/svgs/gns_logo.svg" alt=""></div>                       
                     </a>
                     <div class="icoNavCont">
                         <a href="http://izvestaj.rs/" title="Повратак на izvestaj.rs" ><img class="icoNav" src="svgs/home.svg"></a>
