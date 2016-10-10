@@ -616,9 +616,12 @@ function loadReferences(){
 
 
 function vratiJezik() {
-    lang = window.location.hash;
-    lang = lang.replace("#","");
-    lang = lang.split("-")[0];
+    langTmp = window.location.hash;
+    langTmp = langTmp.replace("#","");
+    langTmp = langTmp.split("-")[0];
+
+    lang = langTmp || lang;
+    
     if(lang =="")
         lang ='ci';
     return lang;
