@@ -5,7 +5,7 @@
 apiLocation = '';
 lang = 'lat';
 year = '2016';
-id = '40';
+id = '4';
 compareTo = '';
 searchFor = '';
 tip="sadrzaj";
@@ -621,7 +621,7 @@ function vratiJezik() {
     langTmp = langTmp.split("-")[0];
 
     lang = langTmp || lang;
-    
+
     if(lang =="")
         lang ='ci';
     return lang;
