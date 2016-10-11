@@ -520,15 +520,15 @@ function prependYear(elId) {
 
         $("#displayContYear").remove();
         $('#mainLine').before( meni );
-        var godina = $('.ui.inline.dropdown').dropdown('get value');
+        //var godina = $('.ui.inline.dropdown').dropdown('get value');
 
 
         
-        $('.ui.inline.dropdown').dropdown('setting', 'onChange', function(ev) {
+        /*$('.ui.inline.dropdown').dropdown('setting', 'onChange', function(ev) {
             var godina  = $('.ui.inline.dropdown').dropdown('get value');
             window.location = "#"+lang+"-"+godina;
             //parseUrl();
-        });
+        });*/
     
     } else {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[3]+"</span>" );

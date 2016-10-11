@@ -64,7 +64,7 @@
                     </a>
                     <div class="icoNavCont">
                         <a href="http://izvestaj.rs/" title="Повратак на izvestaj.rs" ><img class="icoNav" src="svgs/home.svg"></a>
-                        <a href="http://www.zastitnik.rs/" title="Web Заштитника грађана" target="_blank"><img class="icoNav" src="svgs/web.svg"></a>
+                        <a href="#" title="Izveštaj (pdf)" target="_blank"><img class="icoNav" src="svgs/web.svg"></a>
                         <a href="api.html" title="Део за програмере" target="_blank"><img class="icoNav" src="svgs/api.svg"></a>
                     </div>
                     <!-- data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" -->
@@ -111,7 +111,7 @@
                         </li>
                         <li class="search pull-left">
                             <div id="pretraga">
-                                <input id="filter" class=" " type="text" placeholder="Претражите">
+                                <input id="filter" class=" " type="text" placeholder="Pretražite">
                                
                             </div>
                         </li>
