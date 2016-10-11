@@ -501,12 +501,12 @@ function prependYear(elId) {
         '<span id="' + elId + 'Year" class="ui header '+ stil +'">'+
           '<div class="ui inline dropdown">'+
               '<div class="text">'+god+'</div>'+
-              '<i class="dropdown icon"></i>'+
-              '<div class="menu">'+
+              //'<i class="dropdown icon"></i>'+
+              /*'<div class="menu">'+
                 '<div class="item" data-text="2015">2015</div>'+
                 '<div class="item" data-text="2014">2014</div>'+
                 '<div class="item" data-text="2013">2013</div>'+
-              '</div>'+
+              '</div>'+*/
             '</div>'+
         '</span>';
 
