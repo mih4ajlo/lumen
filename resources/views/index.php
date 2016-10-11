@@ -57,7 +57,7 @@
         <nav class="main-nav navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/zastitnikgradjana" >     
+                    <a class="navbar-brand" href="http://izvestaj.zastitnikgradjana.rs" >     
                         
 
                         <div class="logo krug cir" style="    padding-top: 40px !important;"><img src="/svgs/gns_logo.svg" alt=""></div>                       
