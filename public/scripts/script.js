@@ -493,7 +493,7 @@ function prependYear(elId) {
     var stil = "margin-45-left";
     
     if(god == undefined) 
-        god =2015;
+        god =2016;
 
 
     
@@ -516,10 +516,10 @@ function prependYear(elId) {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
        
         if(god == undefined) 
-            god = 2015;
+            god = 2016;
 
         $("#displayContYear").remove();
-        $('#mainLine').before( meni );
+        //$('#mainLine').before( meni );
         //var godina = $('.ui.inline.dropdown').dropdown('get value');
 
 
