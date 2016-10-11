@@ -63,9 +63,9 @@
                         <div class="logo krug cir" style="    padding-top: 40px !important;"><img src="/svgs/gns_logo.svg" alt=""></div>                       
                     </a>
                     <div class="icoNavCont">
-                        <a href="http://izvestaj.rs/" title="Повратак на izvestaj.rs" ><img class="icoNav" src="svgs/home.svg"></a>
+                        <a href="http://gradjaninastrazi.rs/" title="Povratak na gradjaninastrazi.rs" ><img class="icoNav" src="svgs/home.svg"></a>
                         <a href="#" title="Izveštaj (pdf)" target="_blank"><img class="icoNav" src="svgs/web.svg"></a>
-                        <a href="api.html" title="Део за програмере" target="_blank"><img class="icoNav" src="svgs/api.svg"></a>
+                        <a href="api.html" title="Deo za programere" target="_blank"><img class="icoNav" src="svgs/api.svg"></a>
                     </div>
                     <!-- data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" -->
                     <button type="button" class="navbar-toggle collapsed" >
@@ -176,7 +176,7 @@
 		
 		<div class="navigation col-xs-12 col-sm-6 col-md-2">
 			<div id="displayRefButton" style="display: inline-block; vertical-align: top;">
-			<a class=" cir" id="displayRefButtonReference"  href="dodatne.html#1">Додатне теме</a>
+			<a class=" cir" id="displayRefButtonReference"  href="dodatne.html#1">Dodatne teme</a>
 			
 			</div>
 		</div>

@@ -6,7 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-    <title>Извештаји независних државних институција</title>
+    <title>API - Izveštaj inicijative 'Građanin na straži'</title>
     <style type="text/css">
     .main {
         background-color: #41b5ce;
@@ -63,30 +63,34 @@
         text-align: center;
     }
     
-    .okvir-cont{cursor: pointer;}
+    .okvir-cont {
+        cursor: pointer;
+    }
     
-    .okvir-cont:hover{
+    .okvir-cont:hover {
         margin: 0 auto;
         background-color: #449eb3;
-	    padding: 10px 10px 20px 10px;
-	    max-width: 175px;
-	    max-height: 145px;
-	    border-radius: 79px 80px 71px;
-	    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-	    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-	    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-	}
-        .bottom-div {
-            position: fixed;
-            bottom: 20px;
-            width: 97%;
-        }	
-	table{
-		width:100%;
-		border:none;
-		margin-bottom:50px;	
-	}
-	
+        padding: 10px 10px 20px 10px;
+        max-width: 175px;
+        max-height: 145px;
+        border-radius: 79px 80px 71px;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    }
+    
+    .bottom-div {
+        position: fixed;
+        bottom: 20px;
+        width: 97%;
+    }
+    
+    table {
+        width: 100%;
+        border: none;
+        margin-bottom: 50px;
+    }
+    
     @media (min-width: 1200px) {
         .pomeren {
             margin-left: 4%;
@@ -125,248 +129,464 @@
     }
     </style>
     <script type="text/javascript">
-    /*	$(function() {
-        		$(".okvir").hover(function(ev) {
-    	    		$('.regular').toggle()
-    	    		$('.dugme').toggle()
-    	    	})	
-        	})*/
+    /*  $(function() {
+                $(".okvir").hover(function(ev) {
+                  $('.regular').toggle()
+                  $('.dugme').toggle()
+                })  
+              })*/
     </script>
 </head>
 
 <body>
     <div class="container-fluid main">
         <div class="row naslov">
-            <h3>API - Годишњи извештаји Заштитника грађана</h3>
+            <h3>API - Izveštaj inicijative 'Građanin na straži'</h3>
         </div>
         <div class="row planirano">
             <div class="img-container">
                 <div class="col-lg-2 okvir ">
                     <div class="okvir-cont">
                         <img class="regular aktivan" src="svgs/zastitnik_gradjana.svg">
-                        
                     </div>
                     <div>Заштитник грађана</div>
                     <!--  <img class="dugme aktivan" style="display:none" src="svgs/zastitnik_gradjana_gumb.svg"> -->
                 </div>
                 <div style="display: inline-block; padding-bottom:320px;">
-                  <h1>Api izvestaj.rs/zastitnik </h1>
-                  <table width="100%" border="1" cellpadding="0" cellspacing="0">
-                    <tr>
-                      <td  colspan="4" valign="top"><h2>Kategorije    izveštaja zaštitnika za traženu godinu (parent – child struktura) </h2></td>
-                    </tr>
-                    <tr>
-                      <td  colspan="4" valign="top"><p>{lang}/nav[/{year}] (<a href="http://izvestaj.rs/zastitnikgradjana/ci/nav/2014" target="_blank">http://izvestaj.rs/zastitnikgradjana/ci/nav/2014</a>)</p></td>
-                    </tr>
-                    <tr>
-                      <td  valign="top"><p>&nbsp;</p></td>
-                      <td  valign="top"><p>Example</p></td>
-                      <td  valign="top"><p>Default</p></td>
-                      <td  valign="top"><p>Mandatory</p></td>
-                    </tr>
-                    <tr>
-                      <td  valign="top"><p>lang</p></td>
-                      <td  valign="top"><p>ci</p></td>
-                      <td  valign="top"><p>/</p></td>
-                      <td  valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td  valign="top"><p>nav</p></td>
-                      <td  valign="top"><p>nav</p></td>
-                      <td  valign="top"><p>/</p></td>
-                      <td  valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td  valign="top"><p>year</p></td>
-                      <td  valign="top"><p>2014</p></td>
-                      <td  valign="top"><p>2015</p></td>
-                      <td  valign="top"><p>&nbsp;</p></td>
-                    </tr>
-                  </table>
-                  
-                  <table border="1" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><h2>Sadržaj    kategorije izveštaja zaštitnika za traženu godinu </h2></td>
-                    </tr>
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><p>{lang}/content/{year}[/{kid}] (<a href="http://izvestaj.rs/zastitnikgradjana/ci/content/2015/40" target="_blank">http://izvestaj.rs/zastitnikgradjana/ci/content/2015/40</a>)</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>&nbsp;</p></td>
-                      <td width="114" valign="top"><p>Example</p></td>
-                      <td width="96" valign="top"><p>Default</p></td>
-                      <td width="306" valign="top"><p>Mandatory</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>lang</p></td>
-                      <td width="114" valign="top"><p>ci</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>content</p></td>
-                      <td width="114" valign="top"><p>content</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>year</p></td>
-                      <td width="114" valign="top"><p>2015</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>kid</p></td>
-                      <td width="114" valign="top"><p>40</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>Ako se ne prosledi API vraća sadržaj prve    kategorije u traženoj godini (ci/content/2015)</p></td>
-                    </tr>
-                  </table>
-                  
-                  <table border="1" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><h2>Godine    izveštaja u kojima postoji sadržaj za traženu kategoriju </h2></td>
-                    </tr>
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><p>{lang}/timeline/{kid} (<a href="http://izvestaj.rs/zastitnikgradjana/ci/timeline/40" target="_blank">http://izvestaj.rs/zastitnikgradjana/ci/timeline/40</a>)</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>&nbsp;</p></td>
-                      <td width="114" valign="top"><p>Example</p></td>
-                      <td width="96" valign="top"><p>Default</p></td>
-                      <td width="306" valign="top"><p>Mandatory</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>lang</p></td>
-                      <td width="114" valign="top"><p>ci</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>timeline</p></td>
-                      <td width="114" valign="top"><p>timeline</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>year</p></td>
-                      <td width="114" valign="top"><p>40</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                  </table>
-                  
-                  <table border="1" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><h2>Pretraga    po parametru </h2></td>
-                    </tr>
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><p>{lang}/search/{searchTerm} (<a href="http://izvestaj.rs/zastitnikgradjana/ci/search/права" target="_blank">http://izvestaj.rs/zastitnikgradjana/ci/search/права</a>)</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>&nbsp;</p></td>
-                      <td width="114" valign="top"><p>Example</p></td>
-                      <td width="96" valign="top"><p>Default</p></td>
-                      <td width="306" valign="top"><p>Mandatory</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>lang</p></td>
-                      <td width="114" valign="top"><p>ci</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>search</p></td>
-                      <td width="114" valign="top"><p>search</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>searchTerm</p></td>
-                      <td width="114" valign="top"><p>права грађана</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                  </table>
-
-                  <table border="1" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><h2>Fusnote    za godinu </h2></td>
-                    </tr>
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><p>{lang}/footnotes/{year} (<a href="http://izvestaj.rs/zastitnikgradjana/ci/footnotes/2015" target="_blank">http://izvestaj.rs/zastitnikgradjana/ci/footnotes/2015</a>)</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>&nbsp;</p></td>
-                      <td width="114" valign="top"><p>Example</p></td>
-                      <td width="96" valign="top"><p>Default</p></td>
-                      <td width="306" valign="top"><p>Mandatory</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>lang</p></td>
-                      <td width="114" valign="top"><p>ci</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>footnotes</p></td>
-                      <td width="114" valign="top"><p>footnotes</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>2015</p></td>
-                      <td width="114" valign="top"><p>2015</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                  </table>
-                  
-                  <table border="1" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><h2>Dodatne    teme kategorije (kid) izveštaja zaštitnika za traženu godinu </h2></td>
-                    </tr>
-                    <tr>
-                      <td width="623" colspan="4" valign="top"><p>{lang}/reference/{year}/{kid} (<a href="http://izvestaj.rs/zastitnikgradjana/ci/reference/2015/170" target="_blank">http://izvestaj.rs/zastitnikgradjana/ci/reference/2015/170</a>)</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>&nbsp;</p></td>
-                      <td width="114" valign="top"><p>Example</p></td>
-                      <td width="96" valign="top"><p>Default</p></td>
-                      <td width="306" valign="top"><p>Mandatory</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>lang</p></td>
-                      <td width="114" valign="top"><p>ci</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>reference</p></td>
-                      <td width="114" valign="top"><p>reference</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>year</p></td>
-                      <td width="114" valign="top"><p>2015</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                    <tr>
-                      <td width="108" valign="top"><p>kid</p></td>
-                      <td width="114" valign="top"><p>170</p></td>
-                      <td width="96" valign="top"><p>/</p></td>
-                      <td width="306" valign="top"><p>x</p></td>
-                    </tr>
-                  </table>
-<p></p>
-                  <p>&nbsp;</p>
-<p>&nbsp;</p>
-</div>
-                
+                    <h1>Api izvestaj.gradjaninastrazi.rs </h1>
+                    <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td colspan="4" valign="top">
+                                <h2>Kategorije izveštaja za traženu godinu (parent – child struktura) </h2></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" valign="top">
+                                <p>{lang}/nav[/{year}] (<a href="http://izvestaj.gradjaninastrazi.rs/ci/nav/2014" target="_blank">http://izvestaj.gradjaninastrazi.rs/ci/nav/2014</a>)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <p>&nbsp;</p>
+                            </td>
+                            <td valign="top">
+                                <p>Example</p>
+                            </td>
+                            <td valign="top">
+                                <p>Default</p>
+                            </td>
+                            <td valign="top">
+                                <p>Mandatory</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <p>lang</p>
+                            </td>
+                            <td valign="top">
+                                <p>ci</p>
+                            </td>
+                            <td valign="top">
+                                <p>/</p>
+                            </td>
+                            <td valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <p>nav</p>
+                            </td>
+                            <td valign="top">
+                                <p>nav</p>
+                            </td>
+                            <td valign="top">
+                                <p>/</p>
+                            </td>
+                            <td valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <p>year</p>
+                            </td>
+                            <td valign="top">
+                                <p>2014</p>
+                            </td>
+                            <td valign="top">
+                                <p>2015</p>
+                            </td>
+                            <td valign="top">
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="1" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <h2>Sadržaj kategorije izveštaja za traženu godinu </h2></td>
+                        </tr>
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <p>{lang}/content/{year}[/{kid}] (<a href="http://izvestaj.gradjaninastrazi.rs/ci/content/2015/40" target="_blank">http://izvestaj.gradjaninastrazi.rs/ci/content/2015/40</a>)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>&nbsp;</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>Example</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>Default</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>Mandatory</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>lang</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>ci</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>content</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>content</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>year</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>2015</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>kid</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>40</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>Ako se ne prosledi API vraća sadržaj prve kategorije u traženoj godini (ci/content/2015)</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="1" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <h2>Godine    izveštaja u kojima postoji sadržaj za traženu kategoriju </h2></td>
+                        </tr>
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <p>{lang}/timeline/{kid} (<a href="http://izvestaj.gradjaninastrazi.rs/ci/timeline/40" target="_blank">http://izvestaj.gradjaninastrazi.rs/ci/timeline/40</a>)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>&nbsp;</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>Example</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>Default</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>Mandatory</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>lang</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>ci</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>timeline</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>timeline</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>year</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>40</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="1" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <h2>Pretraga    po parametru </h2></td>
+                        </tr>
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <p>{lang}/search/{searchTerm} (<a href="http://izvestaj.gradjaninastrazi.rs/ci/search/права" target="_blank">http://izvestaj.gradjaninastrazi.rs/ci/search/права</a>)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>&nbsp;</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>Example</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>Default</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>Mandatory</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>lang</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>ci</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>search</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>search</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>searchTerm</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>права грађана</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="1" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <h2>Fusnote    za godinu </h2></td>
+                        </tr>
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <p>{lang}/footnotes/{year} (<a href="http://izvestaj.gradjaninastrazi.rs/ci/footnotes/2015" target="_blank">http://izvestaj.gradjaninastrazi.rs/ci/footnotes/2015</a>)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>&nbsp;</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>Example</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>Default</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>Mandatory</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>lang</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>ci</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>footnotes</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>footnotes</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>2015</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>2015</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="1" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <h2>Dodatne teme kategorije (kid) izveštaja  za traženu godinu </h2></td>
+                        </tr>
+                        <tr>
+                            <td width="623" colspan="4" valign="top">
+                                <p>{lang}/reference/{year}/{kid} (<a href="http://izvestaj.gradjaninastrazi.rs/ci/reference/2015/170" target="_blank">http://izvestaj.gradjaninastrazi.rs/ci/reference/2015/170</a>)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>&nbsp;</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>Example</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>Default</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>Mandatory</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>lang</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>ci</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>reference</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>reference</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>year</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>2015</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="108" valign="top">
+                                <p>kid</p>
+                            </td>
+                            <td width="114" valign="top">
+                                <p>170</p>
+                            </td>
+                            <td width="96" valign="top">
+                                <p>/</p>
+                            </td>
+                            <td width="306" valign="top">
+                                <p>x</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-      </div>
+        </div>
         <div class="bottom-div" style="position: fixed; background-color:#41b5ce; bottom:0;">
             <div class="row powered"> <span>powered by</span> <img src="svgs/crta-logo.png"></div>
             <hr>
