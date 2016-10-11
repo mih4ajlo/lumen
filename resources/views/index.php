@@ -50,6 +50,15 @@
    
     
     </script>
+
+    <style type="text/css">
+    #displayCont img{
+        max-width: 95%;
+        margin: 0 auto;
+        clear: both;
+        text-align: center;
+    }
+    </style>
 </head>
 
 <body>
