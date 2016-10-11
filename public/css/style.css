@@ -99,10 +99,10 @@ text-align:right;
 
 #displayRefButton{
    
-    background-color: #2CB5C0;
+    background-color: #00417A;
     color: #676565 !important;
     z-index: 5;
-    /* background: url("../images/corner.png") no-repeat scroll right center #2CB5C0; */
+    /* background: url("../images/corner.png") no-repeat scroll right center #00417A; */
     border-radius: 25px;
     /* border-top-right-radius: 0px; */
     /* border-bottom-right-radius: 0px; */
@@ -138,7 +138,7 @@ text-align:right;
     clear: both;
 }
 .main-nav {
-    background-color: #2CB5C0;
+    background-color: #00417A;
     min-height: 100px;
     position: relative;
 }
@@ -239,8 +239,8 @@ padding-left:0px;
 }
 
 .navigation a.active {
-    background: #2CB5C0;
-    color: #676565 !important;
+    background: #00417A;
+    color: white !important;
     border-radius: 25px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -261,7 +261,7 @@ padding-left:0px;
     }
     #subNavHolder p{
         cursor: hand;
-        background: #2CB5C0;
+        background: #00417A;
         border-radius: 25px;
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
@@ -277,7 +277,7 @@ max-width: 20%;
     }
 
 #mainLine {
-    /* background-color: #2CB5C0; */
+    /* background-color: #00417A; */
     /* content: " "; */
     display: block;
     height: auto;
@@ -286,7 +286,7 @@ max-width: 20%;
     z-index: -1;
     margin-left: -12px;
     margin-top: 8px;
-    border-top: 10px solid #2CB5C0;
+    border-top: 10px solid #00417A;
 
         }   
 
@@ -297,7 +297,7 @@ max-width: 20%;
     background: #58595B;
     border-radius: 20px;
     border: 1px solid #58595b;
-    color: #2CB5C0;
+    color: #00417A;
     padding: 5px 15px;
     font-weight: bold;
     min-width: 20%; 
@@ -315,7 +315,7 @@ max-width: 20%;
     right: 30;
     bottom: 10;
     font-size: 40px;
-    color: #2CB5C0;
+    color: #00417A;
 }
 #toTop:hover{
     color: #58595B;
@@ -359,7 +359,7 @@ max-width: 20%;
         background: #58595B;
         border-radius: 20px;
         border: 1px solid #58595b;
-        color: #2CB5C0;
+        color: #00417A;
         padding: 5px 15px;
         font-weight: bold;
     }
@@ -373,7 +373,7 @@ max-width: 20%;
     }
     .ui.dropdown .menu>.item {
           background: #58595B !important;
-          color: #2CB5C0 !important;
+          color: #00417A !important;
         text-align: center !important;
         font-size: 2rem !important;
         border-bottom: 1px solid black !important;
@@ -383,7 +383,7 @@ max-width: 20%;
     background: #58595B;
     border-radius: 20px;
     border: 1px solid #58595b;
-    color: #2CB5C0;
+    color: #00417A;
     padding: 5px 15px;
     font-weight: bold;
 } */
@@ -518,9 +518,9 @@ td{
 .icoNav{
     margin-left: 10px;
     border-radius: 17px;
-    border-color: #2cb5c0;
+    border-color: #00417A;
     box-shadow: 6px 6px 10px #888888;
-    background-color: #2cb5c0;
+    background-color: #00417A;
 }
 
 .socialCont{
@@ -557,8 +557,8 @@ td{
     height: 140px;
     padding-right: 30px;
     padding-top: 20px;
-    background-color: #58595B;
-    color: #2CB5C0;
+    background-color: #ED1C24;
+    color: #00417A;
     font-size: 18px;
     text-align: left;
     padding-left: 29px;
@@ -590,7 +590,7 @@ td{
     padding: 7px 15px;
 }
 .navigation p.active {
-    background: #2CB5C0;
+    background: #00417A;
     border-radius: 25px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
