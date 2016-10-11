@@ -74,7 +74,7 @@
                     </a>
                     <div class="icoNavCont">
                         <a href="http://gradjaninastrazi.rs/" title="Povratak na gradjaninastrazi.rs" ><img class="icoNav" src="svgs/home.svg"></a>
-                        <a href="#" title="Izveštaj (pdf)" target="_blank"><img class="icoNav" src="svgs/web.svg"></a>
+                        <a href="#" title="Izveštaj (pdf)" target="_blank"><img class="icoNav" src="svgs/download.svg"></a>
                         <a href="api.html" title="Deo za programere" target="_blank"><img class="icoNav" src="svgs/api.svg"></a>
                     </div>
                     <!-- data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" -->
