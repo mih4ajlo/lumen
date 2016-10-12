@@ -34,6 +34,9 @@
  				$('[period]').parent().show()
  				$('[period]:not([period~="dugo"])').parent().hide()
  				break;	
+ 			case 'sve':
+ 				$('[period]').parent().show()
+ 				break;
  		}
 
     }
@@ -72,7 +75,7 @@
 <body>
 
 	<nav>
-		<div onclick="prikazi('kratko')">Kratki</div>
+		<div onclick="prikazi('sve')">Sve preporuke</div>
 		<div onclick="prikazi('kratko')">Kratki</div>
 		<div onclick="prikazi('srednje')">Srednji</div>
 		<div onclick="prikazi('dugo')">Dugi</div>
