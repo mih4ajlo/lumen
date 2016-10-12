@@ -11,13 +11,73 @@
     	
     $(function() {
 
-    	$('[period="srednje"]').parent().hide()
+    	$('[period]+p').hide()
+    	//.parent()
+
+    	$('[period]').click(function(event) {
+    		$(this).siblings().toggle()
+    	});
     })
 
+    function prikazi(boja) {
+ 		switch(boja) {
+ 			case 'kratko':
+ 				$('[period]').parent().show()
+ 				$('[period]:not([period~="kratko"])').parent().hide()
+ 				break;
+ 			case 'srednje':
+ 				$('[period]').parent().show()
+ 				$('[period]:not([period~="srednje"])').parent().hide()
+ 				break;
+
+ 			case 'dugo':
+ 				$('[period]').parent().show()
+ 				$('[period]:not([period~="dugo"])').parent().hide()
+ 				break;	
+ 		}
+
+    }
+
+
     </script>
+
+    <style type="text/css">
+		[period]{
+			cursor: pointer;
+		}
+		[period='srednje']+p{
+			background-color: rgba(237, 119, 0, 0.5);
+		}
+
+		[period='kratko']+p{
+			background-color: rgba(251, 217, 103, 0.5);
+		}
+		[period='dugo']+p{
+			background-color: rgba(90, 193, 226, 0.5);
+		}
+
+		nav > div{
+			cursor: pointer;
+		}
+
+		div p{
+			padding: 5px;
+		}
+		div{
+			margin: 10px 0;
+		}
+    </style>
 </head>
 
 <body>
+
+	<nav>
+		<div onclick="prikazi('kratko')">Kratki</div>
+		<div onclick="prikazi('kratko')">Kratki</div>
+		<div onclick="prikazi('srednje')">Srednji</div>
+		<div onclick="prikazi('dugo')">Dugi</div>
+	</nav>
+
     <div>
         <span period="srednje">Definisati način dostavljanja obaveštenja o glasanju u skladu sa postojećim procesnim zakonima</span>
         <p> Povodom učestale pojave dostavljanja poziva za glasanje biračima na adrese na kojima ne stanuju, CRTA-GnS ukazuje da je ovakva situacija posledica neuređenog biračkog spiska i nepostojanja jasno definisanog načina za dostavljanje poziva. Lokalna samouprava nadležna je za obaveštenja o glasanju i dostavljanje poziva za glasanje na osnovu izvoda iz biračkog spiska. Dakle, u praksi je moguća situacija da određeni glasači uopšte ne dobiju obaveštenje o glasanju ili da ga dobiju na pogrešnu adresu. Glasači mogu da glasaju i bez obaveštenja o glasanju, ali je potrebno da ponesu dokument sa slikom i JMBG-om, kako bi članovi biračkog odbora mogli da utvrde identitet glasača. Ovakav način dostavljanja poziva sigurno ne ispunjava uslove koji su propisani našim procesnim zakonima za neke druge vrste slučajeva/postupaka (Zakonom o parničnom i Zakonom o krivičnom postupku).
