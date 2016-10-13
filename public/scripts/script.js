@@ -110,7 +110,9 @@ function showMenu( yearPo ) {
             $("#nav>ul>li>ul").hide()
 
             $('.navigation li a').click(function(ev){
-               $(".navigation").hide();
+              
+              //samo na malim ekranima
+              // $(".navigation").hide();
             });
             
             
