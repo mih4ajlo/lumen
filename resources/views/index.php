@@ -46,7 +46,7 @@
         });
 
         $('.navigation li a').click(function(ev){
-           $("navigation").hide();
+           $(".navigation").hide();
         });
 
     })
