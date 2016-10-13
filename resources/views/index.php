@@ -45,9 +45,7 @@
             $('.left-side').toggleClass('left-side-mobile');
         });
 
-        $('.navigation li a').click(function(ev){
-           $(".navigation").hide();
-        });
+        
 
     })
 
