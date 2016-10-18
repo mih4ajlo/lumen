@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 
+
 if (isset($_POST["action"])) {
 //call function whose name is stored in variable action
 $_POST["action"]();
@@ -32,7 +33,9 @@ olLiTree($outpreped);
 function showStoredSectionForYear(){
     global $db;
 
-    $sql = "SELECT scont FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."'  ";
+    checkLang();
+
+    $sql = "SELECT scont FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."'  AND slang='".$_POST["lang"]."'  ";
     $result = $db->query($sql);
 
     $nr = mysqli_num_rows($result) ;
@@ -54,10 +57,12 @@ function showStoredSectionForYear(){
 function insertSectionForYear(){
     global $db;
 
+    checkLang();
+
     //ok for now
     foreach ($_POST as $name => $val) { $_POST[$name] = mysqli_real_escape_string($db, $val); }
 
-    $sql = "SELECT sid FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."'  ";
+    $sql = "SELECT sid FROM sadrzajs WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."' AND slang='".$_POST["lang"]."'  ";
     $result = $db->query($sql);
 
     $nr = mysqli_num_rows($result) ;
@@ -65,13 +70,13 @@ function insertSectionForYear(){
     switch($nr){
     case 0:
         //uradi insert
-        $sql = "INSERT INTO sadrzajs (`kid`,`sgodina`,`scont`, `scont-notag`,`saltnaslov`) VALUES('".$_POST["id"]."','".$_POST["year"]."', '".$_POST["cont"]."', '".strip_tags($_POST["cont"])."','".$_POST["altnaslov"]."'  ) ";
+        $sql = "INSERT INTO sadrzajs (`slang`,`kid`,`sgodina`,`scont`, `scont-notag`,`saltnaslov`) VALUES('".$_POST["lang"]."','".$_POST["id"]."','".$_POST["year"]."', '".$_POST["cont"]."', '".strip_tags($_POST["cont"])."','".$_POST["altnaslov"]."'  ) ";
         //echo $sql;
         $result = $db->query($sql) OR die(mysqli_error($db));
         echo "Tekst unesen";
         break;
     case 1:
-        $sql = "UPDATE sadrzajs SET  saltnaslov='".$_POST["altnaslov"]."' , scont='".$_POST["cont"]."' WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."'  ";
+        $sql = "UPDATE sadrzajs SET  saltnaslov='".$_POST["altnaslov"]."' , scont='".$_POST["cont"]."' WHERE kid='".$_POST["id"]."' AND sgodina='".$_POST["year"]."' AND slang='".$_POST["lang"]."'   ";
         //echo $sql;
         $result = $db->query($sql) OR die(mysqli_error($db));
         echo "Tekst azuriran";
@@ -93,12 +98,19 @@ function insertNewCategory(){
 
 function deleteTextForYear(){
     global $db;
-    $sql = "DELETE FROM sadrzajs WHERE sgodina='".$_POST["sgodina"]."' AND kid='".$_POST["kid"]."'   ";
+
+    checkLang();
+
+    $sql = "DELETE FROM sadrzajs WHERE sgodina='".$_POST["sgodina"]."' AND kid='".$_POST["kid"]."' AND slang='".$_POST["lang"]."'   ";
     echo $sql;
     $result = $db->query($sql) OR die(mysqli_error($db));
-    echo " Tekst obrisan za godinu ".$_POST["sgodina"]." i id ".$_POST["kid"] ;
+    echo " Tekst obrisan za godinu ".$_POST["sgodina"]." i id ".$_POST["kid"] ."i jezik ".$_POST["lang"] ;
 
 }
+
+
+
+
 
 
 
@@ -202,5 +214,16 @@ function updateCatsOrder(){
 
      echo "Updated...";
 }
+
+//die if no lang
+function checkLang(){
+    global $_POST;
+
+    if (empty($_POST["lang"]) ) {
+        die("Izaberite jezik/pismo!!!");
+    }
+}
+
+
 
 ?>

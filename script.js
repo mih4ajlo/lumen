@@ -142,12 +142,13 @@ function dropHelperCont( event, ui ) {
 	//console.dir($(this));
 	if(draggable.attr('id')!="parsedCont") {alert("Ovde mozete prevuci samo tekstualni sadrzaj sekcije.");return;}
 	if($('#year :selected').text()==""){alert("Izaberite godinu za koju zelite da ubacite postojeci sadrzaj!!!");return;}
+	if($('#lang').val()==""){alert("Izaberite JEZIK / PISMO za koji UNOSITE postojeci sadrzaj!!!");return;}
 	if($( "#outNav ul li .active" ).length!=1){alert("Niste izabrali sekciju u koju kopirate text!!!");return;}
 
-
+	show( "" );
 	
 	//upisi podatke iz parsedCont
-	$.post( "ajax.php",{ action: "insertSectionForYear", year:$('#year :selected').text(),id:$( "#outNav ul li .active" )[0].dataset.kid, cont:$("#parsedCont").html(), altnaslov: $( "#parsedNav .active" )[0].innerText  }, function( data ) {
+	$.post( "ajax.php",{ action: "insertSectionForYear", year:$('#year :selected').text(),id:$( "#outNav ul li .active" )[0].dataset.kid, cont:$("#parsedCont").html(), altnaslov: $( "#parsedNav .active" )[0].innerText,lang:$('#lang').val()  }, function( data ) {
 	  show( data );
 	  $( "#outNav ul li .active" ).trigger('click');
 	});	
@@ -157,7 +158,7 @@ function dropHelperCont( event, ui ) {
 
 	
 function loadCategories(){
-	$.post( "ajax.php",{ action: "showCategories" }, function( data ) {
+	$.post( "ajax.php",{ action: "showCategories",lang:$('#lang').val() }, function( data ) {
 	  $( "#outNav" ).html( data );
 	  //make outNav droppable
 	  $( "#outNav ul li" ).children().droppable( {drop: dropHelperNav,hoverClass: "activeHover" } );
@@ -168,25 +169,30 @@ function loadCategories(){
 
 function showStoredSectionForYear(contid){
 	//check if year selected
-	if($('#year :selected').text()==""){alert("Izaberite godinu za koju gledate postojeci sadrzaj!!!");return;}
+	if($('#year :selected').text()==""){alert("Izaberite GODINU za koju gledate postojeci sadrzaj!!!");return;}
+	if($('#lang').val()==""){alert("Izaberite JEZIK / PISMO za koji gledate postojeci sadrzaj!!!");return;}
 	
 	$( "#outCont" ).html('');
 	
 	$( "#outNav ul li" ).children().removeClass("active");
     $('#storeCont'+contid).addClass('active');
 	
-	$.post( "ajax.php",{ action: "showStoredSectionForYear", year:$('#year :selected').text(),id:contid }, function( data ) {
+	$.post( "ajax.php",{ action: "showStoredSectionForYear", year:$('#year :selected').text(),id:contid,lang:$('#lang').val() }, function( data ) {
 	  $( "#outCont" ).html( data );
 	});	
 }
 
 function obrisiTextZaGodinu(){
+	
+	
+	if (!confirm("Sigurno zelite da obrisete? Nema nazad :) ")) {return;}
+	
 	var godina = $('#year :selected').text();
 	var ownerid = $( "#outNav ul li .active" )[0].dataset.kid;
 	console.dir(godina +"/"+ownerid);
 	
 	//obrisi selectovani tekst
-	$.post( "ajax.php",{ action: "deleteTextForYear", sgodina:godina,kid:ownerid }, function( data ) {
+	$.post( "ajax.php",{ action: "deleteTextForYear", sgodina:godina,kid:ownerid, lang:$('#lang').val() }, function( data ) {
 	  show( data );
 	  //reload right Nav
 	  loadCategories();

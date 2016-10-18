@@ -33,6 +33,11 @@ Izaberite godinu sa kojom radite:
 <option value="2015">2015</option>
 <option value="2016">2016</option>
 </select>
+&nbsp; Izaberite jezik: <select id="lang" name="lang" size="1">
+<option value="" selected="selected"></option>
+<option value="ci">Cirilica</option>
+<option value="en">English</option>
+</select>
 <div id="obrisiTextZaGodinu">Obrisi ovaj tekst</div>  
 </div>
 
