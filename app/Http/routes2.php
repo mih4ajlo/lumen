@@ -7,11 +7,11 @@ $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 
      if($year){
          //select only first 2 levels
-        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} order by korder";  
+        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina='{$year}' AND slang='{$lang}' order by korder";
         //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kowner IN(SELECT sid FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} and kowner=0) OR (sgodina={$year} and kowner=0)  order by saltorder";
      } else {
          //default
-        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 order by korder  ";
+        $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina='2015' AND slang='{$lang}' order by korder  ";
         //$sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 AND kowner IN(SELECT sid FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 and kowner=0) OR (sgodina=2015 and kowner=0)  order by saltorder";
      }
 
@@ -31,10 +31,10 @@ $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 $app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
 
      if($kid){
-        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kid={$kid} ";
+        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kid={$kid} AND slang='{$lang}' ";
      } else {
          //default
-        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 order by saltorder LIMIT 1  ";
+        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina=2015 AND slang='{$lang}' order by saltorder LIMIT 1  ";
      }
 
     $out = frontSql($sql);
@@ -59,7 +59,7 @@ $app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
 // lang obavezan / kid obavezan
 $app->get('{lang}/timeline/{kid}', function ($lang,$kid)  {
 
-    $sql = "SELECT sgodina FROM sadrzajs NATURAL JOIN kategorijes WHERE kid={$kid} GROUP BY sgodina ";
+    $sql = "SELECT sgodina FROM sadrzajs NATURAL JOIN kategorijes WHERE kid={$kid}  AND slang='{$lang}' GROUP BY sgodina ";
 
     $out = frontSql($sql);
 
@@ -68,11 +68,11 @@ $app->get('{lang}/timeline/{kid}', function ($lang,$kid)  {
 
 //SEARCH DATABASE
 // lang obavezan / kid obavezan
-$app->get('{lang}/search/{search}', function ($search)  {
+$app->get('{lang}/search/{search}', function ($search, $lang)  {
 
 $search = urldecode($search);
 
-    $sql = "SELECT saltnaslov, sgodina,kid FROM sadrzajs NATURAL JOIN kategorijes  WHERE scont LIKE '%{$search}%'  ";
+    $sql = "SELECT saltnaslov, sgodina,kid FROM sadrzajs NATURAL JOIN kategorijes  WHERE scont LIKE '%{$search}%'  AND slang='{$lang}'  ";
 
     $out = frontSql($sql);
 
@@ -81,9 +81,9 @@ $search = urldecode($search);
 
 //FOOTNOTES
 // lang obavezan / year obavezan
-$app->get('{lang}/footnotes/{year}', function ($year)  {
+$app->get('{lang}/footnotes/{year}', function ($year, $lang)  {              //dodati flang u mySQL tablu footnotes
 
-    $sql = "SELECT fcont FROM footnotes  WHERE fyear = '{$year}'  ";
+    $sql = "SELECT fcont FROM footnotes  WHERE fyear = '{$year}'  AND flang='{$lang}'  ";
 
     $out = frontSql($sql);
 
@@ -93,10 +93,10 @@ $app->get('{lang}/footnotes/{year}', function ($year)  {
 
 //Reference - Dodatne teme
 // lang obavezan / year obavezan / kid obavezan
-$app->get('{lang}/reference/{year}/{kid}', function ($year,$kid)  {
+$app->get('{lang}/reference/{year}/{kid}', function ($year,$kid,$lang)  {
 
 
-    $sql = "SELECT rcont FROM refs  WHERE ryear = '{$year}' AND kid = '{$kid}'  ";
+    $sql = "SELECT rcont FROM refs  WHERE ryear = '{$year}' AND kid = '{$kid}'  AND rlang='{$lang}'  ";
 
     $out = frontSql($sql);
 
@@ -109,7 +109,7 @@ $app->get('{lang}/reference/{year}/{kid}', function ($year,$kid)  {
 $app->get('{lang}/firstchild/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
 
      if($kid){
-        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kowner={$kid} ORDER BY korder LIMIT 1  ";
+        $sql = "SELECT scont FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina={$year} AND kowner={$kid}  AND slang='{$lang}' ORDER BY korder LIMIT 1  ";
      }
 
     $out = frontSql($sql);
@@ -122,7 +122,7 @@ $app->get('{lang}/firstchild/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  
 // lang obavezan / godina obavezna / kid obavezan
 $app->get('{lang}/findref/{year}/{kid}', function ($lang,$year,$kid)  {
 
-    $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year} AND kid={$kid} ";
+    $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year} AND kid={$kid}  AND rlang='{$lang}' ";
     $results = DB::select($sql);
 
     if(count($results)>0){
@@ -134,7 +134,7 @@ $app->get('{lang}/findref/{year}/{kid}', function ($lang,$year,$kid)  {
 
         //no ref found check in owner category
         //SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear=2015 AND kid=(SELECT kowner FROM `kategorijes` WHERE kid=454)
-        $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year} AND kid=(SELECT kowner FROM `kategorijes` WHERE kid={$kid}) ";
+        $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year}  AND rlang='{$lang}' AND kid=(SELECT kowner FROM `kategorijes` WHERE kid={$kid}) ";
         $results = DB::select($sql);
 
         if(count($results)>0){$results[0]->note = '<span style="color:red;">*</span>';return response()->json($results);}
