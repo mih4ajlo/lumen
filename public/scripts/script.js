@@ -9,6 +9,8 @@ id = '40';
 compareTo = '';
 searchFor = '';
 tip="sadrzaj";
+prevhref = "";
+nexthref = "";
 
 $(document).ready(function() {
     console.log("ready!");
@@ -41,6 +43,15 @@ $(document).on('click', '#toTop', function() {
     $(document).scrollTop(0);
 });
 
+$(document).on('click', '#goback', function() {
+    console.log(prevhref);
+	window.location.href = prevhref;
+});
+
+$(document).on('click', '#goforward', function() {
+    console.log(nexthref);
+	window.location.href = nexthref;
+});
 
 
 
@@ -137,6 +148,10 @@ function showMenu( yearPo ) {
             //
             //$("#nav").offset({top:-300})
             //$("#nav").prop('scrollHeight')
+			
+			
+			//BUILD PREV NEXT LINKS
+			backNext();
             
 
         })
@@ -645,3 +660,35 @@ var hideResult = function(arg) {
 
 
     }
+	
+	
+function backNext()	{
+	console.clear();
+	
+	var go = 0;
+	var navlist = $('#nav a');
+ 	navlist.each(function(key) {
+
+
+ 		if($(this).hasClass( "active" )){
+
+			if((key-1)<0) {prevkey=navlist.length-1;} else {prevkey=key-1;} 
+			if((key+1)<navlist.length) {nextkey=key+1;} else {nextkey=0;}
+			
+			prevhref = navlist[prevkey].href; 
+			nexthref = navlist[nextkey].href; 
+
+			//console.log(prevkey +"/"+key+"/"+nextkey+"   /  " + navlist.length);			
+			
+			//console.dir(navlist[prevkey].innerText); 
+			//console.dir(navlist[key].innerText); 
+			//console.dir(navlist[nextkey].innerText);
+			//next = navlist.getSelected().next().text();
+		
+			} 
+		
+		
+	}); 	
+	
+
+}
