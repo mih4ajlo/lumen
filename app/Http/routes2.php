@@ -38,6 +38,7 @@ $app->get('{lang}/content/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  {
      }
 
     $out = frontSql($sql);
+    
 
     //clear span lang and class
     //$out[0]->scont = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $out[0]->scont);
@@ -123,7 +124,11 @@ $app->get('{lang}/firstchild/{year}[/{kid}]', function ($lang,$year,$kid=NULL)  
 $app->get('{lang}/findref/{year}/{kid}', function ($lang,$year,$kid)  {
 
     $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year} AND kid={$kid}  AND rlang='{$lang}' ";
+
     $results = DB::select($sql);
+            
+         
+
 
     if(count($results)>0){
 

@@ -50,6 +50,8 @@
    
     
     </script>
+
+  
 </head>
 
 <body>
@@ -60,6 +62,12 @@
                     <a class="navbar-brand" href="/zastitnikgradjana">                       
                         <div class="logo krug cir">Годишњи извештај Заштитника грађана</div>                       
                     </a>
+
+                    <div class="deoStrelice">
+                        <span id="goback" class="glyphicon glyphicon-triangle-left" title="Prethodni paragraf"></span>
+                        <span id="goforward" class="glyphicon glyphicon-triangle-right" title="Sledeći paragraf"></span>
+                    </div>
+
                     <div class="icoNavCont">
                         <a href="http://izvestaj.rs/" title="Повратак на izvestaj.rs" ><img class="icoNav" src="svgs/home.svg"></a>
                         <a href="http://www.zastitnik.rs/" title="Web Заштитника грађана" target="_blank"><img class="icoNav" src="svgs/web.svg"></a>
