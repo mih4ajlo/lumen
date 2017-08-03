@@ -669,7 +669,7 @@ var hideResult = function(arg) {
 	
 	
 function backNext()	{
-	console.clear();
+	//console.clear();
 	
 	var go = 0;
 	var navlist = $('#nav a');
