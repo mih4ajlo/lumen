@@ -183,6 +183,9 @@ function showMainCont(yearPo, id) {
             clearStyles("displayCont");
 
             $("#uporediOff").hide();
+			
+			
+			disableFootNotesAddHover();
 
 
             //PRIKAZ filter kontrola    
@@ -223,6 +226,9 @@ function compareToYear(yearToCompare) {
                     opacity: 1.0
                 }, { duration: 200, queue: false });
             });
+			
+			
+			disableFootNotesAddHoverCompare();
 
 
         })
