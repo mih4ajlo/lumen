@@ -103,6 +103,7 @@
                                <span id="uporedi" class=" cir">Упореди по годинама</span>
                                 <div id="timelineList" class="menu">
                                   <div class="item">2015</div>
+                                  <div class="item">2015</div>
                                   <div class="item">2014</div>
                                   <div class="item">2013</div>
                                 </div>

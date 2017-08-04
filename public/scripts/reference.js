@@ -3,7 +3,7 @@ var excludedSearch = [];
 var oldH = 0;
 var contentArr = {};
 var h = $("h1,h2");
-var ryear = 2015;
+var ryear = 2016;
 var rkid = 170;
 var rlang = "ci"
 
