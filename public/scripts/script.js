@@ -4,7 +4,7 @@
 //apiLocation = 'http://z.com/';
 apiLocation = '';
 lang = 'cir';
-year = '2015';
+year = '2016';
 id = '40';
 compareTo = '';
 searchFor = '';
@@ -537,7 +537,7 @@ function prependYear(elId) {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
        
         if(god == undefined) 
-            god = 2015;
+            god = 2016;
 
         $("#displayContYear").remove();
         $('#mainLine').before( meni );
