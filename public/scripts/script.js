@@ -461,7 +461,7 @@ function prependYear(elId) {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
         var god = hashVars[1];
         if(god == undefined) 
-            god = 2015;
+            god = 2016;
 
         $("#displayContYear").remove();
         $('#mainLine').before("<span id='" + elId + "Year' >" + god + "</span>");
