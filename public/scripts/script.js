@@ -4,7 +4,7 @@
 //apiLocation = 'http://z.com/';
 apiLocation = '';
 lang = 'cir';
-year = '2015';
+year = '2016';
 id = '40';
 compareTo = '';
 searchFor = '';
@@ -193,6 +193,9 @@ function showMainCont(yearPo, id) {
             clearStyles("displayCont");
 
             $("#uporediOff").hide();
+			
+			
+			disableFootNotesAddHover();
 
 
             //PRIKAZ filter kontrola    
@@ -233,6 +236,9 @@ function compareToYear(yearToCompare) {
                     opacity: 1.0
                 }, { duration: 200, queue: false });
             });
+			
+			
+			disableFootNotesAddHoverCompare();
 
 
         })
@@ -518,7 +524,7 @@ function prependYear(elId) {
     var stil = "margin-45-left";
     
     if(god == undefined) 
-        god =2015;
+        god =2016;
 
 
     
@@ -528,6 +534,7 @@ function prependYear(elId) {
               '<div class="text">'+god+'</div>'+
               '<i class="dropdown icon"></i>'+
               '<div class="menu">'+
+                '<div class="item" data-text="2016">2016</div>'+
                 '<div class="item" data-text="2015">2015</div>'+
                 '<div class="item" data-text="2014">2014</div>'+
                 '<div class="item" data-text="2013">2013</div>'+
@@ -541,7 +548,7 @@ function prependYear(elId) {
         //$('#'+elId).prepend( "<span id='"+elId+"Year' >"+hashVars[1]+"</span>" );
        
         if(god == undefined) 
-            god = 2015;
+            god = 2016;
 
         $("#displayContYear").remove();
         $('#mainLine').before( meni );
@@ -673,7 +680,7 @@ var hideResult = function(arg) {
 	
 	
 function backNext()	{
-	console.clear();
+	//console.clear();
 	
 	var go = 0;
 	var navlist = $('#nav a');
