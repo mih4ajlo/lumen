@@ -12,6 +12,12 @@ tip="sadrzaj";
 prevhref = "";
 nexthref = "";
 
+function setLang(la) {
+    lang = la;
+
+    parseUrl();
+}
+
 $(document).ready(function() {
     console.log("ready!");
     //parse URL on start
@@ -67,11 +73,11 @@ function parseUrl() {
     if(window.location.pathname == "/dodatne.html")
         tip = "referenca";
 
-    if (hashVars[0]) { lang = hashVars[0]; }
-    if (hashVars[1]) { year = hashVars[1]; }
-    if (hashVars[2]) { id = hashVars[2]; }  //korder
-    if (hashVars[3]) { compareTo = hashVars[3]; }
-    if (hashVars[4]) { searchFor = hashVars[4]; }
+    if (hashVars[0]) { lang = lang || hashVars[0]; }
+    if (hashVars[1]) { year = year || hashVars[1]; }
+    if (hashVars[2]) { id = id || hashVars[2]; }  //korder
+    if (hashVars[3]) { compareTo = compareTo || hashVars[3]; }
+    if (hashVars[4]) { searchFor = searchFor || hashVars[4]; }
 
 
     showMenu(year);
@@ -143,7 +149,11 @@ function showMenu( yearPo ) {
             // if maxScrollTop < $("#nav a.active").position().top, radi offset nekako
 
             // SCROLL MENIJA
-            $("#nav").scrollTop($("#nav").scrollTop() + $("#nav a.active").position().top - 8 );
+            //ako top postoji
+            if($("#nav a.active").length >0){
+                $("#nav").scrollTop($("#nav").scrollTop() + $("#nav a.active").position().top - 8 );    
+            }
+            
             //if() ako je h1 koristit ovo; meni se prikaze 95% i onda je moguci skrol jako mali
             //
             //$("#nav").offset({top:-300})
