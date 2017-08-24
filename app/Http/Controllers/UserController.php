@@ -28,7 +28,7 @@ class UserController extends Controller
         $sifra = $request->input('pass');
         $mail = $request->input('email');
         //$sifra 
-         $sifra =  password_hash( /*$sifra*/ 'neki pass' , PASSWORD_DEFAULT);
+        // $sifra =  password_hash( /*$sifra*/ 'neki pass' , PASSWORD_DEFAULT);
 
         /*print_r( $sifra );
         die();*/
