@@ -59,8 +59,8 @@
         <nav class="main-nav navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/zastitnikgradjana">                       
-                        <div class="logo krug cir">Годишњи извештај Заштитника грађана</div>                       
+                    <a class="navbar-brand" href="/zastitnikgradjana">
+                        <div class="logo krug cir">Годишњи извештај Заштитника грађана</div>
                     </a>
 
                     <div class="deoStrelice">
@@ -86,7 +86,7 @@
                         <li id="filterSve" class=" active  cir" onclick="prikaziTagovane('sve')"><a >Све</a></li>
                         <li id="filterVlada" class="   cir" onclick="prikaziTagovane('vlada')"><a >Влада</a></li>
                         <li id="filterMin" class="  cir" onclick="prikaziTagovane('ministarstva')"><a >Министарства</a></li>
-                        <li id="filterSkup" class="  cir" onclick="prikaziTagovane('skupstina')"><a >Скупштина</a></li>                        
+                        <li id="filterSkup" class="  cir" onclick="prikaziTagovane('skupstina')"><a >Скупштина</a></li>
                         <!-- <li id="filterJavne"  class="  cir" onclick="prikaziTagovane('javne')"><a >Јавне институције</a></li> -->
                         <li id="filterOstali" class="  cir" onclick="prikaziTagovane('ostali')"><a >Остали органи и организације</a></li>
 
@@ -119,10 +119,10 @@
                             </div>
                         </li>
                         <li class="search pull-left">
-                            
+
                             <div id="pretraga">
                                 <input id="filter" class=" " type="text" placeholder="Претражите">
-                               
+
                             </div>
                         </li>
                     </ul>

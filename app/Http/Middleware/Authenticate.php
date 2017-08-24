@@ -37,42 +37,32 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         //$plan  = $request->headers->get('user-agent');
-              
-       
-                
+
         if(!empty($_COOKIE['sesid']) ){
          $cookie =  $_COOKIE['sesid'] ;
-            
+
           $user =  app('db')->select(
             "SELECT * FROM sessions where user_id = ?  ", 
             [ $cookie ] );
 
-      
 
             if($user[0]->ip_address == $_SERVER['REMOTE_ADDR'])
                 {
                  return $next($request);
                 }
-            
-          
         }
 
-        
 
         return redirect("/");
 
         //setcookie("sesid", "pera", time() + (86400 * 30), "/");
 
-                      
-        
         //return response('Unauthorized.', 401);
 
-        
         /*if ($this->auth->guard($guard)->guest()) {
             return response('Unauthorized.', 401);
         }*/
 
-        
     }
 
     public function doLogout($value='')

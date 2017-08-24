@@ -80,10 +80,10 @@ function parseUrl() {
     if (hashVars[4]) { searchFor = searchFor || hashVars[4]; }
 
 
-    showMenu(year);
-    showMainCont(year, id);
+    showMenu( year );
+    showMainCont( year, id);
     availableYearsToCompare(); //za padajuci COMPARE meni
-    loadFootNotes(year);
+    loadFootNotes( year );
 	loadReferences();
 
     //if compare active
@@ -93,12 +93,48 @@ function parseUrl() {
 }
 
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
 //get mainMenu from DB
 //year is mandatory
 function showMenu( yearPo ) {
     $("#nav").html('');
     //load nav from API
-    
+
+    //ako se godina ne razlikuje od prethodne, nemoj da ucitavas ponovo meni
+    var la = getCookie("year");
+
+    //treba i jezik
+    if(+la != +yearPo)
+        setCookie("year", yearPo, 1);
+    else{
+        //ne treba ponov ucitavati meni
+        return;
+    }
+
     lang = vratiJezik();
 
     $.getJSON(apiLocation + lang + "/nav/" + yearPo,{tip:tip}, function(menuRes) {
@@ -116,17 +152,14 @@ function showMenu( yearPo ) {
             $('#content').scrollTop();
 
 
-           
+
             //OTKRIVANJE MENIJA
-            
             $("#nav>ul>li>a").each(function(index, el) {
                    if( $(el).siblings('ul').length > 0 )
                     $(el).append( '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>' )
               });
-              
             $("#nav>ul>li>ul").hide()
-            
-            
+
             //:not(
             //$("#nav>ul>li>a.active+ul, #nav>ul>li>ul>a.active+ul, #nav>ul>li>ul>li>a.active+ul").show()
             var temp_selektor = 

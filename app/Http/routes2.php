@@ -5,6 +5,11 @@
 //modularni get - year moze da postoji ali i ne mora
 $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 
+    $name = "nav_year".$year;
+
+    if(file_exists($name)){
+        return  response()->json( json_decode( file_get_contents($name) )) ;
+    }
      if($year){
          //select only first 2 levels
         $sql = "SELECT kid, kowner, knaziv, saltnaslov, sgodina, saltorder FROM sadrzajs NATURAL JOIN kategorijes WHERE sgodina='{$year}' AND slang='{$lang}' order by korder";
@@ -22,6 +27,8 @@ $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 //    var_dump($outf);
 //    echo "</pre>";
 
+    $la = json_encode($name , $outf);
+    file_put_contents( $la );
 
     return response()->json($outf) ;
 });
@@ -126,8 +133,7 @@ $app->get('{lang}/findref/{year}/{kid}', function ($lang,$year,$kid)  {
     $sql = "SELECT ryear AS year, rlang AS lang, kid AS id FROM refs WHERE ryear={$year} AND kid={$kid}  AND rlang='{$lang}' ";
 
     $results = DB::select($sql);
-            
-         
+
 
 
     if(count($results)>0){
