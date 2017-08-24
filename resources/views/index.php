@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/black-tie/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="scripts/script.js"></script>
+    <script src="scripts/script.js?5"></script>
     <script src="scripts/tags.js"></script>
 
     <script type="text/javascript">
