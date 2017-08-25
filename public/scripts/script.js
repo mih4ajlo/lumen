@@ -73,11 +73,11 @@ function parseUrl() {
     if(window.location.pathname == "/dodatne.html")
         tip = "referenca";
 
-    if (hashVars[0]) { lang = lang || hashVars[0]; }
-    if (hashVars[1]) { year = year || hashVars[1]; }
-    if (hashVars[2]) { id = id || hashVars[2]; }  //korder
-    if (hashVars[3]) { compareTo = compareTo || hashVars[3]; }
-    if (hashVars[4]) { searchFor = searchFor || hashVars[4]; }
+    if (hashVars[0]) { lang =   hashVars[0] || lang; }
+    if (hashVars[1]) { year =  hashVars[1] || year; }
+    if (hashVars[2]) { id =  hashVars[2] || id; }  //korder
+    if (hashVars[3]) { compareTo =  hashVars[3] || compareTo; }
+    if (hashVars[4]) { searchFor =  hashVars[4] || searchFor; }
 
 
     showMenu( year );
