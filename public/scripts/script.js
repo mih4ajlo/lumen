@@ -128,12 +128,12 @@ function showMenu( yearPo ) {
     var la = getCookie("year");
 
     //treba i jezik
-    if(+la != +yearPo)
+ /*   if(+la != +yearPo)
         setCookie("year", yearPo, 1);
     else{
         //ne treba ponov ucitavati meni
         return;
-    }
+    }*/
 
     lang = vratiJezik();
 
