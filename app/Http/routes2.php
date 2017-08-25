@@ -27,8 +27,8 @@ $app->get('{lang}/nav[/{year}]', function ($lang,$year=NULL)  {
 //    var_dump($outf);
 //    echo "</pre>";
 
-    $la = json_encode($name , $outf);
-    file_put_contents( $la );
+    $la = json_encode( $outf);
+    file_put_contents(  $name , $la  );
 
     return response()->json($outf) ;
 });
