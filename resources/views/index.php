@@ -94,7 +94,7 @@
                     </ul>
                     <ul class="nav navbar-right">
                             <div>
-                                <span onclick="setLang('en')" >en</span>
+                               <!--  <span onclick="setLang('en')" >en</span> -->
                             </div>
                         <li class="compare clear pull-left">
                             <!-- <button id="uporedi">Uporedi sa prethodnim izveštajima</button> -->
